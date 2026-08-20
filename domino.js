@@ -57,25 +57,45 @@ for (let numeroA = 0; numeroA<= 6; numeroA++) {
         );
  
     }
-    
-}    
-console.log(
-    "Numero de fichas:",
-    fichas.length
-);
-
-console.log(
-    "Todas las fichas:",
-    fichas
-);
-
-let coloresCorrectos = true;
-for (const ficha of fichas) {
+   let coloresCorrectos = true;
+   for (const ficha of fichas) {
     if (ficha.colorA === ficha.colorB) {
         coloresCorrectos = false;
     }
+   }
 }
+
 console.log(
-    "¿Todas las fichas tienen colores distintos?",
-    coloresCorrectos
-); 
+    "Antes de barajar:",
+    fichas.map(
+        ficha=>
+            `${ficha.numeroA}-${ficha.numeroB}`
+    )
+);
+
+for (let i = fichas.length - 1; i > 0; i--) {
+    const indiceAleatorio =
+    Math.floor(
+        Math.random() * (i+1)
+    );
+    const fichaTemporal =
+    fichas[i];
+
+    fichas[i] =
+    fichas[indiceAleatorio];
+
+    fichas[indiceAleatorio] =
+    fichaTemporal;
+}
+
+console.log(
+    "Después de barajar:",
+    fichas.map(
+        ficha =>
+            `${ficha.numeroA}-${ficha.numeroB}`
+    )
+);
+console.log(
+    "Fichas después de barajar:",
+    fichas.length
+);
