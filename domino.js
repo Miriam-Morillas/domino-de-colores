@@ -7,14 +7,3 @@ class Ficha {
         this.colorB = colorB;
     }
 }
-
-const fichaPrueba = new Ficha(
-    3,
-    "rojo",
-    5,
-    "azul"
-);
-
-console.log("Ficha de prueba:", 
-    fichaPrueba
-);
