@@ -313,3 +313,19 @@ console.log(
     "Turno después de colocar la ficha inicial:",
     turno
 );
+
+let extremoIzquierdo = 
+tablero[0].numeroA;
+
+let extremoDerecho =
+tablero[0].numeroB;
+
+console.log(
+    "Extremo izquierdo:",
+    extremoIzquierdo
+);
+
+console.log(
+    "Extremo derecho:",
+    extremoDerecho
+);
