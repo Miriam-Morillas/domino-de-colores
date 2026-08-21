@@ -99,3 +99,66 @@ console.log(
     "Fichas después de barajar:",
     fichas.length
 );
+
+const fichasJugador = [];
+const fichasMaquina = [];
+const fichasPozo = [];
+
+for (let i=0; i<7; i++) {
+    const fichaSacada =
+      fichas.pop();
+    fichasJugador.push(
+        fichaSacada 
+    );  
+}
+
+for (let i=0; i<7; i++) {
+    const fichaSacada = 
+    fichas.pop();
+    fichasMaquina.push(
+        fichaSacada
+    );
+}
+
+for (let i = 0; i <14; i++ ) {
+    const fichaSacada =
+    fichas.pop();
+    fichasPozo.push(
+        fichaSacada
+    );
+}
+
+console.log(
+    "Fichas del jugador:",
+    fichasJugador.length
+);
+
+console.log(
+    "Fichas de la máquina:",
+    fichasMaquina.length
+);
+
+console.log(
+    "Fichas del pozo:",
+    fichasPozo.length
+);
+
+console.log(
+    "Fichas sin repartir:",
+    fichas.length
+);
+
+console.log(
+    "Jugador:",
+    fichasJugador
+);
+
+console.log(
+    "Máquina",
+    fichasMaquina
+);
+
+console.log(
+    "Pozo",
+    fichasPozo
+);
