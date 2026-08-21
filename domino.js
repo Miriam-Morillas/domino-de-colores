@@ -151,3 +151,130 @@ console.log(
     "Ficha doble más alta de la máquina:",
     fichaDobleMasAltoMaquina
 );
+let turno = null;
+
+let fichaInicial = null;
+
+
+
+if (dobleMasAltoJugador > dobleMasAltoMaquina) {
+
+    turno = "jugador";
+
+    fichaInicial =
+        fichaDobleMasAltoJugador;
+
+
+
+} else if (dobleMasAltoMaquina > dobleMasAltoJugador) {
+
+    turno = "maquina";
+
+    fichaInicial =
+        fichaDobleMasAltoMaquina;
+
+
+
+} else {
+
+    let sumaMasAltaJugador = -1;
+
+    let sumaMasAltaMaquina = -1;
+
+    let fichaSumaMasAltaJugador = null;
+
+    let fichaSumaMasAltaMaquina = null;
+
+
+    for (const ficha of fichasJugador) {
+
+        const sumaFicha =
+            ficha.numeroA + ficha.numeroB;
+
+
+        if (sumaFicha > sumaMasAltaJugador) {
+
+            sumaMasAltaJugador =
+                sumaFicha;
+
+            fichaSumaMasAltaJugador =
+                ficha;
+        }
+    }
+
+    for (const ficha of fichasMaquina) {
+
+        const sumaFicha =
+            ficha.numeroA + ficha.numeroB;
+
+
+        if (sumaFicha > sumaMasAltaMaquina) {
+
+            sumaMasAltaMaquina =
+                sumaFicha;
+
+            fichaSumaMasAltaMaquina =
+                ficha;
+        }
+    }
+
+
+    if (sumaMasAltaJugador > sumaMasAltaMaquina) {
+
+        turno = "jugador";
+
+        fichaInicial =
+            fichaSumaMasAltaJugador;
+
+
+    } else if (sumaMasAltaMaquina > sumaMasAltaJugador) {
+
+        turno = "maquina";
+
+        fichaInicial =
+            fichaSumaMasAltaMaquina;
+
+
+    } else {
+
+        const empiezaJugador =
+            Math.random() < 0.5;
+
+
+        if (empiezaJugador) {
+
+            turno = "jugador";
+
+            fichaInicial =
+                fichaSumaMasAltaJugador;
+
+        } else {
+
+            turno = "maquina";
+
+            fichaInicial =
+                fichaSumaMasAltaMaquina;
+        }
+    }
+}
+
+
+console.log(
+    "Empieza:",
+    turno
+);
+
+console.log(
+    "Ficha inicial:",
+    fichaInicial
+);
+
+console.log(
+    "Doble jugador:",
+    dobleMasAltoJugador
+);
+
+console.log(
+    "Doble máquina:",
+    dobleMasAltoMaquina
+)
