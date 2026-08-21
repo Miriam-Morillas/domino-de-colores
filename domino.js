@@ -301,51 +301,8 @@ function esJugable(ficha) {
        
 }
 
-console.log(
-    "Extremo izquierdo:",
-    extremoIzquierdo
-);
-
-console.log(
-    "Extremo derecho:",
-    extremoDerecho
-);
-
-for (const ficha of fichasJugador) {
-    console.log(
-        `${ficha.numeroA}-${ficha.numeroB}`,
-        "¿Jugable?",
-        esJugable(ficha)
-    );
-}
-
 function obtenerFichasJugables(mano) {
     return mano.filter(
         ficha => esJugable(ficha)
     );
 }
-
-const jugablesJugador =
-obtenerFichasJugables(
-    fichasJugador
-);
-
-console.log(
-    "Extremo izquierdo:",
-    extremoIzquierdo
-);
-
-console.log(
-    "Extremo derecho:",
-    extremoDerecho
-);
-
-console.log(
-    "Fichas jugables del jugador:",
-    jugablesJugador
-);
-
-console.log(
-    "Número de fichas jugables:",
-    jugablesJugador.length
-);
