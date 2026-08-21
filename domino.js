@@ -284,41 +284,22 @@ if (turno ==="jugador") {
 
 }
 
-console.log(
-    "Jugador que empezó:",
-    turnoInicial
-);
-
-console.log(
-    "Ficha inicial colocada:",
-    tablero[0]
-);
-
-console.log(
-    "Número de fichas en el tablero:",
-    tablero.length
-);
-
-console.log(
-    "Fichas del jugador:",
-    fichasJugador.length
-);
-
-console.log(
-    "Fichas de la máquina:",
-    fichasMaquina.length
-);
-
-console.log(
-    "Turno después de colocar la ficha inicial:",
-    turno
-);
-
 let extremoIzquierdo = 
 tablero[0].numeroA;
 
 let extremoDerecho =
 tablero[0].numeroB;
+
+function esJugable(ficha) {
+
+    return ( 
+        ficha.numeroA === extremoIzquierdo ||
+        ficha.numeroA === extremoDerecho ||
+        ficha.numeroB === extremoIzquierdo ||
+        ficha.numeroB === extremoDerecho
+    )
+       
+}
 
 console.log(
     "Extremo izquierdo:",
@@ -329,3 +310,11 @@ console.log(
     "Extremo derecho:",
     extremoDerecho
 );
+
+for (const ficha of fichasJugador) {
+    console.log(
+        `${ficha.numeroA}-${ficha.numeroB}`,
+        "¿Jugable?",
+        esJugable(ficha)
+    );
+}
