@@ -57,21 +57,8 @@ for (let numeroA = 0; numeroA<= 6; numeroA++) {
         );
  
     }
-   let coloresCorrectos = true;
-   for (const ficha of fichas) {
-    if (ficha.colorA === ficha.colorB) {
-        coloresCorrectos = false;
-    }
-   }
 }
 
-console.log(
-    "Antes de barajar:",
-    fichas.map(
-        ficha=>
-            `${ficha.numeroA}-${ficha.numeroB}`
-    )
-);
 
 for (let i = fichas.length - 1; i > 0; i--) {
     const indiceAleatorio =
@@ -87,18 +74,6 @@ for (let i = fichas.length - 1; i > 0; i--) {
     fichas[indiceAleatorio] =
     fichaTemporal;
 }
-
-console.log(
-    "Después de barajar:",
-    fichas.map(
-        ficha =>
-            `${ficha.numeroA}-${ficha.numeroB}`
-    )
-);
-console.log(
-    "Fichas después de barajar:",
-    fichas.length
-);
 
 const fichasJugador = [];
 const fichasMaquina = [];
@@ -128,37 +103,51 @@ for (let i = 0; i <14; i++ ) {
     );
 }
 
+let dobleMasAltoJugador = -1;
+let fichaDobleMasAltoJugador = null;
+
+for (const ficha of fichasJugador) {
+    if (ficha.numeroA === ficha.numeroB) {
+        if (ficha.numeroA > dobleMasAltoJugador) {
+            dobleMasAltoJugador =
+            ficha.numeroA;
+
+            fichaDobleMasAltoJugador =
+            ficha;
+        }
+    }
+}
+
+let dobleMasAltoMaquina = -1;
+let fichaDobleMasAltoMaquina = null;
+
+for (const ficha of fichasMaquina) {
+    if (ficha.numeroA === ficha.numeroB) {
+        if (ficha.numeroA > dobleMasAltoMaquina) {
+            dobleMasAltoMaquina =
+            ficha.numeroA;
+
+            fichaDobleMasAltoMaquina = 
+            ficha;
+        }
+    }
+}
+
 console.log(
-    "Fichas del jugador:",
-    fichasJugador.length
+    "Doble más alto del jugador:",
+    dobleMasAltoJugador
+);
+console.log(
+    "Ficha doble más alta del jugador:",
+    fichaDobleMasAltoJugador
 );
 
 console.log(
-    "Fichas de la máquina:",
-    fichasMaquina.length
+    "Doble más alto de la máquina:",
+    dobleMasAltoMaquina
 );
 
 console.log(
-    "Fichas del pozo:",
-    fichasPozo.length
-);
-
-console.log(
-    "Fichas sin repartir:",
-    fichas.length
-);
-
-console.log(
-    "Jugador:",
-    fichasJugador
-);
-
-console.log(
-    "Máquina",
-    fichasMaquina
-);
-
-console.log(
-    "Pozo",
-    fichasPozo
+    "Ficha doble más alta de la máquina:",
+    fichaDobleMasAltoMaquina
 );
