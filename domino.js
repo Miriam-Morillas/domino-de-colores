@@ -133,24 +133,7 @@ for (const ficha of fichasMaquina) {
     }
 }
 
-console.log(
-    "Doble más alto del jugador:",
-    dobleMasAltoJugador
-);
-console.log(
-    "Ficha doble más alta del jugador:",
-    fichaDobleMasAltoJugador
-);
 
-console.log(
-    "Doble más alto de la máquina:",
-    dobleMasAltoMaquina
-);
-
-console.log(
-    "Ficha doble más alta de la máquina:",
-    fichaDobleMasAltoMaquina
-);
 let turno = null;
 
 let fichaInicial = null;
@@ -257,24 +240,76 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         }
     }
 }
+const tablero = [];
 
+const turnoInicial = turno;
+
+if (turno ==="jugador") {
+    const indiceFichaInicial =
+    fichasJugador.findIndex(
+        ficha => ficha === fichaInicial
+    );
+    
+    if (indiceFichaInicial !== -1) {
+        const fichaJugada =
+        fichasJugador.splice(
+            indiceFichaInicial,
+            1
+        )[0];
+
+        tablero.push(
+            fichaJugada
+        );
+    }
+    turno = "maquina";
+} else if (turno === "maquina" ){
+    const indiceFichaInicial =
+    fichasMaquina.findIndex(
+        ficha => ficha === fichaInicial
+    );
+
+    if (indiceFichaInicial !== -1) {
+        const fichaJugada =
+        fichasMaquina.splice(
+            indiceFichaInicial,
+            1
+        )[0];
+
+        tablero.push(
+            fichaJugada
+        );
+
+        turno="jugador";
+    }
+
+}
 
 console.log(
-    "Empieza:",
+    "Jugador que empezó:",
+    turnoInicial
+);
+
+console.log(
+    "Ficha inicial colocada:",
+    tablero[0]
+);
+
+console.log(
+    "Número de fichas en el tablero:",
+    tablero.length
+);
+
+console.log(
+    "Fichas del jugador:",
+    fichasJugador.length
+);
+
+console.log(
+    "Fichas de la máquina:",
+    fichasMaquina.length
+);
+
+console.log(
+    "Turno después de colocar la ficha inicial:",
     turno
 );
-
-console.log(
-    "Ficha inicial:",
-    fichaInicial
-);
-
-console.log(
-    "Doble jugador:",
-    dobleMasAltoJugador
-);
-
-console.log(
-    "Doble máquina:",
-    dobleMasAltoMaquina
-)
