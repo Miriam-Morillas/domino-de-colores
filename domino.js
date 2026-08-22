@@ -494,3 +494,32 @@ function robarFichaJugador() {
     }
     return true;
 }
+function pasarTurnoJugador() {
+    if (turno !== "jugador") {
+        console.log(
+            "Ahora no es el turno del jugador"
+        );
+        return false;
+    }
+    const jugablesJugador = 
+    obtenerFichasJugables(
+        fichasJugador
+    );
+    if (jugablesJugador.length > 0) {
+        console.log(
+            "El jugador tiene fichas jugables y no puede pasar"
+        );
+        return false;
+    }
+    if (fichasPozo.length > 0) {
+        console.log(
+            "Todavía quedan fichas en el pozo. El jugador debe robar"
+        );
+        return false;
+    }
+    turno = "maquina";
+    console.log(
+        "El jugador pasa turno"
+    );
+    return true
+}
