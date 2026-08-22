@@ -448,31 +448,3 @@ function robarFicha(mano) {
     );
     return fichaRobada;
 }
-
-// PRUEBA TEMPORAL BLOQUE 16
-console.log(
-    "Fichas jugador antes:",
-    fichasJugador.length
-);
-console.log(
-    "Fichas pozo antes:",
-    fichasPozo.length
-);
-
-const fichaRobadaPrueba =
-robarFicha(
-    fichasJugador
-);
-
-console.log(
-    "Ficha robada:",
-    fichaRobadaPrueba
-);
-console.log(
-    "Fichas jugador después:",
-    fichasJugador.length
-);
-console.log(
-    "Fichas pozo después:",
-    fichasPozo.length
-);
