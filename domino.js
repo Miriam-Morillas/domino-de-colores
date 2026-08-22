@@ -340,3 +340,45 @@ for (const ficha of fichasJugador) {
         puedeJugarDerecha(ficha)
     );
 }
+
+function girarFicha(ficha) {
+    const numeroTemporal =
+    ficha.numeroA;
+
+    const colorTemporal =
+    ficha.colorA;
+
+    ficha.numeroA =
+    ficha.numeroB;
+
+    ficha.colorA =
+    ficha.colorB;
+
+    ficha.numeroB =
+    numeroTemporal;
+
+    ficha.colorB =
+    colorTemporal;
+}
+
+const fichaPrueba =
+new Ficha (
+    2,
+    "red",
+    5,
+    "blue"
+);
+
+console.log(
+    "Antes de girar:",
+    fichaPrueba
+);
+
+girarFicha(
+    fichaPrueba
+);
+
+console.log(
+    "Después de girar:",
+    fichaPrueba
+);
