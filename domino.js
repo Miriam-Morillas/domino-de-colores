@@ -306,3 +306,37 @@ function obtenerFichasJugables(mano) {
         ficha => esJugable(ficha)
     );
 }
+
+function puedeJugarIzquierda(ficha) {
+    return (
+        ficha.numeroA === extremoIzquierdo ||
+        ficha.numeroB === extremoIzquierdo
+    );
+}
+
+function puedeJugarDerecha(ficha) {
+    return (
+        ficha.numeroA === extremoDerecho ||
+        ficha.numeroB === extremoDerecho
+    );
+}
+
+console.log(
+    "Extremo izquierdo:",
+    extremoIzquierdo
+);
+
+console.log(
+    "Extremo derecho:",
+    extremoDerecho
+);
+
+for (const ficha of fichasJugador) {
+    console.log(
+        `${ficha.numeroA}-${ficha.numeroB}`,
+        "Izquierda:",
+        puedeJugarIzquierda(ficha),
+        "Derecha:",
+        puedeJugarDerecha(ficha)
+    );
+}
