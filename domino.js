@@ -321,26 +321,6 @@ function puedeJugarDerecha(ficha) {
     );
 }
 
-console.log(
-    "Extremo izquierdo:",
-    extremoIzquierdo
-);
-
-console.log(
-    "Extremo derecho:",
-    extremoDerecho
-);
-
-for (const ficha of fichasJugador) {
-    console.log(
-        `${ficha.numeroA}-${ficha.numeroB}`,
-        "Izquierda:",
-        puedeJugarIzquierda(ficha),
-        "Derecha:",
-        puedeJugarDerecha(ficha)
-    );
-}
-
 function girarFicha(ficha) {
     const numeroTemporal =
     ficha.numeroA;
@@ -361,24 +341,66 @@ function girarFicha(ficha) {
     colorTemporal;
 }
 
-const fichaPrueba =
-new Ficha (
-    2,
+function jugarFichaDerecha(ficha) {
+    if (ficha.numeroA === extremoDerecho ) {
+        tablero.push(
+            ficha
+        );
+        extremoDerecho =
+        ficha.numeroB;
+    } else if (ficha.numeroB === extremoDerecho) {
+        girarFicha(
+            ficha
+        );
+        tablero.push(
+            ficha
+        );
+        extremoDerecho =
+        ficha.numeroB;
+    }
+}
+
+const nuevoNumeroPrueba =
+(extremoDerecho +1) % 7;
+
+const fichaPruebaDerecha =
+new Ficha(
+    extremoDerecho,
     "red",
-    5,
+    nuevoNumeroPrueba,
     "blue"
 );
 
 console.log(
-    "Antes de girar:",
-    fichaPrueba
-);
-
-girarFicha(
-    fichaPrueba
+    "Extremo derecho antes:",
+    extremoDerecho
 );
 
 console.log(
-    "Después de girar:",
-    fichaPrueba
+    "Ficha que vamos a jugar:",
+    fichaPruebaDerecha
+);
+
+console.log(
+    "Fichas en tablero antes:",
+    tablero.length
+);
+
+jugarFichaDerecha(
+    fichaPruebaDerecha
+);
+
+console.log(
+    "Extremo derecho después:",
+    extremoDerecho
+);
+
+console.log(
+    "Fichas en tablero después:",
+    tablero.length
+);
+
+console.log(
+    "Tablero:",
+    tablero
 );
