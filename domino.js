@@ -380,42 +380,118 @@ function jugarFichaIzquierda(ficha) {
     }
 }
 
+function jugarFichaJugador(ficha, lado) {
+    if (turno !== "jugador") {
+        console.log(
+            "Ahora no es el turno del jugador"
+        );
+        return false;
+    }
+    const indiceFicha =
+    fichasJugador.findIndex(
+        fichaMano =>
+            fichaMano === ficha
+    );
+    if (indiceFicha === -1) {
+        console.log(
+            "La ficha no está en la mano del jugador"
+        );
+        return false;
+    }
+    if (lado === "izquierda") {
+        if (puedeJugarIzquierda(ficha)) {
+            jugarFichaIzquierda(
+                ficha
+            );
+        } else {
+            console.log(
+                "La ficha no puede jugarse a la izquierda"
+            );
+            return false;
+        }
+    } else if (lado === "derecha") {
+        if (puedeJugarDerecha(ficha)) {
+            jugarFichaDerecha(
+                ficha
+            );
+        } else {
+            console.log(
+                "La ficha no puede jugarse a la derecha"
+            );
+            return false;
+        }
+    } else {
+        console.log(
+            "Lado no válido"
+        );
 
-const nuevoNumeroPrueba =
-(extremoIzquierdo +1) % 7;
-const fichaPruebaIzquierda =
+        return false;
+    }
+    fichasJugador.splice(
+        indiceFicha,
+        1
+    );
+    turno = "maquina";
+    return true;
+}
+
+// PRUEBA TEMPORAL
+turno = "jugador";
+
+const fichaPruebaJugador =
 new Ficha(
-    nuevoNumeroPrueba,
+    extremoDerecho,
     "red",
-    extremoIzquierdo,
+    (extremoDerecho +1) % 7,
     "blue"
 );
-console.log(
-    "Extremo izquierdo antes:",
-    extremoIzquierdo
+
+fichasJugador.push(
+    fichaPruebaJugador
 );
 
 console.log(
-    "Ficha que vamos a jugar:",
-    fichaPruebaIzquierda
-);
-console.log(
-    "Fichas en tablero antes:",
-    tablero.length
-);
-jugarFichaIzquierda(
-    fichaPruebaIzquierda
-);
-console.log(
-    "Extremo izquierdo después:",
-    extremoIzquierdo
+    "Turno antes:",
+    turno
 );
 
 console.log(
-    "Fichas en tablero después:",
+    "Fichas jugador antes:",
+    fichasJugador.length
+);
+
+console.log(
+    "Fichas tablero antes:",
     tablero.length
 );
+
 console.log(
-    "Tablero:",
-    tablero
+    "Extremo derecho antes:",
+    extremoDerecho
+);
+
+const resultadoPrueba =
+jugarFichaJugador(
+    fichaPruebaJugador,
+    "derecha"
+);
+
+console.log(
+    "¿Jugada correcta?",
+    resultadoPrueba
+);
+
+console.log(
+    "Fichas jugador después:",
+    fichasJugador.length
+);
+
+console.log(
+    "Extremo derecho después:",
+    extremoDerecho
+);
+
+console.log(
+    "Turno después:",
+    turno
 );
