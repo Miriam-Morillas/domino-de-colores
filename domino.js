@@ -360,46 +360,61 @@ function jugarFichaDerecha(ficha) {
     }
 }
 
-const nuevoNumeroPrueba =
-(extremoDerecho +1) % 7;
+function jugarFichaIzquierda(ficha) {
+    if (ficha.numeroB === extremoIzquierdo) {
+        tablero.unshift(
+            ficha
+        );
+        extremoIzquierdo =
+        ficha.numeroA;
+    } else if (ficha.numeroA === extremoIzquierdo) {
+        girarFicha(
+            ficha
+        );
+        tablero.unshift(
+            ficha
+        );
 
-const fichaPruebaDerecha =
+        extremoIzquierdo =
+        ficha.numeroA;
+    }
+}
+
+
+const nuevoNumeroPrueba =
+(extremoIzquierdo +1) % 7;
+const fichaPruebaIzquierda =
 new Ficha(
-    extremoDerecho,
-    "red",
     nuevoNumeroPrueba,
+    "red",
+    extremoIzquierdo,
     "blue"
 );
-
 console.log(
-    "Extremo derecho antes:",
-    extremoDerecho
+    "Extremo izquierdo antes:",
+    extremoIzquierdo
 );
 
 console.log(
     "Ficha que vamos a jugar:",
-    fichaPruebaDerecha
+    fichaPruebaIzquierda
 );
-
 console.log(
     "Fichas en tablero antes:",
     tablero.length
 );
-
-jugarFichaDerecha(
-    fichaPruebaDerecha
+jugarFichaIzquierda(
+    fichaPruebaIzquierda
 );
-
 console.log(
-    "Extremo derecho después:",
-    extremoDerecho
+    "Extremo izquierdo después:",
+    extremoIzquierdo
 );
 
 console.log(
     "Fichas en tablero después:",
     tablero.length
 );
-
 console.log(
     "Tablero:",
     tablero
