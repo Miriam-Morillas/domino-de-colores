@@ -434,64 +434,45 @@ function jugarFichaJugador(ficha, lado) {
     turno = "maquina";
     return true;
 }
+function robarFicha(mano) {
+    if (fichasPozo.length === 0) {
+        console.log(
+            "El pozo está vacío"
+        );
+        return null;
+    }
+    const fichaRobada =
+    fichasPozo.pop();
+    mano.push(
+        fichaRobada
+    );
+    return fichaRobada;
+}
 
-// PRUEBA TEMPORAL
-turno = "jugador";
-
-const fichaPruebaJugador =
-new Ficha(
-    extremoDerecho,
-    "red",
-    (extremoDerecho +1) % 7,
-    "blue"
-);
-
-fichasJugador.push(
-    fichaPruebaJugador
-);
-
-console.log(
-    "Turno antes:",
-    turno
-);
-
+// PRUEBA TEMPORAL BLOQUE 16
 console.log(
     "Fichas jugador antes:",
     fichasJugador.length
 );
-
 console.log(
-    "Fichas tablero antes:",
-    tablero.length
+    "Fichas pozo antes:",
+    fichasPozo.length
 );
 
-console.log(
-    "Extremo derecho antes:",
-    extremoDerecho
-);
-
-const resultadoPrueba =
-jugarFichaJugador(
-    fichaPruebaJugador,
-    "derecha"
+const fichaRobadaPrueba =
+robarFicha(
+    fichasJugador
 );
 
 console.log(
-    "¿Jugada correcta?",
-    resultadoPrueba
+    "Ficha robada:",
+    fichaRobadaPrueba
 );
-
 console.log(
     "Fichas jugador después:",
     fichasJugador.length
 );
-
 console.log(
-    "Extremo derecho después:",
-    extremoDerecho
-);
-
-console.log(
-    "Turno después:",
-    turno
+    "Fichas pozo después:",
+    fichasPozo.length
 );
