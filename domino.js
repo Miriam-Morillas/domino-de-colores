@@ -448,3 +448,49 @@ function robarFicha(mano) {
     );
     return fichaRobada;
 }
+
+function robarFichaJugador() {
+    if (turno !== "jugador") {
+        console.log(
+            "Ahora no es el turno del jugador"
+        );
+        return false;
+    }
+    const jugablesJugador =
+    obtenerFichasJugables(
+        fichasJugador
+    );
+    if (jugablesJugador.length > 0) {
+        console.log(
+            "El jugador tiene fichas jugables y no puede robar"
+        );
+        return false;
+
+    }
+    if (fichasPozo.length === 0) {
+        console.log(
+            "No hay fichas en el pozo"
+        );
+        return false;
+    }
+    const fichaRobada =
+    robarFicha(
+        fichasJugador
+    );
+    
+    console.log(
+        "El jugador ha robado:",
+        fichaRobada
+    );
+
+    if (esJugable(fichaRobada)) {
+        console.log(
+            "La ficha robada se puede jugar"
+        );
+    } else {
+        console.log(
+            "La ficha robada no se puede jugar"
+        );
+    }
+    return true;
+}
