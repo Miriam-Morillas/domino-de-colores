@@ -755,3 +755,41 @@ button:active {
 
     background: black;
 }
+
+.fichas-pozo {
+    position: relative;
+
+    width: 156px;
+
+    height: 132px;
+
+    margin-top: 6px;
+
+    flex: 0 0 auto;
+
+    overflow: hidden;
+}
+
+
+.fichas-pozo .ficha-oculta {
+    position: absolute;
+
+    width: 26px;
+
+    height: 50px;
+
+    border-radius: 5px;
+}
+
+
+/* = FICHAS DEL TABLERO=*/
+
+.cadena-fichas .ficha {
+    flex-direction: row;
+
+    width: var(--ficha-alto);
+
+    height: var(--ficha-ancho);
+
+    cursor: default;
+}
