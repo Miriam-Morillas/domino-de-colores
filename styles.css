@@ -914,3 +914,29 @@ button:active {
 .estado-no-jugable {
     background: var(--estado-no-jugable);
 }
+
+.zona-mensajes {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+
+.zona-mensajes p {
+    margin: 0;
+
+    font-size: 0.78rem;
+
+    color: var(--texto-tenue);
+}
+
+
+/*CONTROLES DESACTIVADOS*/
+
+.controles button:disabled {
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
