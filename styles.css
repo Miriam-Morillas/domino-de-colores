@@ -864,3 +864,53 @@ button:active {
 
     color: var(--texto-claro);
 }
+
+.lista-estados {
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    font-size: 0.78rem;
+}
+
+
+.estado-punto {
+    display: inline-block;
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    margin-right: 7px;
+}
+
+
+.estado-jugable {
+    background: var(--estado-jugable);
+
+    box-shadow:
+        0 0 8px var(--estado-jugable);
+}
+
+
+.estado-seleccionada {
+    background: var(--estado-seleccionada);
+
+    box-shadow:
+        0 0 8px var(--estado-seleccionada);
+}
+
+
+.estado-no-jugable {
+    background: var(--estado-no-jugable);
+}
