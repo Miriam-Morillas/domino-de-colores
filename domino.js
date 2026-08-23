@@ -554,3 +554,103 @@ function pasarTurnoMaquina() {
     );
     return true;
 }
+function jugarTurnoMaquina() {
+    if (turno !== "maquina") {
+        console.log(
+            "Ahora no es el turno de la máquina"
+        );
+        return false;
+    }
+    let jugablesMaquina =
+    obtenerFichasJugables(
+        fichasMaquina
+    );
+
+    while(
+        jugablesMaquina.length === 0 &&
+        fichasPozo.length > 0
+    ) {
+        const fichaRobada =
+        robarFicha(
+            fichasMaquina
+        );
+        console.log(
+            "La máquina ha robado:",
+            fichaRobada
+        );
+        jugablesMaquina =
+        obtenerFichasJugables(
+            fichasMaquina
+        );
+    }
+        if (jugablesMaquina.length === 0) {
+            console.log(
+                "La máquina no puede jugar"
+            );
+            return pasarTurnoMaquina();
+        }    
+        const fichaElegida =
+        jugablesMaquina[0];
+
+        const puedeIzquierda =
+        puedeJugarIzquierda(
+            fichaElegida
+        );
+
+        const puedeDerecha =
+        puedeJugarDerecha(
+            fichaElegida
+        );
+        if (
+            puedeIzquierda &&
+            puedeDerecha
+        ) {
+            const jugarIzquierda =
+            Math.random() < 0.5;
+
+            if (jugarIzquierda) {
+                jugarFichaIzquierda(
+                    fichaElegida
+                );
+                console.log(
+                    "La máquina juega a la izquierda"
+                );
+
+            } else {
+                jugarFichaDerecha(
+                    fichaElegida
+                );
+                console.log(
+                    "La máquina juega a la derecha"
+                );
+            }
+
+            } else if (puedeIzquierda) {
+                jugarFichaIzquierda(
+                    fichaElegida
+                );
+                console.log(
+                    "La máquina juega a la izquierda"
+                );
+            } else if (puedeDerecha) {
+                jugarFichaDerecha(
+                    fichaElegida
+                );
+                console.log("La máquina juega a la derecha")
+            }
+            const indiceFicha =
+            fichasMaquina.findIndex(
+                ficha =>
+                    ficha === fichaElegida
+            );
+
+            if (indiceFicha !== -1) {
+                fichasMaquina.splice(
+                    indiceFicha,
+                    1
+                );
+            }
+            turno = "jugador";
+            return true;
+
+        }
