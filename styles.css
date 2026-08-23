@@ -314,3 +314,47 @@ main {
 
     gap: 4px;
 }
+
+.zona-central {
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.zona-fichas {
+    flex: 0 0 180px;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+
+.zona-jugador {
+    order: 1;
+
+    flex: 1;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 6px 10px;
+}
+
+
+.zona-jugador h2 {
+    margin-bottom: 8px;
+}
