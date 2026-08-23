@@ -401,3 +401,60 @@ main {
 .espacio-equilibrio {
     display: none;
 }
+
+.tablero-controles {
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+
+
+
+.tablero-central {
+    flex: 1;
+
+    min-height: 0;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background-image: url("fondonegro.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    border-radius: 18px;
+
+    padding: 10px 14px;
+
+    box-sizing: border-box;
+
+    border: 8px solid #072b0a;
+
+    overflow: hidden;
+}
+
+
+.tablero-central h2 {
+    flex: 0 0 auto;
+
+    color: var(--oro-suave);
+
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.8);
+}
