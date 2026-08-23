@@ -431,6 +431,9 @@ function jugarFichaJugador(ficha, lado) {
         indiceFicha,
         1
     );
+    if (comprobarFinPartida() !== null) {
+        return true;
+    }
     turno = "maquina";
     return true;
 }
@@ -517,6 +520,9 @@ function pasarTurnoJugador() {
         );
         return false;
     }
+    if (comprobarFinPartida() !== null) {
+        return true;
+    }
     turno = "maquina";
     console.log(
         "El jugador pasa turno"
@@ -547,6 +553,9 @@ function pasarTurnoMaquina() {
             "Todavía quedan fichas en el pozo. La máquina debe robar"
         );
         return false;
+    }
+    if (comprobarFinPartida() !== null) {
+        return true;
     }
     turno = "jugador";
     console.log(
@@ -650,6 +659,9 @@ function jugarTurnoMaquina() {
                     1
                 );
             }
+            if (comprobarFinPartida() !== null) {
+                return true;
+            }
             turno = "jugador";
             return true;
 
@@ -716,4 +728,45 @@ function partidaBloqueada() {
         return true;
     }
     return false;
+}
+let partidaTerminada = false;
+let resultadoPartida = null;
+
+function comprobarFinPartida() {
+    if (fichasJugador.length === 0) {
+        partidaTerminada = true;
+        resultadoPartida = "jugador";
+        console.log(
+            "El jugador se ha quedado sin fichas"
+        );
+        console.log(
+            "Gana el jugador"
+        );
+        return resultadoPartida;
+    }
+    if (fichasMaquina.length === 0) {
+        partidaTerminada = true;
+        resultadoPartida = "maquina";
+        console.log(
+            "La máquina se ha quedado sin fichas"
+        );
+        console.log(
+            "Gana la máquina"
+        );
+        return resultadoPartida;
+    }
+    if (partidaBloqueada()) {
+        partidaTerminada = true;
+        resultadoPartida =
+        decidirGanadorPorBloqueo();
+        console.log(
+            "La partida está bloqueada"
+        );
+        console.log(
+            "Resultado:",
+            resultadoPartida
+        );
+        return resultadoPartida;
+    }
+    return null;
 }
