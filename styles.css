@@ -1,3 +1,94 @@
+:root {
+    /*color del borde de la pantalla */
+
+    --fieltro-1: #0f4a2c;
+    --fieltro-2: #0b3320;
+
+    /*color del fondo de pantalla*/
+
+    --madera-1: #6b4226;
+    --madera-2: #3c2414;
+    --madera-brillo: #9a6a3d;
+
+
+    --marfil: #f7f2e4;
+    --marfil-sombra: #d9d0b4;
+
+    /*sombra de los botones al estar activa */
+
+    --oro: #e0b34d;
+    --oro-suave: #f3d488;
+
+    /*colores de los cuadros llamados cristal  */
+
+    --cristal-bg: rgba(20, 30, 24, 0.45);
+    --cristal-borde: rgba(255, 255, 255, 0.14);
+    --cristal-sombra: rgba(0, 0, 0, 0.45);
+
+    /*color de las letras */
+
+    --texto-claro: #f4f1e8;
+    --texto-tenue: #c9c2ad;
+
+    /*estados del juego */
+
+    --estado-jugable: #e0b34d;
+    --estado-seleccionada: #1f6fb2;
+    --estado-no-jugable: #6b6459;
+
+    /*tamaño de las fichas */
+
+    --ficha-ancho: clamp(26px, 3.4vh, 40px);
+    --ficha-alto: clamp(52px, 6.8vh, 80px);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+/*nos permite darle el margen y tamaño a la interfaz*/
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+/*le da un estilo a las letras del juego y color */
+body {
+    font-family:
+        "Segoe UI",
+        "Trebuchet MS",
+        system-ui,
+        sans-serif;
+
+    color: var(--texto-claro);
+
+    padding: 10px;
+    /*es la combinacion de colores en degrade en la interfaz*/
+    background:
+        radial-gradient(ellipse at 50% 0%,
+            rgba(255, 255, 255, 0.05),
+            transparent 60%),
+        radial-gradient(ellipse at center,
+            var(--fieltro-1) 0%,
+            var(--fieltro-2) 70%,
+            #06190f 100%);
+
+    display: flex;
+}
+
+/*da el margen y distancia*/
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+
+
 .marco-madera {
     flex: 1;
     min-width: 0;
