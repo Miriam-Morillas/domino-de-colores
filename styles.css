@@ -458,3 +458,129 @@ main {
     text-shadow:
         0 1px 3px rgba(0, 0, 0, 0.8);
 }
+
+.cadena-fichas {
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    border: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    align-content: center;
+
+    gap: 4px;
+
+    flex-wrap: wrap;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+}
+
+
+
+
+.controles {
+    flex: 0 0 auto;
+
+    padding: 8px 14px;
+
+    width: 100%;
+}
+
+
+.controles-botones {
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+}
+
+
+.controles-botones button {
+    flex: 1 1 auto;
+}
+
+
+
+button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 6px 10px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.14);
+
+    background:
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.02));
+
+    color: var(--texto-claro);
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+
+button:active {
+    transform: translateY(0);
+}
+
+
+.boton-principal {
+    background:
+        linear-gradient(180deg,
+            var(--oro-suave),
+            var(--oro));
+
+    color: #2a2118;
+
+    border-color:
+        rgba(0, 0, 0, 0.2);
+}
+
+
+.boton-icono {
+    font-size: 0.85rem;
+
+    line-height: 1;
+}
