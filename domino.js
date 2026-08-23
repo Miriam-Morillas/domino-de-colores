@@ -654,3 +654,18 @@ function jugarTurnoMaquina() {
             return true;
 
         }
+function comprobarVictoria() {
+    if(fichasJugador.length === 0) {
+        console.log(
+            "El jugador ha ganado la partida"
+        );
+        return "jugador";
+    }
+    if(fichasMaquina.length === 0) {
+        console.log(
+            "La máquina ha ganado la partida"
+        );
+        return "maquina";
+    }
+    return null;
+}
