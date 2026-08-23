@@ -820,3 +820,47 @@ button:active {
 
     height: 100%;
 }
+
+.panel-cristal {
+    padding: 10px 14px;
+
+    border-radius: 14px;
+
+    background: var(--cristal-bg);
+
+    border:
+        1px solid var(--cristal-borde);
+
+    box-shadow:
+        0 10px 26px var(--cristal-sombra);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+.informacion-partida,
+.leyenda-estados {
+    flex: 0 0 auto;
+}
+
+
+.informacion-partida p {
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 0 0 4px;
+
+    font-size: 0.78rem;
+
+    color: var(--texto-tenue);
+}
+
+
+.informacion-partida span {
+    font-weight: 700;
+
+    color: var(--texto-claro);
+}
