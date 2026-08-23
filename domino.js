@@ -654,18 +654,12 @@ function jugarTurnoMaquina() {
             return true;
 
         }
-function comprobarVictoria() {
-    if(fichasJugador.length === 0) {
-        console.log(
-            "El jugador ha ganado la partida"
-        );
-        return "jugador";
+function calcularPuntos(mano) {
+    let total = 0;
+    for (const ficha of mano) {
+        total +=
+        ficha.numeroA +
+        ficha.numeroB;
     }
-    if(fichasMaquina.length === 0) {
-        console.log(
-            "La máquina ha ganado la partida"
-        );
-        return "maquina";
-    }
-    return null;
+    return total;
 }
