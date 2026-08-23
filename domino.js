@@ -523,3 +523,34 @@ function pasarTurnoJugador() {
     );
     return true
 }
+function pasarTurnoMaquina() {
+    if(turno !== "maquina") {
+        console.log(
+            "Ahora no es el turno de la máquina"
+        );
+        return false;
+    }
+    const jugablesMaquina =
+    obtenerFichasJugables(
+        fichasMaquina
+    );
+
+    if(jugablesMaquina.length > 0) {
+        console.log(
+            "La máquina tiene fichas jugables y no puede pasar"
+        );
+        return false;
+    }
+
+    if(fichasPozo.length >0) {
+        console.log(
+            "Todavía quedan fichas en el pozo. La máquina debe robar"
+        );
+        return false;
+    }
+    turno = "jugador";
+    console.log(
+        "La máquina pasa turno"
+    );
+    return true;
+}
