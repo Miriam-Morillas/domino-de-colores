@@ -697,3 +697,23 @@ function decidirGanadorPorBloqueo() {
         return "empate";
     }
 }
+function partidaBloqueada() {
+    if (fichasPozo.length > 0) {
+        return false;
+    }
+    const jugablesJugador =
+    obtenerFichasJugables(
+        fichasJugador
+    );
+    const jugablesMaquina =
+    obtenerFichasJugables(
+        fichasMaquina
+    );
+    if (
+        jugablesJugador.length === 0 &&
+        jugablesMaquina.length === 0
+    ) {
+        return true;
+    }
+    return false;
+}
