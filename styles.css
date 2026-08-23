@@ -940,3 +940,36 @@ button:active {
 
     cursor: not-allowed;
 }
+
+
+
+.fichas-jugador .ficha.jugable {
+    box-shadow:
+        0 0 0 2px #eabf45,
+        0 0 10px rgba(234, 191, 69, 0.75);
+}
+
+
+
+
+.fichas-jugador .ficha.no-jugable {
+    opacity: 0.45;
+
+    filter: grayscale(55%);
+}
+
+
+
+
+.fichas-jugador .ficha.seleccionada {
+    opacity: 1;
+
+    filter: none;
+
+    outline: 3px solid #168ad1;
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 0 10px rgba(22, 138, 209, 0.85);
+}
