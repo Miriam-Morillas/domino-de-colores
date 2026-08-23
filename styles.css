@@ -268,3 +268,51 @@ main {
 .resultado-partida strong {
     color: var(--texto-claro);
 }
+
+.zona-juego h2,
+.zona-lateral h2 {
+    font-size: 0.68rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: var(--texto-tenue);
+
+    margin-bottom: 4px;
+}
+
+
+
+.maquina {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 6px 10px;
+}
+
+
+.maquina h2 {
+    margin-bottom: 8px;
+}
+
+
+.fichas-maquina {
+    min-height: var(--ficha-alto);
+
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+}
