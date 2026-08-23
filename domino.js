@@ -663,3 +663,37 @@ function calcularPuntos(mano) {
     }
     return total;
 }
+function decidirGanadorPorBloqueo() {
+    const puntosJugador =
+    calcularPuntos(
+        fichasJugador
+    );
+    const puntosMaquina =
+    calcularPuntos(
+        fichasMaquina
+    );
+    console.log(
+        "Puntos del jugador:",
+        puntosJugador
+    );
+    console.log(
+        "Puntos de la máquina:",
+        puntosMaquina
+    );
+    if (puntosJugador < puntosMaquina) {
+        console.log(
+            "Gana el jugador por tener menos puntos"
+        );
+        return "jugador";
+    } else if(puntosMaquina < puntosJugador) {
+        console.log(
+            "Gana la máquina por tener menos puntos"
+        );
+        return "maquina";
+    } else{
+        console.log(
+            "Empate"
+        );
+        return "empate";
+    }
+}
