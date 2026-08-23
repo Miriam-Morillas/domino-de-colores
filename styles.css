@@ -191,3 +191,80 @@ main {
 
     gap: 8px;
 }
+
+.resultado-partida {
+    display: none;
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(420px, 85vw);
+
+    padding: 25px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(160deg,
+            var(--madera-brillo),
+            var(--madera-1) 45%,
+            var(--madera-2));
+
+    border: 2px solid var(--oro);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.7);
+
+    color: var(--texto-claro);
+
+    text-align: center;
+
+    z-index: 1000;
+}
+
+
+.resultado-partida.visible {
+    display: block;
+}
+
+
+.resultado-partida h2 {
+    margin: 0 0 15px;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: var(--oro-suave);
+}
+
+
+.resultado-partida h3 {
+    margin: 0 0 20px;
+
+    font-size: 1.4rem;
+
+    color: var(--texto-claro);
+}
+
+
+.resultado-partida p {
+    margin: 10px 0;
+
+    font-size: 0.9rem;
+
+    color: var(--texto-tenue);
+}
+
+
+.resultado-partida strong {
+    color: var(--texto-claro);
+}
