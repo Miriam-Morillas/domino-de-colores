@@ -1235,3 +1235,12 @@ function actualizarInformacionPartida() {
         actualizarInformacionPartida();
     }
     actualizarInformacionPartida();
+
+    function mostrarMensaje(texto) {
+        const zonaMensaje =
+        document.querySelector(
+            "#mensaje-juego"
+        );
+        zonaMensaje.textContent =
+        texto;
+    }
