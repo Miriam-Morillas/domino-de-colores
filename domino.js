@@ -1056,4 +1056,62 @@ function crearPuntos(numero) {
         );
         return fichaOculta;
     }
- 
+ let fichaSeleccionada = null;
+ function mostrarFichasJugador() {
+    const zonaFichasJugador =
+    document.querySelector(
+        ".fichas-jugador"
+    );
+    zonaFichasJugador.innerHTML = "";
+for (const ficha of fichasJugador) {
+    const fichaVisual =
+    crearFichaVisual(ficha);
+    if (
+        turno === "jugador" &&
+        !partidaTerminada
+    ) {
+        if (esJugable(ficha)) {
+            fichaVisual.classList.add(
+                "jugable"
+            );
+        } else {
+            fichaVisual.classList.add(
+                "no-jugable"
+            );
+        }
+    }
+    if (ficha === fichaSeleccionada) {
+        fichaVisual.classList.add(
+            "seleccionada"
+        );
+    }
+    fichaVisual.addEventListener(
+        "click",
+        function() {
+            if (partidaTerminada) {
+                return;
+            }
+            if (turno !== "jugador") {
+                mostrarMensaje(
+                    "Espera a que termine el turno de la máquina"
+                );
+                return;
+            }
+            fichaSeleccionada = ficha;
+            console.log(
+                "Ficha seleccionada:",
+                fichaSeleccionada
+            );
+            mostrarMensaje(
+                "Ficha seleccionada. Elige izquierda o derecha"
+            );
+            mostrarFichasJugador();
+        } 
+    );
+    zonaFichasJugador.appendChild(
+        fichaVisual
+    );
+
+    }
+}
+mostrarFichasJugador();
