@@ -1732,3 +1732,23 @@ botonPasar.addEventListener(
         }
     }
 );
+if (
+    turno === "maquina" &&
+    !partidaTerminada
+) {
+    ejecutarTurnoMaquinaVisual();
+} else {
+    mostrarMensaje(
+        "Tu turno. Selecciona una ficha"
+    );
+}
+const botonNuevaPartida =
+document.querySelector(
+    "#btn-nueva-partida"
+);
+botonNuevaPartida.addEventListener(
+    "click",
+    function() {
+        location.reload();
+    }
+);
