@@ -1,13 +1,173 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dominó de colores</title>
-    <link rel ="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
 
- <script src="domino.js"></script>
+<body>
+    <div class="marco-madera">
+
+        <header class="cabecera">
+
+            <h1>Dominó de colores</h1>
+
+        </header>
+
+
+        <main>
+
+            <div class="zona-juego">
+
+                <section class="maquina">
+
+                    <h2>Máquina</h2>
+
+                    <div class="fichas-maquina">
+
+                        <!-- Las fichas de la máquina se crearán con JavaScript -->
+
+                    </div>
+                </section>
+
+                <div class="zona-central">
+
+                    <div class="zona-fichas">
+
+                        <section class="zona-pozo panel-cristal">
+                            <h2>Pozo</h2>
+                            <div class="fichas-pozo">
+
+                            </div>
+                        </section>
+                        <section class="zona-jugador">
+
+                            <h2>Zona del jugador</h2>
+
+                            <div class="fichas-jugador">
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                    <div class="tablero-controles">
+                        <section class="tablero-central">
+
+                            <div class="cadena-fichas">
+
+                            </div>
+
+                        </section>
+                        <section class="controles panel-cristal">
+                            <h2>Controles</h2>
+                            <div class="controles-botones">
+                                <button type="button" id="btn-izquierda">
+                                    <span class="boton-icono">&#8592;</span>
+                                    Izquierda
+                                </button>
+                                <button type="button" id="btn-derecha">
+                                    <span class="boton-icono">&#8594;</span>
+                                    Derecha
+                                </button>
+                                <button type="button" id="btn-robar">
+                                    <span class="boton-icono">&#8635;</span>
+                                    Robar
+                                </button>
+                                <button type="button" id="btn-pasar">
+                                    <span class="boton-icono">&#10005;</span>
+                                    Pasar
+                                </button>
+                                <button type="button" id="btn-nueva-partida" class="boton-principal">
+                                    <span class="boton-icono">&#10003;</span>
+                                    Nueva partida
+                                </button>
+
+                            </div>
+                        </section>
+                    </div>
+                    <div class="espacio-equilibrio">
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="zona-lateral">
+                <section class="informacion-partida panel-cristal">
+                    <h2>Información de la partida</h2>
+                    <p>
+                        Turno:
+                        <span id="info-turno"></span>
+                    </p>
+                    <p>
+                        Pozo:
+                        <span id="info-pozo"></span>
+                    </p>
+                    <p>
+                        Fichas de la máquina:
+                        <span id="info-maquina"></span>
+                    </p>
+                    <p>
+                        Fichas del jugador:
+                        <span id="info-jugador"></span>
+                    </p>
+                    <p>
+                        Victorias / Derrotas:
+                        <span id="info-marcador"></span>
+                    </p>
+                </section>
+                <section class="leyenda-estados panel-cristal">
+                    <h2>Leyenda de estados</h2>
+                    <ul class="lista-estados">
+                        <li>
+                            <span class="estado-punto estado-jugable"></span>
+                            Jugable
+                        </li>
+                        <li>
+                            <span class="estado-punto estado-seleccionada"></span>
+                            Seleccionada
+                        </li>
+                        <li>
+                            <span class="estado-punto estado-no-jugable"></span>
+                            No jugable
+                        </li>
+
+                    </ul>
+                </section>
+                <section class="zona-mensajes panel-cristal">
+                    <h2>Zona de mensajes</h2>
+                    <p id="mensaje-juego"></p>
+                </section>
+
+            </div>
+            <section class="resultado-partida" id="resultado-partida">
+                <h2>
+                    Resultado de la partida
+                </h2>
+                <h3 id="resultado-titulo"></h3>
+                <p>
+                    Ganador:
+                    <strong id="resultado-ganador"></strong>
+                </p>
+                <p>
+                    Perdedor:
+                    <strong id="resultado-perdedor"></strong>
+                </p>
+            </section>
+        </main>
+    </div>
+    <script src="domino.js"></script>
 </body>
+
+</html>
+
+
+
+
+
 </html>
