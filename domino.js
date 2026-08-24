@@ -770,3 +770,239 @@ function comprobarFinPartida() {
     }
     return null;
 }
+function crearPuntos(numero) {
+    const contenedor =
+    document.createElement("div");
+    contenedor.classList.add(
+        "patron-puntos"
+    );
+    const filaArriba =
+    document.createElement("div");
+    const filaCentro =
+    document.createElement("div");
+    const filaAbajo =
+    document.createElement("div");
+
+    filaArriba.classList.add(
+        "fila-arriba"
+    );
+    filaCentro.classList.add(
+        "fila-centro"
+    );
+    filaAbajo.classList.add(
+        "fila-abajo"
+    );
+    contenedor.appendChild(
+        filaArriba
+    );
+    contenedor.appendChild(
+        filaCentro
+    );
+    contenedor.appendChild(
+        filaAbajo
+    );
+    if (numero === 1) {
+        const punto =
+        document.createElement("div");
+        punto.classList.add(
+            "punto"
+        );
+        filaCentro.appendChild(
+            punto
+        );
+    }
+    if(numero === 2) {
+        const puntoArriba =
+        document.createElement("div");
+        const puntoAbajo =
+        document.createElement("div");
+        puntoArriba.classList.add(
+            "punto"
+        );
+        puntoAbajo.classList.add(
+            "punto"
+        );
+        filaArriba.appendChild(
+            puntoArriba
+        );
+        filaAbajo.appendChild(
+            puntoAbajo
+        );
+     }
+        if(numero === 3) {
+            const puntoArriba =
+            document.createElement("div");
+            const puntoCentro =
+            document.createElement("div");
+            const puntoAbajo =
+            document.createElement("div");
+            puntoArriba.classList.add(
+                "punto"
+            );
+            puntoCentro.classList.add(
+                "punto"
+            );
+            puntoAbajo.classList.add(
+                "punto"
+            );
+            filaArriba.appendChild(
+                puntoArriba
+            );
+            filaCentro.appendChild(
+                puntoCentro
+            );
+            filaAbajo.appendChild(
+                puntoAbajo
+            );
+        }
+        if (numero === 4) {
+            const puntoArribaIzquierda =
+            document.createElement("div");
+            const puntoArribaDerecha =
+            document.createElement("div");
+            const puntoAbajoIzquierda =
+            document.createElement("div");
+            const puntoAbajoDerecha =
+            document.createElement("div");
+
+            puntoArribaIzquierda.classList.add(
+                "punto"
+            );
+            puntoArribaDerecha.classList.add(
+                "punto"
+            );
+            puntoAbajoIzquierda.classList.add(
+                "punto"
+            );
+            puntoAbajoDerecha.classList.add(
+                "punto"
+            );
+            filaArriba.classList.add(
+                "fila-doble"
+            );
+            filaAbajo.classList.add(
+                "fila-doble"
+            );
+            filaArriba.appendChild(
+                puntoArribaIzquierda
+            );
+            filaArriba.appendChild(
+                puntoArribaDerecha
+            );
+            filaAbajo.appendChild(
+                puntoAbajoIzquierda
+            );
+            filaAbajo.appendChild(
+                puntoAbajoDerecha
+            );
+        }
+        if (numero === 5) {
+            const puntoArribaIzquierda =
+            document.createElement("div");
+            const puntoArribaDerecha =
+            document.createElement("div");
+            const puntoCentro =
+            document.createElement("div");
+            const puntoAbajoIzquierda =
+            document.createElement("div");
+            const puntoAbajoDerecha =
+            document.createElement("div");
+
+            puntoArribaIzquierda.classList.add(
+                "punto"
+            );
+            puntoArribaDerecha.classList.add(
+                "punto"
+            );
+            puntoCentro.classList.add(
+                "punto"
+            );
+            puntoAbajoIzquierda.classList.add(
+                "punto"
+            );
+            puntoAbajoDerecha.classList.add(
+                "punto"
+            );
+            filaArriba.classList.add(
+                "fila-doble"
+            );
+            filaAbajo.classList.add(
+                "fila-doble"
+            );
+            filaArriba.appendChild(
+                puntoArribaIzquierda
+            );
+            filaArriba.appendChild(
+                puntoArribaDerecha
+            );
+            filaCentro.appendChild(
+                puntoCentro
+            );
+            filaAbajo.appendChild(
+                puntoAbajoIzquierda
+            );
+            filaAbajo.appendChild(
+                puntoAbajoDerecha
+            );
+        }
+        if (numero === 6) {
+            const puntoArribaIzquierda =
+            document.createElement("div");
+            const puntoArribaDerecha =
+            document.createElement("div");
+            const puntoCentroIzquierda =
+            document.createElement("div");
+            const puntoCentroDerecha =
+            document.createElement("div");
+            const puntoAbajoIzquierda =
+            document.createElement("div");
+            const puntoAbajoDerecha =
+            document.createElement("div");
+            puntoArribaIzquierda.classList.add(
+                "punto"
+            );
+            puntoArribaDerecha.classList.add(
+                "punto"
+            );
+            puntoCentroIzquierda.classList.add(
+                "punto"
+            );
+            puntoCentroDerecha.classList.add(
+                "punto"
+            );
+            puntoAbajoIzquierda.classList.add(
+                "punto"
+            );
+            puntoAbajoDerecha.classList.add(
+                "punto"
+            );
+            filaArriba.classList.add(
+                "fila-doble"
+            );
+            filaCentro.classList.add(
+                "fila-doble"
+            );
+            filaAbajo.classList.add(
+                "fila-doble"
+            );
+            filaArriba.appendChild(
+                puntoArribaIzquierda
+            );
+            filaArriba.appendChild(
+                puntoArribaDerecha
+            );
+            filaCentro.appendChild(
+                puntoCentroIzquierda
+            );
+            filaCentro.appendChild(
+                puntoCentroDerecha
+            );
+            filaAbajo.appendChild(
+                puntoAbajoIzquierda
+            );
+            filaAbajo.appendChild(
+                puntoAbajoDerecha
+            );
+        }
+        return contenedor;
+    }
