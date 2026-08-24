@@ -1115,3 +1115,18 @@ for (const ficha of fichasJugador) {
     }
 }
 mostrarFichasJugador();
+function mostrarFichasMaquina() {
+    const zonaFichasMaquina =
+    document.querySelector(
+        ".fichas-maquina"
+    );
+    zonaFichasMaquina.innerHTML = "";
+    for (const ficha of fichasMaquina) {
+        const fichaVisual=
+        crearFichaOculta();
+        zonaFichasMaquina.appendChild(
+            fichaVisual
+        );
+    }
+}
+mostrarFichasMaquina();
