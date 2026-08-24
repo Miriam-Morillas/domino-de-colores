@@ -1177,3 +1177,18 @@ function mostrarFichaPozo() {
     }
 }
 mostrarFichaPozo();
+function mostrarTablero() {
+    const zonaTablero =
+    document.querySelector(
+        ".cadena-fichas"
+    );
+    zonaTablero.innerHTML = "";
+    for (const ficha of tablero) {
+        const fichaVisual =
+        crearFichaVisual(ficha);
+        zonaTablero.appendChild(
+            fichaVisual
+        );
+    }
+}
+mostrarTablero();
