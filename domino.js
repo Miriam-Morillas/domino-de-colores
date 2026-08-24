@@ -1130,3 +1130,50 @@ function mostrarFichasMaquina() {
     }
 }
 mostrarFichasMaquina();
+function mostrarFichaPozo() {
+    const zonaFichasPozo =
+    document.querySelector(
+        ".fichas-pozo"
+    );
+    zonaFichasPozo.innerHTML = "";
+    const rotaciones = [
+        -12, 8, -5, 14, -9, 4, 11,
+        -3, 7, -14, 2, 9, -6,5
+    ];
+    const posicionesX = [
+        5, 40, 75, 20, 100, 55, 120,
+        10, 85, 35, 110, 25, 70, 125
+    ];
+    const posicionesY = [
+        5, 12, 3, 42, 30, 58, 10,
+        72, 65, 20, 48, 78, 38, 28
+    ];
+    for (
+        let i = 0;
+        i < fichasPozo.length;
+        i++
+    ) {
+        const fichaVisual =
+        crearFichaOculta();
+        fichaVisual.style.left =
+        posicionesX[
+            i % posicionesX.length
+        ] + "px";
+
+        fichaVisual.style.top =
+        posicionesY[
+            i % posicionesY.length
+        ] + "px"
+
+        fichaVisual.style.transform =
+        `rotate(${
+            rotaciones[
+                i % rotaciones.length
+            ]
+        }deg)`;
+        zonaFichasPozo.appendChild(
+            fichaVisual
+        );
+    }
+}
+mostrarFichaPozo();
