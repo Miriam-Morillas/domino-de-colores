@@ -1130,7 +1130,7 @@ function mostrarFichasMaquina() {
     }
 }
 mostrarFichasMaquina();
-function mostrarFichaPozo() {
+function mostrarFichasPozo() {
     const zonaFichasPozo =
     document.querySelector(
         ".fichas-pozo"
@@ -1176,7 +1176,7 @@ function mostrarFichaPozo() {
         );
     }
 }
-mostrarFichaPozo();
+mostrarFichasPozo();
 function mostrarTablero() {
     const zonaTablero =
     document.querySelector(
@@ -1471,3 +1471,101 @@ function actualizarInformacionPartida() {
                 1500
             );
         }
+
+const botonIzquierda =
+    document.querySelector(
+        "#btn-izquierda"
+    );
+
+botonIzquierda.addEventListener(
+    "click",
+    function () {
+
+        if (fichaSeleccionada === null) {
+
+            mostrarMensaje(
+                "Selecciona una ficha antes de elegir un lado."
+            );
+
+            return;
+        }
+
+        const jugadaCorrecta =
+            jugarFichaJugador(
+                fichaSeleccionada,
+                "izquierda"
+            );
+
+        if (jugadaCorrecta) {
+
+            fichaSeleccionada =
+                null;
+
+            actualizarInterfazVisual();
+
+            if (partidaTerminada) {
+
+                mostrarMensajeResultado();
+
+                return;
+            }
+
+            ejecutarTurnoMaquinaVisual();
+
+        } else {
+
+            mostrarMensaje(
+                "Esa ficha no encaja en el extremo izquierdo."
+            );
+        }
+    }
+);
+
+const botonDerecha =
+    document.querySelector(
+        "#btn-derecha"
+    );
+
+botonDerecha.addEventListener(
+    "click",
+    function () {
+
+        if (fichaSeleccionada === null) {
+
+            mostrarMensaje(
+                "Selecciona una ficha antes de elegir un lado."
+            );
+
+            return;
+        }
+
+        const jugadaCorrecta =
+            jugarFichaJugador(
+                fichaSeleccionada,
+                "derecha"
+            );
+
+        if (jugadaCorrecta) {
+
+            fichaSeleccionada =
+                null;
+
+            actualizarInterfazVisual();
+
+            if (partidaTerminada) {
+
+                mostrarMensajeResultado();
+
+                return;
+            }
+
+            ejecutarTurnoMaquinaVisual();
+
+        } else {
+
+            mostrarMensaje(
+                "Esa ficha no encaja en el extremo derecho."
+            );
+        }
+    }
+);
