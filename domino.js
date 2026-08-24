@@ -1244,3 +1244,152 @@ function actualizarInformacionPartida() {
         zonaMensaje.textContent =
         texto;
     }
+    function mostrarMensaje(texto) {
+        const zonaMensaje =
+        document.querySelector(
+            "#mensaje-juego"
+        );
+        zonaMensaje.textContent =
+        texto;
+    }
+    function mostrarResultadoFinal() {
+        const zonaResultado =
+        document.querySelector(
+            "#resultado-partida"
+        );
+        const tituloResultado =
+        document.querySelector(
+            "#resultado-titulo"
+        );
+        const ganadorResultado =
+        document.querySelector(
+            "#resultado-ganador"
+        );
+        const perdedorResultado =
+        document.querySelector(
+            "#resultado-perdedor"
+        );
+        if (resultadoPartida === "jugador") {
+            tituloResultado.textContent =
+            "¡Has ganado!";
+            ganadorResultado.textContent =
+            "Jugador";
+            perdedorResultado.textContent =
+            "Máquina";
+        } else if (
+            resultadoPartida === "maquina"
+        ) {
+            tituloResultado.textContent =
+            "Ha ganado la máquina";
+            ganadorResultado.textContent =
+            "Máquina";
+            perdedorResultado.textContent =
+            "Jugador";
+        } else if (
+            resultadoPartida === "empate"
+        ) {
+            tituloResultado.textContent =
+            "Empate";
+            ganadorResultado.textContent =
+            "Ninguno";
+            perdedorResultado.textContent =
+            "Ninguno";
+        }
+        zonaResultado.classList.add(
+            "visible"
+        );
+    }
+    function mostrarMensajeResultado() {
+        desactivarControlesJugador();
+        actualizarMarcadorSiCorresponde();
+        if (resultadoPartida ==="jugador") {
+            mostrarMensaje(
+                "¡Has ganado la partida!"
+            );
+        } else if(
+            resultadoPartida === "maquina"
+        ) {
+            mostrarMensaje(
+                "La máquina ha ganado la partida"
+            );
+        } else if (
+            resultadoPartida === "empate"
+        ) {
+            mostrarMensaje(
+                "La partida ha terminado en empate"
+            );
+        }
+        mostrarResultadoFinal();
+    }
+    const CLAVE_MARCADOR =
+    "domino-marcador";
+    function cargarMarcador() {
+        const guardado =
+        localStorage.getItem(
+            CLAVE_MARCADOR
+        );
+        if (!guardado) {
+            return {
+                victorias: 0,
+                derrotas: 0
+            };
+        }
+        try {
+            const datos =
+            JSON.parse(
+                guardado
+            );
+            return {
+                victorias:
+                datos.victorias || 0,
+                derrotas:
+                datos.derrotas || 0
+
+            };
+        } catch (error) {
+            return {
+                victorias: 0,
+                derrotas: 0
+            };
+        }
+    }
+    const marcador =
+    cargarMarcador();
+    let marcadorRegistrado =
+    false;
+    function guardarMarcador() {
+        localStorage.setItem(
+            CLAVE_MARCADOR,
+            JSON.stringify(
+                marcador
+            )
+        );    
+    }
+    function mostrarMarcador() {
+        const elementoMarcador =
+        document.querySelector(
+            "#info-marcador"
+        );
+        if (elementoMarcador) {
+            elementoMarcador.textContent =
+            `${marcador.victorias} / ${marcador.derrotas}`;
+        }
+    }
+    function actualizarMarcadorSiCorresponde() {
+        if (
+            marcadorRegistrado ||
+            !partidaTerminada
+        ) {
+            return;
+        }
+        marcadorRegistrado = true;
+        if (resultadoPartida === "jugador") {
+            marcador.victorias++;
+        } else if (
+            resultadoPartida === "maquina"
+        ) {
+            marcador.derrotas++;
+        }
+        guardarMarcador();
+        mostrarMarcador();
+    }
