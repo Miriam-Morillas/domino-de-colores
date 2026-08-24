@@ -1431,3 +1431,43 @@ function actualizarInformacionPartida() {
                 "#btn-pasar"
             ).disabled = false;
         }
+        function ejecutarTurnoMaquinaVisual() {
+            console.log(
+                "Entramos en el turno visual de la máquina"
+            );
+            if(partidaTerminada) {
+                console.log(
+                    "La partida ya ha terminado"
+                );
+                desactivarControlesJugador();
+                mostrarMensajeResultado();
+                return;
+            }
+            if(turno !== "maquina") {
+                console.log(
+                    "No es el turno de la máquina. Turno actual:",
+                    turno
+                );
+                return;
+            }
+            desactivarControlesJugador();
+            mostrarMensaje(
+                "La máquina está pensando ..."
+            );
+            setTimeout(
+                function() {
+                    jugarTurnoMaquina();
+                    actualizarInterfazVisual();
+                    if(partidaTerminada) {
+                        desactivarControlesJugador();
+                        mostrarMensajeResultado();
+                    } else {
+                        activarControlesJugador();
+                        mostrarMensaje(
+                            "Tu turno. Selecciona una ficha"
+                        );
+                    }
+                },
+                1500
+            );
+        }
