@@ -1393,3 +1393,41 @@ function actualizarInformacionPartida() {
         guardarMarcador();
         mostrarMarcador();
     }
+    function desactivarControlesJugador() {
+        document.querySelector(
+            "#btn-izquierda"
+        ).disabled = true;
+
+        document.querySelector(
+            "#btn-derecha"
+        ).disabled = true;
+
+        document.querySelector(
+            "#btn-robar"
+        ).disabled = true;
+
+        document.querySelector(
+            "#btn-pasar"
+        ).disabled = true;
+    }
+
+        function activarControlesJugador() {
+            if (partidaTerminada) {
+                return;
+            }
+            document.querySelector(
+                "#btn-izquierda"
+            ).disabled = false;
+            
+            document.querySelector(
+                "#btn-derecha"
+            ).disabled = false;
+
+            document.querySelector(
+                "#btn-robar"
+            ).disabled = false;
+
+            document.querySelector(
+                "#btn-pasar"
+            ).disabled = false;
+        }
