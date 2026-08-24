@@ -1048,3 +1048,12 @@ function crearPuntos(numero) {
         );
         return fichaVisual;
     }
+    function crearFichaOculta() {
+        const fichaOculta =
+        document.createElement("div");
+        fichaOculta.classList.add(
+            "ficha-oculta"
+        );
+        return fichaOculta;
+    }
+ 
