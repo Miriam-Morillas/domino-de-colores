@@ -1569,3 +1569,166 @@ botonDerecha.addEventListener(
         }
     }
 );
+
+const botonRobar =
+    document.querySelector(
+        "#btn-robar"
+    );
+
+
+botonRobar.addEventListener(
+    "click",
+    function () {
+
+        const roboCorrecto =
+            robarFichaJugador();
+
+
+        if (roboCorrecto) {
+
+            fichaSeleccionada =
+                null;
+
+            actualizarInterfazVisual();
+
+
+            const jugablesJugador =
+                obtenerFichasJugables(
+                    fichasJugador
+                );
+
+
+            if (jugablesJugador.length > 0) {
+
+                mostrarMensaje(
+                    "Has robado una ficha jugable. Selecciónala y juega."
+                );
+
+            } else if (
+                fichasPozo.length > 0
+            ) {
+
+                mostrarMensaje(
+                    "La ficha robada no sirve. Debes volver a robar."
+                );
+
+            } else {
+
+                mostrarMensaje(
+                    "La ficha robada no sirve y el pozo está vacío. Debes pasar."
+                );
+            }
+
+
+        } else {
+
+            if (turno !== "jugador") {
+
+                mostrarMensaje(
+                    "Espera a que termine el turno de la máquina."
+                );
+
+            } else if (
+                obtenerFichasJugables(
+                    fichasJugador
+                ).length > 0
+            ) {
+
+                mostrarMensaje(
+                    "Tienes una ficha jugable. No puedes robar."
+                );
+
+            } else if (
+                fichasPozo.length === 0
+            ) {
+
+                mostrarMensaje(
+                    "El pozo está vacío. Debes pasar el turno."
+                );
+
+            } else {
+
+                mostrarMensaje(
+                    "No puedes robar en este momento."
+                );
+            }
+        }
+    }
+);
+
+const botonPasar =
+    document.querySelector(
+        "#btn-pasar"
+    );
+
+
+botonPasar.addEventListener(
+    "click",
+    function () {
+
+        const paseCorrecto =
+            pasarTurnoJugador();
+
+
+        if (paseCorrecto) {
+
+            fichaSeleccionada =
+                null;
+
+            actualizarInterfazVisual();
+
+
+            if (partidaTerminada) {
+
+                mostrarMensajeResultado();
+
+                return;
+            }
+
+
+            mostrarMensaje(
+                "Has pasado el turno."
+            );
+
+
+            if (turno === "maquina") {
+
+                ejecutarTurnoMaquinaVisual();
+            }
+
+
+        } else {
+
+            if (turno !== "jugador") {
+
+                mostrarMensaje(
+                    "Espera a que termine el turno de la máquina."
+                );
+
+            } else if (
+                obtenerFichasJugables(
+                    fichasJugador
+                ).length > 0
+            ) {
+
+                mostrarMensaje(
+                    "Tienes una ficha jugable. No puedes pasar."
+                );
+
+            } else if (
+                fichasPozo.length > 0
+            ) {
+
+                mostrarMensaje(
+                    "No puedes pasar todavía. Debes robar una ficha."
+                );
+
+            } else {
+
+                mostrarMensaje(
+                    "No puedes pasar en este momento."
+                );
+            }
+        }
+    }
+);
