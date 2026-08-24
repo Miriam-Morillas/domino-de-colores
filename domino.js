@@ -1006,3 +1006,45 @@ function crearPuntos(numero) {
         }
         return contenedor;
     }
+    function crearFichaVisual(ficha) {
+        const fichaVisual =
+        document.createElement("div");
+        fichaVisual.classList.add(
+            "ficha"
+        );
+        const mitadA =
+        document.createElement("div");
+        mitadA.classList.add(
+            "mitad-arriba"
+        );
+        mitadA.style.backgroundColor =
+        ficha.colorA;
+        const puntosA =
+        crearPuntos(
+            ficha.numeroA
+        );
+        mitadA.appendChild(
+            puntosA
+        );
+        const mitadB =
+        document.createElement("div");
+        mitadB.classList.add(
+            "mitad-abajo"
+        );
+        mitadB.style.backgroundColor =
+        ficha.colorB;
+        const puntosB =
+        crearPuntos(
+            ficha.numeroB
+        );
+        mitadB.appendChild(
+            puntosB
+        );
+        fichaVisual.appendChild(
+            mitadA
+        );
+        fichaVisual.appendChild(
+            mitadB
+        );
+        return fichaVisual;
+    }
