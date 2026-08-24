@@ -1192,3 +1192,46 @@ function mostrarTablero() {
     }
 }
 mostrarTablero();
+function actualizarInformacionPartida() {
+    const infoTurno =
+    document.querySelector(
+        "#info-turno"
+    );
+    const infoPozo =
+    document.querySelector(
+        "#info-pozo"
+    );
+    const infoMaquina =
+    document.querySelector(
+        "#info-maquina"
+    );
+    const infoJugador =
+    document.querySelector(
+        "#info-jugador"
+    );
+    if (turno === "jugador") {
+        infoTurno.textContent =
+        "Jugador";
+
+    } else if (turno === "maquina") {
+        infoTurno.textContent =
+        "Máquina";
+    }
+    infoPozo.textContent =
+    fichasPozo.length;
+    
+    infoMaquina.textContent =
+    fichasMaquina.length;
+
+    infoJugador.textContent =
+    fichasJugador.length
+    } 
+
+    function actualizarInterfazVisual() {
+        mostrarFichasJugador();
+        mostrarFichasMaquina();
+        mostrarFichasPozo();
+        mostrarTablero();
+        actualizarInformacionPartida();
+    }
+    actualizarInformacionPartida();
