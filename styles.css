@@ -46,8 +46,8 @@
     box-sizing: border-box;
 }
 
-html
 
+html,
 /*nos permite darle el margen y tamaño a la interfaz*/
 body {
     height: 100%;
@@ -89,7 +89,6 @@ h3 {
 }
 
 
-
 .marco-madera {
     flex: 1;
     min-width: 0;
@@ -101,13 +100,18 @@ h3 {
 
     border-radius: 20px;
 
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.55),
+    background: linear-gradient(160deg,
+            var(--madera-brillo),
+            var(--madera-1) 35%,
+            var(--madera-2) 100%);
+
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
         inset 0 0 0 2px rgba(0, 0, 0, 0.35),
         inset 0 2px 4px rgba(255, 255, 255, 0.15);
 }
 
-
+/* CABECERA */
 
 .cabecera {
     flex: 0 0 auto;
@@ -118,7 +122,7 @@ h3 {
 
     text-align: center;
 
-
+    gap: 10px;
 
     padding: 8px 18px;
     margin-bottom: 8px;
@@ -133,6 +137,7 @@ h3 {
     border: 1px solid var(--cristal-borde);
 }
 
+/*su funcion es mantener los colores y espacios en su lugar */
 .cabecera-icono {
     font-size: 1.3rem;
 
@@ -191,6 +196,7 @@ main {
 
     gap: 8px;
 }
+
 
 .resultado-partida {
     display: none;
@@ -269,6 +275,7 @@ main {
     color: var(--texto-claro);
 }
 
+
 .zona-juego h2,
 .zona-lateral h2 {
     font-size: 0.68rem;
@@ -283,6 +290,7 @@ main {
 
     margin-bottom: 4px;
 }
+
 
 .maquina {
     flex: 0 0 auto;
@@ -315,6 +323,7 @@ main {
     gap: 4px;
 }
 
+
 .zona-central {
     flex: 1;
 
@@ -339,7 +348,6 @@ main {
 }
 
 
-
 .zona-jugador {
     order: 1;
 
@@ -358,6 +366,7 @@ main {
 .zona-jugador h2 {
     margin-bottom: 8px;
 }
+
 
 .fichas-jugador {
     flex: 1;
@@ -382,7 +391,6 @@ main {
 }
 
 
-
 .zona-pozo {
     order: 2;
 
@@ -402,6 +410,7 @@ main {
     display: none;
 }
 
+
 .tablero-controles {
     flex: 1;
 
@@ -415,8 +424,6 @@ main {
 
     gap: 6px;
 }
-
-
 
 
 .tablero-central {
@@ -459,6 +466,7 @@ main {
         0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
+
 .cadena-fichas {
     flex: 1;
 
@@ -486,8 +494,6 @@ main {
 }
 
 
-
-
 .controles {
     flex: 0 0 auto;
 
@@ -513,6 +519,7 @@ main {
 }
 
 
+/* BOTONES */
 
 button {
     display: inline-flex;
@@ -585,6 +592,9 @@ button:active {
     line-height: 1;
 }
 
+
+/* =FICHA GENERAL = */
+
 .ficha {
     display: flex;
 
@@ -633,6 +643,7 @@ button:active {
         0 0 0 3px var(--estado-seleccionada),
         0 0 16px rgba(31, 111, 178, 0.6);
 }
+
 
 .ficha-oculta {
     width: var(--ficha-ancho);
@@ -689,8 +700,6 @@ button:active {
     position: relative;
 }
 
-
-/* =PUNTOS=*/
 
 .patron-puntos {
     width: 100%;
@@ -756,6 +765,8 @@ button:active {
     background: black;
 }
 
+
+
 .fichas-pozo {
     position: relative;
 
@@ -782,7 +793,7 @@ button:active {
 }
 
 
-/* = FICHAS DEL TABLERO=*/
+/* = FICHAS DEL TABLERO= */
 
 .cadena-fichas .ficha {
     flex-direction: row;
@@ -793,6 +804,7 @@ button:active {
 
     cursor: default;
 }
+
 
 .cadena-fichas .ficha:hover {
     transform: none;
@@ -820,6 +832,7 @@ button:active {
 
     height: 100%;
 }
+
 
 .panel-cristal {
     padding: 10px 14px;
@@ -864,6 +877,8 @@ button:active {
 
     color: var(--texto-claro);
 }
+
+
 
 .lista-estados {
     list-style: none;
@@ -915,6 +930,8 @@ button:active {
     background: var(--estado-no-jugable);
 }
 
+
+
 .zona-mensajes {
     flex: 1;
 
@@ -933,7 +950,7 @@ button:active {
 }
 
 
-/*CONTROLES DESACTIVADOS*/
+/* =======CONTROLES DESACTIVADOS=== */
 
 .controles button:disabled {
     opacity: 0.45;
@@ -943,6 +960,8 @@ button:active {
 
 
 
+/* Ficha jugable */
+
 .fichas-jugador .ficha.jugable {
     box-shadow:
         0 0 0 2px #eabf45,
@@ -950,7 +969,7 @@ button:active {
 }
 
 
-
+/* Ficha no jugable */
 
 .fichas-jugador .ficha.no-jugable {
     opacity: 0.45;
@@ -959,7 +978,7 @@ button:active {
 }
 
 
-
+/* Ficha seleccionada */
 
 .fichas-jugador .ficha.seleccionada {
     opacity: 1;
