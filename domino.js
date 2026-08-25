@@ -14,7 +14,7 @@ const colores = [
     "green"
 ];
 const fichas = [];
-for (let numeroA = 0; numeroA<= 6; numeroA++) {
+for (let numeroA = 0; numeroA <= 6; numeroA++) {
     for (
         let numeroB = numeroA;
         numeroB <= 6;
@@ -22,82 +22,82 @@ for (let numeroA = 0; numeroA<= 6; numeroA++) {
 
     ) {
         const indiceColorA =
-        Math.floor(
-            Math.random() * colores.length 
-        );
-        const colorA =
-        colores[indiceColorA];
-
-        let indiceColorB =
-        Math.floor(
-            Math.random() * colores.length
-        );
-
-        let colorB =
-        colores[indiceColorB];
-
-        while (colorA === colorB) {
-            indiceColorB =
             Math.floor(
                 Math.random() * colores.length
             );
-            colorB =
+        const colorA =
+            colores[indiceColorA];
+
+        let indiceColorB =
+            Math.floor(
+                Math.random() * colores.length
+            );
+
+        let colorB =
             colores[indiceColorB];
+
+        while (colorA === colorB) {
+            indiceColorB =
+                Math.floor(
+                    Math.random() * colores.length
+                );
+            colorB =
+                colores[indiceColorB];
         }
         const nuevaFicha =
-        new Ficha(
-            numeroA,
-            colorA,
-            numeroB,
-            colorB
-        );
+            new Ficha(
+                numeroA,
+                colorA,
+                numeroB,
+                colorB
+            );
 
         fichas.push(
             nuevaFicha
         );
- 
+
     }
 }
 
 
 for (let i = fichas.length - 1; i > 0; i--) {
     const indiceAleatorio =
-    Math.floor(
-        Math.random() * (i+1)
-    );
+        Math.floor(
+            Math.random() * (i + 1)
+        );
     const fichaTemporal =
-    fichas[i];
+        fichas[i];
 
     fichas[i] =
-    fichas[indiceAleatorio];
+        fichas[indiceAleatorio];
 
     fichas[indiceAleatorio] =
-    fichaTemporal;
+        fichaTemporal;
 }
 
 const fichasJugador = [];
 const fichasMaquina = [];
 const fichasPozo = [];
 
-for (let i=0; i<7; i++) {
+for (let i = 0; i < 7; i++) {
     const fichaSacada =
-      fichas.pop();
+        fichas.pop();
     fichasJugador.push(
-        fichaSacada 
-    );  
+        fichaSacada
+    );
 }
 
-for (let i=0; i<7; i++) {
-    const fichaSacada = 
-    fichas.pop();
+for (let i = 0; i < 7; i++) {
+    const fichaSacada =
+        fichas.pop();
     fichasMaquina.push(
         fichaSacada
     );
 }
 
-for (let i = 0; i <14; i++ ) {
+for (let i = 0; i < 14; i++) {
     const fichaSacada =
-    fichas.pop();
+        fichas.pop();
     fichasPozo.push(
         fichaSacada
     );
@@ -110,10 +110,10 @@ for (const ficha of fichasJugador) {
     if (ficha.numeroA === ficha.numeroB) {
         if (ficha.numeroA > dobleMasAltoJugador) {
             dobleMasAltoJugador =
-            ficha.numeroA;
+                ficha.numeroA;
 
             fichaDobleMasAltoJugador =
-            ficha;
+                ficha;
         }
     }
 }
@@ -125,10 +125,10 @@ for (const ficha of fichasMaquina) {
     if (ficha.numeroA === ficha.numeroB) {
         if (ficha.numeroA > dobleMasAltoMaquina) {
             dobleMasAltoMaquina =
-            ficha.numeroA;
+                ficha.numeroA;
 
-            fichaDobleMasAltoMaquina = 
-            ficha;
+            fichaDobleMasAltoMaquina =
+                ficha;
         }
     }
 }
@@ -244,61 +244,61 @@ const tablero = [];
 
 const turnoInicial = turno;
 
-if (turno ==="jugador") {
+if (turno === "jugador") {
     const indiceFichaInicial =
-    fichasJugador.findIndex(
-        ficha => ficha === fichaInicial
-    );
-    
+        fichasJugador.findIndex(
+            ficha => ficha === fichaInicial
+        );
+
     if (indiceFichaInicial !== -1) {
         const fichaJugada =
-        fichasJugador.splice(
-            indiceFichaInicial,
-            1
-        )[0];
+            fichasJugador.splice(
+                indiceFichaInicial,
+                1
+            )[0];
 
         tablero.push(
             fichaJugada
         );
     }
     turno = "maquina";
-} else if (turno === "maquina" ){
+} else if (turno === "maquina") {
     const indiceFichaInicial =
-    fichasMaquina.findIndex(
-        ficha => ficha === fichaInicial
-    );
+        fichasMaquina.findIndex(
+            ficha => ficha === fichaInicial
+        );
 
     if (indiceFichaInicial !== -1) {
         const fichaJugada =
-        fichasMaquina.splice(
-            indiceFichaInicial,
-            1
-        )[0];
+            fichasMaquina.splice(
+                indiceFichaInicial,
+                1
+            )[0];
 
         tablero.push(
             fichaJugada
         );
 
-        turno="jugador";
+        turno = "jugador";
     }
 
 }
 
-let extremoIzquierdo = 
-tablero[0].numeroA;
+let extremoIzquierdo =
+    tablero[0].numeroA;
 
 let extremoDerecho =
-tablero[0].numeroB;
+    tablero[0].numeroB;
 
 function esJugable(ficha) {
 
-    return ( 
+    return (
         ficha.numeroA === extremoIzquierdo ||
         ficha.numeroA === extremoDerecho ||
         ficha.numeroB === extremoIzquierdo ||
         ficha.numeroB === extremoDerecho
     )
-       
+
 }
 
 function obtenerFichasJugables(mano) {
@@ -323,31 +323,31 @@ function puedeJugarDerecha(ficha) {
 
 function girarFicha(ficha) {
     const numeroTemporal =
-    ficha.numeroA;
+        ficha.numeroA;
 
     const colorTemporal =
-    ficha.colorA;
+        ficha.colorA;
 
     ficha.numeroA =
-    ficha.numeroB;
+        ficha.numeroB;
 
     ficha.colorA =
-    ficha.colorB;
+        ficha.colorB;
 
     ficha.numeroB =
-    numeroTemporal;
+        numeroTemporal;
 
     ficha.colorB =
-    colorTemporal;
+        colorTemporal;
 }
 
 function jugarFichaDerecha(ficha) {
-    if (ficha.numeroA === extremoDerecho ) {
+    if (ficha.numeroA === extremoDerecho) {
         tablero.push(
             ficha
         );
         extremoDerecho =
-        ficha.numeroB;
+            ficha.numeroB;
     } else if (ficha.numeroB === extremoDerecho) {
         girarFicha(
             ficha
@@ -356,7 +356,7 @@ function jugarFichaDerecha(ficha) {
             ficha
         );
         extremoDerecho =
-        ficha.numeroB;
+            ficha.numeroB;
     }
 }
 
@@ -366,7 +366,7 @@ function jugarFichaIzquierda(ficha) {
             ficha
         );
         extremoIzquierdo =
-        ficha.numeroA;
+            ficha.numeroA;
     } else if (ficha.numeroA === extremoIzquierdo) {
         girarFicha(
             ficha
@@ -376,7 +376,7 @@ function jugarFichaIzquierda(ficha) {
         );
 
         extremoIzquierdo =
-        ficha.numeroA;
+            ficha.numeroA;
     }
 }
 
@@ -388,10 +388,10 @@ function jugarFichaJugador(ficha, lado) {
         return false;
     }
     const indiceFicha =
-    fichasJugador.findIndex(
-        fichaMano =>
-            fichaMano === ficha
-    );
+        fichasJugador.findIndex(
+            fichaMano =>
+                fichaMano === ficha
+        );
     if (indiceFicha === -1) {
         console.log(
             "La ficha no está en la mano del jugador"
@@ -445,7 +445,7 @@ function robarFicha(mano) {
         return null;
     }
     const fichaRobada =
-    fichasPozo.pop();
+        fichasPozo.pop();
     mano.push(
         fichaRobada
     );
@@ -460,9 +460,9 @@ function robarFichaJugador() {
         return false;
     }
     const jugablesJugador =
-    obtenerFichasJugables(
-        fichasJugador
-    );
+        obtenerFichasJugables(
+            fichasJugador
+        );
     if (jugablesJugador.length > 0) {
         console.log(
             "El jugador tiene fichas jugables y no puede robar"
@@ -477,10 +477,10 @@ function robarFichaJugador() {
         return false;
     }
     const fichaRobada =
-    robarFicha(
-        fichasJugador
-    );
-    
+        robarFicha(
+            fichasJugador
+        );
+
     console.log(
         "El jugador ha robado:",
         fichaRobada
@@ -504,10 +504,10 @@ function pasarTurnoJugador() {
         );
         return false;
     }
-    const jugablesJugador = 
-    obtenerFichasJugables(
-        fichasJugador
-    );
+    const jugablesJugador =
+        obtenerFichasJugables(
+            fichasJugador
+        );
     if (jugablesJugador.length > 0) {
         console.log(
             "El jugador tiene fichas jugables y no puede pasar"
@@ -530,25 +530,25 @@ function pasarTurnoJugador() {
     return true
 }
 function pasarTurnoMaquina() {
-    if(turno !== "maquina") {
+    if (turno !== "maquina") {
         console.log(
             "Ahora no es el turno de la máquina"
         );
         return false;
     }
     const jugablesMaquina =
-    obtenerFichasJugables(
-        fichasMaquina
-    );
+        obtenerFichasJugables(
+            fichasMaquina
+        );
 
-    if(jugablesMaquina.length > 0) {
+    if (jugablesMaquina.length > 0) {
         console.log(
             "La máquina tiene fichas jugables y no puede pasar"
         );
         return false;
     }
 
-    if(fichasPozo.length >0) {
+    if (fichasPozo.length > 0) {
         console.log(
             "Todavía quedan fichas en el pozo. La máquina debe robar"
         );
@@ -571,119 +571,119 @@ function jugarTurnoMaquina() {
         return false;
     }
     let jugablesMaquina =
-    obtenerFichasJugables(
-        fichasMaquina
-    );
+        obtenerFichasJugables(
+            fichasMaquina
+        );
 
-    while(
+    while (
         jugablesMaquina.length === 0 &&
         fichasPozo.length > 0
     ) {
         const fichaRobada =
-        robarFicha(
-            fichasMaquina
-        );
+            robarFicha(
+                fichasMaquina
+            );
         console.log(
             "La máquina ha robado:",
             fichaRobada
         );
         jugablesMaquina =
-        obtenerFichasJugables(
-            fichasMaquina
-        );
-    }
-        if (jugablesMaquina.length === 0) {
-            console.log(
-                "La máquina no puede jugar"
+            obtenerFichasJugables(
+                fichasMaquina
             );
-            return pasarTurnoMaquina();
-        }    
-        const fichaElegida =
+    }
+    if (jugablesMaquina.length === 0) {
+        console.log(
+            "La máquina no puede jugar"
+        );
+        return pasarTurnoMaquina();
+    }
+    const fichaElegida =
         jugablesMaquina[0];
 
-        const puedeIzquierda =
+    const puedeIzquierda =
         puedeJugarIzquierda(
             fichaElegida
         );
 
-        const puedeDerecha =
+    const puedeDerecha =
         puedeJugarDerecha(
             fichaElegida
         );
-        if (
-            puedeIzquierda &&
-            puedeDerecha
-        ) {
-            const jugarIzquierda =
+    if (
+        puedeIzquierda &&
+        puedeDerecha
+    ) {
+        const jugarIzquierda =
             Math.random() < 0.5;
 
-            if (jugarIzquierda) {
-                jugarFichaIzquierda(
-                    fichaElegida
-                );
-                console.log(
-                    "La máquina juega a la izquierda"
-                );
-
-            } else {
-                jugarFichaDerecha(
-                    fichaElegida
-                );
-                console.log(
-                    "La máquina juega a la derecha"
-                );
-            }
-
-            } else if (puedeIzquierda) {
-                jugarFichaIzquierda(
-                    fichaElegida
-                );
-                console.log(
-                    "La máquina juega a la izquierda"
-                );
-            } else if (puedeDerecha) {
-                jugarFichaDerecha(
-                    fichaElegida
-                );
-                console.log("La máquina juega a la derecha")
-            }
-            const indiceFicha =
-            fichasMaquina.findIndex(
-                ficha =>
-                    ficha === fichaElegida
+        if (jugarIzquierda) {
+            jugarFichaIzquierda(
+                fichaElegida
+            );
+            console.log(
+                "La máquina juega a la izquierda"
             );
 
-            if (indiceFicha !== -1) {
-                fichasMaquina.splice(
-                    indiceFicha,
-                    1
-                );
-            }
-            if (comprobarFinPartida() !== null) {
-                return true;
-            }
-            turno = "jugador";
-            return true;
-
+        } else {
+            jugarFichaDerecha(
+                fichaElegida
+            );
+            console.log(
+                "La máquina juega a la derecha"
+            );
         }
+
+    } else if (puedeIzquierda) {
+        jugarFichaIzquierda(
+            fichaElegida
+        );
+        console.log(
+            "La máquina juega a la izquierda"
+        );
+    } else if (puedeDerecha) {
+        jugarFichaDerecha(
+            fichaElegida
+        );
+        console.log("La máquina juega a la derecha")
+    }
+    const indiceFicha =
+        fichasMaquina.findIndex(
+            ficha =>
+                ficha === fichaElegida
+        );
+
+    if (indiceFicha !== -1) {
+        fichasMaquina.splice(
+            indiceFicha,
+            1
+        );
+    }
+    if (comprobarFinPartida() !== null) {
+        return true;
+    }
+    turno = "jugador";
+    return true;
+
+}
 function calcularPuntos(mano) {
     let total = 0;
     for (const ficha of mano) {
         total +=
-        ficha.numeroA +
-        ficha.numeroB;
+            ficha.numeroA +
+            ficha.numeroB;
     }
     return total;
 }
 function decidirGanadorPorBloqueo() {
     const puntosJugador =
-    calcularPuntos(
-        fichasJugador
-    );
+        calcularPuntos(
+            fichasJugador
+        );
     const puntosMaquina =
-    calcularPuntos(
-        fichasMaquina
-    );
+        calcularPuntos(
+            fichasMaquina
+        );
     console.log(
         "Puntos del jugador:",
         puntosJugador
@@ -697,12 +697,12 @@ function decidirGanadorPorBloqueo() {
             "Gana el jugador por tener menos puntos"
         );
         return "jugador";
-    } else if(puntosMaquina < puntosJugador) {
+    } else if (puntosMaquina < puntosJugador) {
         console.log(
             "Gana la máquina por tener menos puntos"
         );
         return "maquina";
-    } else{
+    } else {
         console.log(
             "Empate"
         );
@@ -714,13 +714,13 @@ function partidaBloqueada() {
         return false;
     }
     const jugablesJugador =
-    obtenerFichasJugables(
-        fichasJugador
-    );
+        obtenerFichasJugables(
+            fichasJugador
+        );
     const jugablesMaquina =
-    obtenerFichasJugables(
-        fichasMaquina
-    );
+        obtenerFichasJugables(
+            fichasMaquina
+        );
     if (
         jugablesJugador.length === 0 &&
         jugablesMaquina.length === 0
@@ -758,7 +758,7 @@ function comprobarFinPartida() {
     if (partidaBloqueada()) {
         partidaTerminada = true;
         resultadoPartida =
-        decidirGanadorPorBloqueo();
+            decidirGanadorPorBloqueo();
         console.log(
             "La partida está bloqueada"
         );
@@ -772,16 +772,16 @@ function comprobarFinPartida() {
 }
 function crearPuntos(numero) {
     const contenedor =
-    document.createElement("div");
+        document.createElement("div");
     contenedor.classList.add(
         "patron-puntos"
     );
     const filaArriba =
-    document.createElement("div");
+        document.createElement("div");
     const filaCentro =
-    document.createElement("div");
+        document.createElement("div");
     const filaAbajo =
-    document.createElement("div");
+        document.createElement("div");
 
     filaArriba.classList.add(
         "fila-arriba"
@@ -803,7 +803,7 @@ function crearPuntos(numero) {
     );
     if (numero === 1) {
         const punto =
-        document.createElement("div");
+            document.createElement("div");
         punto.classList.add(
             "punto"
         );
@@ -811,11 +811,11 @@ function crearPuntos(numero) {
             punto
         );
     }
-    if(numero === 2) {
+    if (numero === 2) {
         const puntoArriba =
-        document.createElement("div");
+            document.createElement("div");
         const puntoAbajo =
-        document.createElement("div");
+            document.createElement("div");
         puntoArriba.classList.add(
             "punto"
         );
@@ -828,302 +828,311 @@ function crearPuntos(numero) {
         filaAbajo.appendChild(
             puntoAbajo
         );
-     }
-        if(numero === 3) {
-            const puntoArriba =
-            document.createElement("div");
-            const puntoCentro =
-            document.createElement("div");
-            const puntoAbajo =
-            document.createElement("div");
-            puntoArriba.classList.add(
-                "punto"
-            );
-            puntoCentro.classList.add(
-                "punto"
-            );
-            puntoAbajo.classList.add(
-                "punto"
-            );
-            filaArriba.appendChild(
-                puntoArriba
-            );
-            filaCentro.appendChild(
-                puntoCentro
-            );
-            filaAbajo.appendChild(
-                puntoAbajo
-            );
-        }
-        if (numero === 4) {
-            const puntoArribaIzquierda =
-            document.createElement("div");
-            const puntoArribaDerecha =
-            document.createElement("div");
-            const puntoAbajoIzquierda =
-            document.createElement("div");
-            const puntoAbajoDerecha =
-            document.createElement("div");
-
-            puntoArribaIzquierda.classList.add(
-                "punto"
-            );
-            puntoArribaDerecha.classList.add(
-                "punto"
-            );
-            puntoAbajoIzquierda.classList.add(
-                "punto"
-            );
-            puntoAbajoDerecha.classList.add(
-                "punto"
-            );
-            filaArriba.classList.add(
-                "fila-doble"
-            );
-            filaAbajo.classList.add(
-                "fila-doble"
-            );
-            filaArriba.appendChild(
-                puntoArribaIzquierda
-            );
-            filaArriba.appendChild(
-                puntoArribaDerecha
-            );
-            filaAbajo.appendChild(
-                puntoAbajoIzquierda
-            );
-            filaAbajo.appendChild(
-                puntoAbajoDerecha
-            );
-        }
-        if (numero === 5) {
-            const puntoArribaIzquierda =
-            document.createElement("div");
-            const puntoArribaDerecha =
-            document.createElement("div");
-            const puntoCentro =
-            document.createElement("div");
-            const puntoAbajoIzquierda =
-            document.createElement("div");
-            const puntoAbajoDerecha =
-            document.createElement("div");
-
-            puntoArribaIzquierda.classList.add(
-                "punto"
-            );
-            puntoArribaDerecha.classList.add(
-                "punto"
-            );
-            puntoCentro.classList.add(
-                "punto"
-            );
-            puntoAbajoIzquierda.classList.add(
-                "punto"
-            );
-            puntoAbajoDerecha.classList.add(
-                "punto"
-            );
-            filaArriba.classList.add(
-                "fila-doble"
-            );
-            filaAbajo.classList.add(
-                "fila-doble"
-            );
-            filaArriba.appendChild(
-                puntoArribaIzquierda
-            );
-            filaArriba.appendChild(
-                puntoArribaDerecha
-            );
-            filaCentro.appendChild(
-                puntoCentro
-            );
-            filaAbajo.appendChild(
-                puntoAbajoIzquierda
-            );
-            filaAbajo.appendChild(
-                puntoAbajoDerecha
-            );
-        }
-        if (numero === 6) {
-            const puntoArribaIzquierda =
-            document.createElement("div");
-            const puntoArribaDerecha =
-            document.createElement("div");
-            const puntoCentroIzquierda =
-            document.createElement("div");
-            const puntoCentroDerecha =
-            document.createElement("div");
-            const puntoAbajoIzquierda =
-            document.createElement("div");
-            const puntoAbajoDerecha =
-            document.createElement("div");
-            puntoArribaIzquierda.classList.add(
-                "punto"
-            );
-            puntoArribaDerecha.classList.add(
-                "punto"
-            );
-            puntoCentroIzquierda.classList.add(
-                "punto"
-            );
-            puntoCentroDerecha.classList.add(
-                "punto"
-            );
-            puntoAbajoIzquierda.classList.add(
-                "punto"
-            );
-            puntoAbajoDerecha.classList.add(
-                "punto"
-            );
-            filaArriba.classList.add(
-                "fila-doble"
-            );
-            filaCentro.classList.add(
-                "fila-doble"
-            );
-            filaAbajo.classList.add(
-                "fila-doble"
-            );
-            filaArriba.appendChild(
-                puntoArribaIzquierda
-            );
-            filaArriba.appendChild(
-                puntoArribaDerecha
-            );
-            filaCentro.appendChild(
-                puntoCentroIzquierda
-            );
-            filaCentro.appendChild(
-                puntoCentroDerecha
-            );
-            filaAbajo.appendChild(
-                puntoAbajoIzquierda
-            );
-            filaAbajo.appendChild(
-                puntoAbajoDerecha
-            );
-        }
-        return contenedor;
     }
-    function crearFichaVisual(ficha) {
-        const fichaVisual =
+    if (numero === 3) {
+        const puntoArriba =
+            document.createElement("div");
+        const puntoCentro =
+            document.createElement("div");
+        const puntoAbajo =
+            document.createElement("div");
+        puntoArriba.classList.add(
+            "punto"
+        );
+        puntoCentro.classList.add(
+            "punto"
+        );
+        puntoAbajo.classList.add(
+            "punto"
+        );
+        filaArriba.appendChild(
+            puntoArriba
+        );
+        filaCentro.appendChild(
+            puntoCentro
+        );
+        filaAbajo.appendChild(
+            puntoAbajo
+        );
+    }
+    if (numero === 4) {
+        const puntoArribaIzquierda =
+            document.createElement("div");
+        const puntoArribaDerecha =
+            document.createElement("div");
+        const puntoAbajoIzquierda =
+            document.createElement("div");
+        const puntoAbajoDerecha =
+            document.createElement("div");
+
+        puntoArribaIzquierda.classList.add(
+            "punto"
+        );
+        puntoArribaDerecha.classList.add(
+            "punto"
+        );
+        puntoAbajoIzquierda.classList.add(
+            "punto"
+        );
+        puntoAbajoDerecha.classList.add(
+            "punto"
+        );
+        filaArriba.classList.add(
+            "fila-doble"
+        );
+        filaAbajo.classList.add(
+            "fila-doble"
+        );
+        filaArriba.appendChild(
+            puntoArribaIzquierda
+        );
+        filaArriba.appendChild(
+            puntoArribaDerecha
+        );
+        filaAbajo.appendChild(
+            puntoAbajoIzquierda
+        );
+        filaAbajo.appendChild(
+            puntoAbajoDerecha
+        );
+    }
+    if (numero === 5) {
+        const puntoArribaIzquierda =
+            document.createElement("div");
+        const puntoArribaDerecha =
+            document.createElement("div");
+        const puntoCentro =
+            document.createElement("div");
+        const puntoAbajoIzquierda =
+            document.createElement("div");
+        const puntoAbajoDerecha =
+            document.createElement("div");
+
+        puntoArribaIzquierda.classList.add(
+            "punto"
+        );
+        puntoArribaDerecha.classList.add(
+            "punto"
+        );
+        puntoCentro.classList.add(
+            "punto"
+        );
+        puntoAbajoIzquierda.classList.add(
+            "punto"
+        );
+        puntoAbajoDerecha.classList.add(
+            "punto"
+        );
+        filaArriba.classList.add(
+            "fila-doble"
+        );
+        filaAbajo.classList.add(
+            "fila-doble"
+        );
+        filaArriba.appendChild(
+            puntoArribaIzquierda
+        );
+        filaArriba.appendChild(
+            puntoArribaDerecha
+        );
+        filaCentro.appendChild(
+            puntoCentro
+        );
+        filaAbajo.appendChild(
+            puntoAbajoIzquierda
+        );
+        filaAbajo.appendChild(
+            puntoAbajoDerecha
+        );
+    }
+    if (numero === 6) {
+        const puntoArribaIzquierda =
+            document.createElement("div");
+        const puntoArribaDerecha =
+            document.createElement("div");
+        const puntoCentroIzquierda =
+            document.createElement("div");
+        const puntoCentroDerecha =
+            document.createElement("div");
+        const puntoAbajoIzquierda =
+            document.createElement("div");
+        const puntoAbajoDerecha =
+            document.createElement("div");
+        puntoArribaIzquierda.classList.add(
+            "punto"
+        );
+        puntoArribaDerecha.classList.add(
+            "punto"
+        );
+        puntoCentroIzquierda.classList.add(
+            "punto"
+        );
+        puntoCentroDerecha.classList.add(
+            "punto"
+        );
+        puntoAbajoIzquierda.classList.add(
+            "punto"
+        );
+        puntoAbajoDerecha.classList.add(
+            "punto"
+        );
+        filaArriba.classList.add(
+            "fila-doble"
+        );
+        filaCentro.classList.add(
+            "fila-doble"
+        );
+        filaAbajo.classList.add(
+            "fila-doble"
+        );
+        filaArriba.appendChild(
+            puntoArribaIzquierda
+        );
+        filaArriba.appendChild(
+            puntoArribaDerecha
+        );
+        filaCentro.appendChild(
+            puntoCentroIzquierda
+        );
+        filaCentro.appendChild(
+            puntoCentroDerecha
+        );
+        filaAbajo.appendChild(
+            puntoAbajoIzquierda
+        );
+        filaAbajo.appendChild(
+            puntoAbajoDerecha
+        );
+    }
+    return contenedor;
+}
+function crearFichaVisual(ficha) {
+    const fichaVisual =
         document.createElement("div");
+    fichaVisual.classList.add(
+        "ficha"
+    );
+
+    if (ficha.numeroA === ficha.numeroB) {
         fichaVisual.classList.add(
-            "ficha"
+            "doble"
         );
-        const mitadA =
+    }
+
+
+
+    const mitadA =
         document.createElement("div");
-        mitadA.classList.add(
-            "mitad-arriba"
-        );
-        mitadA.style.backgroundColor =
+    mitadA.classList.add(
+        "mitad-arriba"
+    );
+    mitadA.style.backgroundColor =
         ficha.colorA;
-        const puntosA =
+    const puntosA =
         crearPuntos(
             ficha.numeroA
         );
-        mitadA.appendChild(
-            puntosA
-        );
-        const mitadB =
+    mitadA.appendChild(
+        puntosA
+    );
+    const mitadB =
         document.createElement("div");
-        mitadB.classList.add(
-            "mitad-abajo"
-        );
-        mitadB.style.backgroundColor =
+    mitadB.classList.add(
+        "mitad-abajo"
+    );
+    mitadB.style.backgroundColor =
         ficha.colorB;
-        const puntosB =
+    const puntosB =
         crearPuntos(
             ficha.numeroB
         );
-        mitadB.appendChild(
-            puntosB
-        );
-        fichaVisual.appendChild(
-            mitadA
-        );
-        fichaVisual.appendChild(
-            mitadB
-        );
-        return fichaVisual;
-    }
-    function crearFichaOculta() {
-        const fichaOculta =
-        document.createElement("div");
-        fichaOculta.classList.add(
-            "ficha-oculta"
-        );
-        return fichaOculta;
-    }
- let fichaSeleccionada = null;
- function mostrarFichasJugador() {
-    const zonaFichasJugador =
-    document.querySelector(
-        ".fichas-jugador"
+    mitadB.appendChild(
+        puntosB
     );
+    fichaVisual.appendChild(
+        mitadA
+    );
+    fichaVisual.appendChild(
+        mitadB
+    );
+    return fichaVisual;
+}
+function crearFichaOculta() {
+    const fichaOculta =
+        document.createElement("div");
+    fichaOculta.classList.add(
+        "ficha-oculta"
+    );
+    return fichaOculta;
+}
+let fichaSeleccionada = null;
+function mostrarFichasJugador() {
+    const zonaFichasJugador =
+        document.querySelector(
+            ".fichas-jugador"
+        );
     zonaFichasJugador.innerHTML = "";
-for (const ficha of fichasJugador) {
-    const fichaVisual =
-    crearFichaVisual(ficha);
-    if (
-        turno === "jugador" &&
-        !partidaTerminada
-    ) {
-        if (esJugable(ficha)) {
+    for (const ficha of fichasJugador) {
+        const fichaVisual =
+            crearFichaVisual(ficha);
+        if (
+            turno === "jugador" &&
+            !partidaTerminada
+        ) {
+            if (esJugable(ficha)) {
+                fichaVisual.classList.add(
+                    "jugable"
+                );
+            } else {
+                fichaVisual.classList.add(
+                    "no-jugable"
+                );
+            }
+        }
+        if (ficha === fichaSeleccionada) {
             fichaVisual.classList.add(
-                "jugable"
-            );
-        } else {
-            fichaVisual.classList.add(
-                "no-jugable"
+                "seleccionada"
             );
         }
-    }
-    if (ficha === fichaSeleccionada) {
-        fichaVisual.classList.add(
-            "seleccionada"
-        );
-    }
-    fichaVisual.addEventListener(
-        "click",
-        function() {
-            if (partidaTerminada) {
-                return;
-            }
-            if (turno !== "jugador") {
-                mostrarMensaje(
-                    "Espera a que termine el turno de la máquina"
+        fichaVisual.addEventListener(
+            "click",
+            function () {
+                if (partidaTerminada) {
+                    return;
+                }
+                if (turno !== "jugador") {
+                    mostrarMensaje(
+                        "Espera a que termine el turno de la máquina"
+                    );
+                    return;
+                }
+                fichaSeleccionada = ficha;
+                console.log(
+                    "Ficha seleccionada:",
+                    fichaSeleccionada
                 );
-                return;
+                mostrarMensaje(
+                    "Ficha seleccionada. Elige izquierda o derecha"
+                );
+                mostrarFichasJugador();
             }
-            fichaSeleccionada = ficha;
-            console.log(
-                "Ficha seleccionada:",
-                fichaSeleccionada
-            );
-            mostrarMensaje(
-                "Ficha seleccionada. Elige izquierda o derecha"
-            );
-            mostrarFichasJugador();
-        } 
-    );
-    zonaFichasJugador.appendChild(
-        fichaVisual
-    );
+        );
+        zonaFichasJugador.appendChild(
+            fichaVisual
+        );
 
     }
 }
 mostrarFichasJugador();
 function mostrarFichasMaquina() {
     const zonaFichasMaquina =
-    document.querySelector(
-        ".fichas-maquina"
-    );
+        document.querySelector(
+            ".fichas-maquina"
+        );
     zonaFichasMaquina.innerHTML = "";
     for (const ficha of fichasMaquina) {
-        const fichaVisual=
-        crearFichaOculta();
+        const fichaVisual =
+            crearFichaOculta();
         zonaFichasMaquina.appendChild(
             fichaVisual
         );
@@ -1132,13 +1141,13 @@ function mostrarFichasMaquina() {
 mostrarFichasMaquina();
 function mostrarFichasPozo() {
     const zonaFichasPozo =
-    document.querySelector(
-        ".fichas-pozo"
-    );
+        document.querySelector(
+            ".fichas-pozo"
+        );
     zonaFichasPozo.innerHTML = "";
     const rotaciones = [
         -12, 8, -5, 14, -9, 4, 11,
-        -3, 7, -14, 2, 9, -6,5
+        -3, 7, -14, 2, 9, -6, 5
     ];
     const posicionesX = [
         5, 40, 75, 20, 100, 55, 120,
@@ -1154,23 +1163,22 @@ function mostrarFichasPozo() {
         i++
     ) {
         const fichaVisual =
-        crearFichaOculta();
+            crearFichaOculta();
         fichaVisual.style.left =
-        posicionesX[
+            posicionesX[
             i % posicionesX.length
-        ] + "px";
+            ] + "px";
 
         fichaVisual.style.top =
-        posicionesY[
+            posicionesY[
             i % posicionesY.length
-        ] + "px"
+            ] + "px"
 
         fichaVisual.style.transform =
-        `rotate(${
-            rotaciones[
-                i % rotaciones.length
+            `rotate(${rotaciones[
+            i % rotaciones.length
             ]
-        }deg)`;
+            }deg)`;
         zonaFichasPozo.appendChild(
             fichaVisual
         );
@@ -1179,13 +1187,13 @@ function mostrarFichasPozo() {
 mostrarFichasPozo();
 function mostrarTablero() {
     const zonaTablero =
-    document.querySelector(
-        ".cadena-fichas"
-    );
+        document.querySelector(
+            ".cadena-fichas"
+        );
     zonaTablero.innerHTML = "";
     for (const ficha of tablero) {
         const fichaVisual =
-        crearFichaVisual(ficha);
+            crearFichaVisual(ficha);
         zonaTablero.appendChild(
             fichaVisual
         );
@@ -1194,283 +1202,283 @@ function mostrarTablero() {
 mostrarTablero();
 function actualizarInformacionPartida() {
     const infoTurno =
-    document.querySelector(
-        "#info-turno"
-    );
+        document.querySelector(
+            "#info-turno"
+        );
     const infoPozo =
-    document.querySelector(
-        "#info-pozo"
-    );
+        document.querySelector(
+            "#info-pozo"
+        );
     const infoMaquina =
-    document.querySelector(
-        "#info-maquina"
-    );
+        document.querySelector(
+            "#info-maquina"
+        );
     const infoJugador =
-    document.querySelector(
-        "#info-jugador"
-    );
+        document.querySelector(
+            "#info-jugador"
+        );
     if (turno === "jugador") {
         infoTurno.textContent =
-        "Jugador";
+            "Jugador";
 
     } else if (turno === "maquina") {
         infoTurno.textContent =
-        "Máquina";
+            "Máquina";
     }
     infoPozo.textContent =
-    fichasPozo.length;
-    
+        fichasPozo.length;
+
     infoMaquina.textContent =
-    fichasMaquina.length;
+        fichasMaquina.length;
 
     infoJugador.textContent =
-    fichasJugador.length
-    } 
+        fichasJugador.length
+}
 
-    function actualizarInterfazVisual() {
-        mostrarFichasJugador();
-        mostrarFichasMaquina();
-        mostrarFichasPozo();
-        mostrarTablero();
-        actualizarInformacionPartida();
-    }
+function actualizarInterfazVisual() {
+    mostrarFichasJugador();
+    mostrarFichasMaquina();
+    mostrarFichasPozo();
+    mostrarTablero();
     actualizarInformacionPartida();
+}
+actualizarInformacionPartida();
 
-    function mostrarMensaje(texto) {
-        const zonaMensaje =
+function mostrarMensaje(texto) {
+    const zonaMensaje =
         document.querySelector(
             "#mensaje-juego"
         );
-        zonaMensaje.textContent =
+    zonaMensaje.textContent =
         texto;
-    }
-    function mostrarMensaje(texto) {
-        const zonaMensaje =
+}
+function mostrarMensaje(texto) {
+    const zonaMensaje =
         document.querySelector(
             "#mensaje-juego"
         );
-        zonaMensaje.textContent =
+    zonaMensaje.textContent =
         texto;
-    }
-    function mostrarResultadoFinal() {
-        const zonaResultado =
+}
+function mostrarResultadoFinal() {
+    const zonaResultado =
         document.querySelector(
             "#resultado-partida"
         );
-        const tituloResultado =
+    const tituloResultado =
         document.querySelector(
             "#resultado-titulo"
         );
-        const ganadorResultado =
+    const ganadorResultado =
         document.querySelector(
             "#resultado-ganador"
         );
-        const perdedorResultado =
+    const perdedorResultado =
         document.querySelector(
             "#resultado-perdedor"
         );
-        if (resultadoPartida === "jugador") {
-            tituloResultado.textContent =
+    if (resultadoPartida === "jugador") {
+        tituloResultado.textContent =
             "¡Has ganado!";
-            ganadorResultado.textContent =
+        ganadorResultado.textContent =
             "Jugador";
-            perdedorResultado.textContent =
+        perdedorResultado.textContent =
             "Máquina";
-        } else if (
-            resultadoPartida === "maquina"
-        ) {
-            tituloResultado.textContent =
+    } else if (
+        resultadoPartida === "maquina"
+    ) {
+        tituloResultado.textContent =
             "Ha ganado la máquina";
-            ganadorResultado.textContent =
+        ganadorResultado.textContent =
             "Máquina";
-            perdedorResultado.textContent =
+        perdedorResultado.textContent =
             "Jugador";
-        } else if (
-            resultadoPartida === "empate"
-        ) {
-            tituloResultado.textContent =
+    } else if (
+        resultadoPartida === "empate"
+    ) {
+        tituloResultado.textContent =
             "Empate";
-            ganadorResultado.textContent =
+        ganadorResultado.textContent =
             "Ninguno";
-            perdedorResultado.textContent =
+        perdedorResultado.textContent =
             "Ninguno";
-        }
-        zonaResultado.classList.add(
-            "visible"
+    }
+    zonaResultado.classList.add(
+        "visible"
+    );
+}
+function mostrarMensajeResultado() {
+    desactivarControlesJugador();
+    actualizarMarcadorSiCorresponde();
+    if (resultadoPartida === "jugador") {
+        mostrarMensaje(
+            "¡Has ganado la partida!"
+        );
+    } else if (
+        resultadoPartida === "maquina"
+    ) {
+        mostrarMensaje(
+            "La máquina ha ganado la partida"
+        );
+    } else if (
+        resultadoPartida === "empate"
+    ) {
+        mostrarMensaje(
+            "La partida ha terminado en empate"
         );
     }
-    function mostrarMensajeResultado() {
-        desactivarControlesJugador();
-        actualizarMarcadorSiCorresponde();
-        if (resultadoPartida ==="jugador") {
-            mostrarMensaje(
-                "¡Has ganado la partida!"
-            );
-        } else if(
-            resultadoPartida === "maquina"
-        ) {
-            mostrarMensaje(
-                "La máquina ha ganado la partida"
-            );
-        } else if (
-            resultadoPartida === "empate"
-        ) {
-            mostrarMensaje(
-                "La partida ha terminado en empate"
-            );
-        }
-        mostrarResultadoFinal();
-    }
-    const CLAVE_MARCADOR =
+    mostrarResultadoFinal();
+}
+const CLAVE_MARCADOR =
     "domino-marcador";
-    function cargarMarcador() {
-        const guardado =
+function cargarMarcador() {
+    const guardado =
         localStorage.getItem(
             CLAVE_MARCADOR
         );
-        if (!guardado) {
-            return {
-                victorias: 0,
-                derrotas: 0
-            };
-        }
-        try {
-            const datos =
+    if (!guardado) {
+        return {
+            victorias: 0,
+            derrotas: 0
+        };
+    }
+    try {
+        const datos =
             JSON.parse(
                 guardado
             );
-            return {
-                victorias:
+        return {
+            victorias:
                 datos.victorias || 0,
-                derrotas:
+            derrotas:
                 datos.derrotas || 0
 
-            };
-        } catch (error) {
-            return {
-                victorias: 0,
-                derrotas: 0
-            };
-        }
+        };
+    } catch (error) {
+        return {
+            victorias: 0,
+            derrotas: 0
+        };
     }
-    const marcador =
+}
+const marcador =
     cargarMarcador();
-    let marcadorRegistrado =
+let marcadorRegistrado =
     false;
-    function guardarMarcador() {
-        localStorage.setItem(
-            CLAVE_MARCADOR,
-            JSON.stringify(
-                marcador
-            )
-        );    
-    }
-    function mostrarMarcador() {
-        const elementoMarcador =
+function guardarMarcador() {
+    localStorage.setItem(
+        CLAVE_MARCADOR,
+        JSON.stringify(
+            marcador
+        )
+    );
+}
+function mostrarMarcador() {
+    const elementoMarcador =
         document.querySelector(
             "#info-marcador"
         );
-        if (elementoMarcador) {
-            elementoMarcador.textContent =
+    if (elementoMarcador) {
+        elementoMarcador.textContent =
             `${marcador.victorias} / ${marcador.derrotas}`;
-        }
     }
-    function actualizarMarcadorSiCorresponde() {
-        if (
-            marcadorRegistrado ||
-            !partidaTerminada
-        ) {
-            return;
-        }
-        marcadorRegistrado = true;
-        if (resultadoPartida === "jugador") {
-            marcador.victorias++;
-        } else if (
-            resultadoPartida === "maquina"
-        ) {
-            marcador.derrotas++;
-        }
-        guardarMarcador();
-        mostrarMarcador();
+}
+function actualizarMarcadorSiCorresponde() {
+    if (
+        marcadorRegistrado ||
+        !partidaTerminada
+    ) {
+        return;
     }
-    function desactivarControlesJugador() {
-        document.querySelector(
-            "#btn-izquierda"
-        ).disabled = true;
-
-        document.querySelector(
-            "#btn-derecha"
-        ).disabled = true;
-
-        document.querySelector(
-            "#btn-robar"
-        ).disabled = true;
-
-        document.querySelector(
-            "#btn-pasar"
-        ).disabled = true;
+    marcadorRegistrado = true;
+    if (resultadoPartida === "jugador") {
+        marcador.victorias++;
+    } else if (
+        resultadoPartida === "maquina"
+    ) {
+        marcador.derrotas++;
     }
+    guardarMarcador();
+    mostrarMarcador();
+}
+function desactivarControlesJugador() {
+    document.querySelector(
+        "#btn-izquierda"
+    ).disabled = true;
 
-        function activarControlesJugador() {
+    document.querySelector(
+        "#btn-derecha"
+    ).disabled = true;
+
+    document.querySelector(
+        "#btn-robar"
+    ).disabled = true;
+
+    document.querySelector(
+        "#btn-pasar"
+    ).disabled = true;
+}
+
+function activarControlesJugador() {
+    if (partidaTerminada) {
+        return;
+    }
+    document.querySelector(
+        "#btn-izquierda"
+    ).disabled = false;
+
+    document.querySelector(
+        "#btn-derecha"
+    ).disabled = false;
+
+    document.querySelector(
+        "#btn-robar"
+    ).disabled = false;
+
+    document.querySelector(
+        "#btn-pasar"
+    ).disabled = false;
+}
+function ejecutarTurnoMaquinaVisual() {
+    console.log(
+        "Entramos en el turno visual de la máquina"
+    );
+    if (partidaTerminada) {
+        console.log(
+            "La partida ya ha terminado"
+        );
+        desactivarControlesJugador();
+        mostrarMensajeResultado();
+        return;
+    }
+    if (turno !== "maquina") {
+        console.log(
+            "No es el turno de la máquina. Turno actual:",
+            turno
+        );
+        return;
+    }
+    desactivarControlesJugador();
+    mostrarMensaje(
+        "La máquina está pensando ..."
+    );
+    setTimeout(
+        function () {
+            jugarTurnoMaquina();
+            actualizarInterfazVisual();
             if (partidaTerminada) {
-                return;
-            }
-            document.querySelector(
-                "#btn-izquierda"
-            ).disabled = false;
-            
-            document.querySelector(
-                "#btn-derecha"
-            ).disabled = false;
-
-            document.querySelector(
-                "#btn-robar"
-            ).disabled = false;
-
-            document.querySelector(
-                "#btn-pasar"
-            ).disabled = false;
-        }
-        function ejecutarTurnoMaquinaVisual() {
-            console.log(
-                "Entramos en el turno visual de la máquina"
-            );
-            if(partidaTerminada) {
-                console.log(
-                    "La partida ya ha terminado"
-                );
                 desactivarControlesJugador();
                 mostrarMensajeResultado();
-                return;
-            }
-            if(turno !== "maquina") {
-                console.log(
-                    "No es el turno de la máquina. Turno actual:",
-                    turno
+            } else {
+                activarControlesJugador();
+                mostrarMensaje(
+                    "Tu turno. Selecciona una ficha"
                 );
-                return;
             }
-            desactivarControlesJugador();
-            mostrarMensaje(
-                "La máquina está pensando ..."
-            );
-            setTimeout(
-                function() {
-                    jugarTurnoMaquina();
-                    actualizarInterfazVisual();
-                    if(partidaTerminada) {
-                        desactivarControlesJugador();
-                        mostrarMensajeResultado();
-                    } else {
-                        activarControlesJugador();
-                        mostrarMensaje(
-                            "Tu turno. Selecciona una ficha"
-                        );
-                    }
-                },
-                1500
-            );
-        }
+        },
+        1500
+    );
+}
 
 const botonIzquierda =
     document.querySelector(
@@ -1743,12 +1751,12 @@ if (
     );
 }
 const botonNuevaPartida =
-document.querySelector(
-    "#btn-nueva-partida"
-);
+    document.querySelector(
+        "#btn-nueva-partida"
+    );
 botonNuevaPartida.addEventListener(
     "click",
-    function() {
+    function () {
         location.reload();
     }
 );
