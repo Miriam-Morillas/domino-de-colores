@@ -36,6 +36,9 @@ if (partidaTerminada) {
     return;
 }
 
+
+// Si la ficha ha bloqueado a la máquina,
+// el jugador vuelve a jugar
 if (turno === "jugador") {
 
     mostrarMensajeEfecto();
@@ -45,6 +48,8 @@ if (turno === "jugador") {
     return;
 }
 
+
+// Si ahora juega la máquina
 if (turno === "maquina") {
 
     if (ultimoEfecto !== null) {
@@ -58,11 +63,13 @@ if (turno === "maquina") {
             },
             1200
         );
+
     } else {
 
         ejecutarTurnoMaquinaVisual();
     }
 }
+
         } else {
 
             mostrarMensaje(
@@ -126,12 +133,14 @@ const botonRobar =
         "#btn-robar"
     );
 
+
 botonRobar.addEventListener(
     "click",
     function () {
 
         const roboCorrecto =
             robarFichaJugador();
+
 
         if (roboCorrecto) {
 
@@ -140,10 +149,12 @@ botonRobar.addEventListener(
 
             actualizarInterfazVisual();
 
+
             const jugablesJugador =
                 obtenerFichasJugables(
                     fichasJugador
                 );
+
 
             if (jugablesJugador.length > 0) {
 
@@ -165,6 +176,7 @@ botonRobar.addEventListener(
                     "La ficha robada no sirve y el pozo está vacío. Debes pasar."
                 );
             }
+
 
         } else {
 
@@ -207,12 +219,14 @@ const botonPasar =
         "#btn-pasar"
     );
 
+
 botonPasar.addEventListener(
     "click",
     function () {
 
         const paseCorrecto =
             pasarTurnoJugador();
+
 
         if (paseCorrecto) {
 
@@ -221,6 +235,7 @@ botonPasar.addEventListener(
 
             actualizarInterfazVisual();
 
+
             if (partidaTerminada) {
 
                 mostrarMensajeResultado();
@@ -228,14 +243,17 @@ botonPasar.addEventListener(
                 return;
             }
 
+
             mostrarMensaje(
                 "Has pasado el turno."
             );
+
 
             if (turno === "maquina") {
 
                 ejecutarTurnoMaquinaVisual();
             }
+
 
         } else {
 

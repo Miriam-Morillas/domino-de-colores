@@ -2,6 +2,7 @@ class Ficha {
     constructor(numeroA, colorA, numeroB, colorB) {
         this.numeroA = numeroA;
         this.colorA = colorA;
+
         this.numeroB = numeroB;
         this.colorB = colorB;
         this.tipo = "normal";
@@ -19,6 +20,7 @@ for (let numeroA = 0; numeroA <= 6; numeroA++) {
         let numeroB = numeroA;
         numeroB <= 6;
         numeroB++
+
     ) {
         const indiceColorA =
             Math.floor(
@@ -57,6 +59,7 @@ for (let numeroA = 0; numeroA <= 6; numeroA++) {
 
     }
 }
+
 
 for (let i = fichas.length - 1; i > 0; i--) {
     const indiceAleatorio =
@@ -131,9 +134,12 @@ for (const ficha of fichasMaquina) {
     }
 }
 
+
 let turno = null;
 
 let fichaInicial = null;
+
+
 
 if (dobleMasAltoJugador > dobleMasAltoMaquina) {
 
@@ -142,12 +148,16 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
     fichaInicial =
         fichaDobleMasAltoJugador;
 
+
+
 } else if (dobleMasAltoMaquina > dobleMasAltoJugador) {
 
     turno = "maquina";
 
     fichaInicial =
         fichaDobleMasAltoMaquina;
+
+
 
 } else {
 
@@ -181,6 +191,7 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         const sumaFicha =
             ficha.numeroA + ficha.numeroB;
 
+
         if (sumaFicha > sumaMasAltaMaquina) {
 
             sumaMasAltaMaquina =
@@ -191,12 +202,14 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         }
     }
 
+
     if (sumaMasAltaJugador > sumaMasAltaMaquina) {
 
         turno = "jugador";
 
         fichaInicial =
             fichaSumaMasAltaJugador;
+
 
     } else if (sumaMasAltaMaquina > sumaMasAltaJugador) {
 
@@ -205,10 +218,12 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         fichaInicial =
             fichaSumaMasAltaMaquina;
 
+
     } else {
 
         const empiezaJugador =
             Math.random() < 0.5;
+
 
         if (empiezaJugador) {
 
@@ -303,6 +318,7 @@ fichasParaEspeciales[
 fichasParaEspeciales[
     indiceBloqueo
 ].tipo = "bloqueo";
+
 
 let extremoIzquierdo =
     tablero[0].numeroA;
@@ -493,9 +509,11 @@ function aplicarEfectoEspecial(
 
     ultimoEfecto = null;
 
+
     if (ficha.tipo === "roba2") {
 
         let manoRival;
+
 
         if (quienJuega === "jugador") {
 
@@ -508,7 +526,9 @@ function aplicarEfectoEspecial(
                 fichasJugador;
         }
 
+
         let cantidadRobada = 0;
+
 
         for (let i = 0; i < 2; i++) {
 
@@ -517,6 +537,7 @@ function aplicarEfectoEspecial(
                 break;
             }
 
+
             robarFicha(
                 manoRival
             );
@@ -524,15 +545,18 @@ function aplicarEfectoEspecial(
             cantidadRobada++;
         }
 
+
         ultimoEfecto = {
             tipo: "roba2",
             jugador: quienJuega,
             cantidad: cantidadRobada
         };
 
+
     } else if (
         ficha.tipo === "bloqueo"
     ) {
+
         ultimoEfecto = {
             tipo: "bloqueo",
             jugador: quienJuega
@@ -760,6 +784,7 @@ function jugarTurnoMaquina() {
         turno = "jugador";
     }
     return true;
+
 }
 function calcularPuntos(mano) {
     let total = 0;

@@ -247,6 +247,8 @@ function crearFichaVisual(ficha) {
         );
     }
 
+
+
     const mitadA =
         document.createElement("div");
     mitadA.classList.add(
@@ -515,6 +517,7 @@ function mostrarMensajeEfecto() {
         return true;
     }
 
+
     if (
         ultimoEfecto.tipo === "roba2" &&
         ultimoEfecto.jugador === "maquina"
@@ -528,6 +531,7 @@ function mostrarMensajeEfecto() {
 
         return true;
     }
+
 
     if (
         ultimoEfecto.tipo === "bloqueo" &&
@@ -771,7 +775,9 @@ function ejecutarTurnoMaquinaVisual() {
         function () {
 
             jugarTurnoMaquina();
+
             actualizarInterfazVisual();
+
 
             if (partidaTerminada) {
 
@@ -781,6 +787,10 @@ function ejecutarTurnoMaquinaVisual() {
 
                 return;
             }
+
+
+            // La máquina ha jugado una X
+            // y vuelve a tener el turno
             if (turno === "maquina") {
 
                 mostrarMensajeEfecto();
@@ -795,6 +805,9 @@ function ejecutarTurnoMaquinaVisual() {
 
                 return;
             }
+
+
+            // La máquina ha jugado +2
             if (
                 ultimoEfecto !== null &&
                 ultimoEfecto.tipo === "roba2"
@@ -806,12 +819,16 @@ function ejecutarTurnoMaquinaVisual() {
 
                 return;
             }
+
+
+            // Turno normal del jugador
             activarControlesJugador();
 
             mostrarMensaje(
                 "Tu turno. Selecciona una ficha."
             );
         },
+
         1500
     );
 }
