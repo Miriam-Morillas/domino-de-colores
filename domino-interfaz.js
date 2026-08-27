@@ -247,8 +247,6 @@ function crearFichaVisual(ficha) {
         );
     }
 
-
-
     const mitadA =
         document.createElement("div");
     mitadA.classList.add(
@@ -283,6 +281,21 @@ function crearFichaVisual(ficha) {
     fichaVisual.appendChild(
         mitadB
     );
+
+   if (ficha.tipo === "roba2") {
+
+    fichaVisual.classList.add(
+        "especial-roba2"
+    );
+
+} else if (
+    ficha.tipo === "bloqueo"
+) {
+
+    fichaVisual.classList.add(
+        "especial-bloqueo"
+    );
+}
     return fichaVisual;
 }
 function crearFichaOculta() {
@@ -480,14 +493,71 @@ function mostrarMensaje(texto) {
     zonaMensaje.textContent =
         texto;
 }
-function mostrarMensaje(texto) {
-    const zonaMensaje =
-        document.querySelector(
-            "#mensaje-juego"
+function mostrarMensajeEfecto() {
+
+    if (ultimoEfecto === null) {
+
+        return false;
+    }
+
+
+    if (
+        ultimoEfecto.tipo === "roba2" &&
+        ultimoEfecto.jugador === "jugador"
+    ) {
+
+        mostrarMensaje(
+            "Has jugado +2. La máquina roba " +
+            ultimoEfecto.cantidad +
+            " fichas."
         );
-    zonaMensaje.textContent =
-        texto;
+
+        return true;
+    }
+
+    if (
+        ultimoEfecto.tipo === "roba2" &&
+        ultimoEfecto.jugador === "maquina"
+    ) {
+
+        mostrarMensaje(
+            "La máquina ha jugado +2. Has robado " +
+            ultimoEfecto.cantidad +
+            " fichas."
+        );
+
+        return true;
+    }
+
+    if (
+        ultimoEfecto.tipo === "bloqueo" &&
+        ultimoEfecto.jugador === "jugador"
+    ) {
+
+        mostrarMensaje(
+            "Has jugado una X. La máquina pierde su turno. Vuelves a jugar."
+        );
+
+        return true;
+    }
+
+
+    if (
+        ultimoEfecto.tipo === "bloqueo" &&
+        ultimoEfecto.jugador === "maquina"
+    ) {
+
+        mostrarMensaje(
+            "La máquina ha jugado una X. Pierdes tu turno."
+        );
+
+        return true;
+    }
+
+
+    return false;
 }
+
 function mostrarResultadoFinal() {
     const zonaResultado =
         document.querySelector(
@@ -668,41 +738,79 @@ function activarControlesJugador() {
     ).disabled = false;
 }
 function ejecutarTurnoMaquinaVisual() {
+
     console.log(
         "Entramos en el turno visual de la máquina"
     );
+
+
     if (partidaTerminada) {
-        console.log(
-            "La partida ya ha terminado"
-        );
+
         desactivarControlesJugador();
+
         mostrarMensajeResultado();
+
         return;
     }
+
+
     if (turno !== "maquina") {
-        console.log(
-            "No es el turno de la máquina. Turno actual:",
-            turno
-        );
+
         return;
     }
+
+
     desactivarControlesJugador();
+
     mostrarMensaje(
-        "La máquina está pensando ..."
+        "La máquina está pensando..."
     );
+
+
     setTimeout(
         function () {
+
             jugarTurnoMaquina();
             actualizarInterfazVisual();
+
             if (partidaTerminada) {
+
                 desactivarControlesJugador();
+
                 mostrarMensajeResultado();
-            } else {
-                activarControlesJugador();
-                mostrarMensaje(
-                    "Tu turno. Selecciona una ficha"
-                );
+
+                return;
             }
+            if (turno === "maquina") {
+
+                mostrarMensajeEfecto();
+
+                setTimeout(
+                    function () {
+
+                        ejecutarTurnoMaquinaVisual();
+                    },
+                    1200
+                );
+
+                return;
+            }
+            if (
+                ultimoEfecto !== null &&
+                ultimoEfecto.tipo === "roba2"
+            ) {
+
+                mostrarMensajeEfecto();
+
+                activarControlesJugador();
+
+                return;
+            }
+            activarControlesJugador();
+
+            mostrarMensaje(
+                "Tu turno. Selecciona una ficha."
+            );
         },
         1500
     );
