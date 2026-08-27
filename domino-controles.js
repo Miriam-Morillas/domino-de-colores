@@ -27,17 +27,42 @@ botonIzquierda.addEventListener(
             fichaSeleccionada =
                 null;
 
-            actualizarInterfazVisual();
+           actualizarInterfazVisual();
 
-            if (partidaTerminada) {
+if (partidaTerminada) {
 
-                mostrarMensajeResultado();
+    mostrarMensajeResultado();
 
-                return;
-            }
+    return;
+}
 
-            ejecutarTurnoMaquinaVisual();
+if (turno === "jugador") {
 
+    mostrarMensajeEfecto();
+
+    activarControlesJugador();
+
+    return;
+}
+
+if (turno === "maquina") {
+
+    if (ultimoEfecto !== null) {
+
+        mostrarMensajeEfecto();
+
+        setTimeout(
+            function () {
+
+                ejecutarTurnoMaquinaVisual();
+            },
+            1200
+        );
+    } else {
+
+        ejecutarTurnoMaquinaVisual();
+    }
+}
         } else {
 
             mostrarMensaje(
@@ -101,14 +126,12 @@ const botonRobar =
         "#btn-robar"
     );
 
-
 botonRobar.addEventListener(
     "click",
     function () {
 
         const roboCorrecto =
             robarFichaJugador();
-
 
         if (roboCorrecto) {
 
@@ -117,12 +140,10 @@ botonRobar.addEventListener(
 
             actualizarInterfazVisual();
 
-
             const jugablesJugador =
                 obtenerFichasJugables(
                     fichasJugador
                 );
-
 
             if (jugablesJugador.length > 0) {
 
@@ -144,7 +165,6 @@ botonRobar.addEventListener(
                     "La ficha robada no sirve y el pozo está vacío. Debes pasar."
                 );
             }
-
 
         } else {
 
@@ -187,14 +207,12 @@ const botonPasar =
         "#btn-pasar"
     );
 
-
 botonPasar.addEventListener(
     "click",
     function () {
 
         const paseCorrecto =
             pasarTurnoJugador();
-
 
         if (paseCorrecto) {
 
@@ -203,7 +221,6 @@ botonPasar.addEventListener(
 
             actualizarInterfazVisual();
 
-
             if (partidaTerminada) {
 
                 mostrarMensajeResultado();
@@ -211,17 +228,14 @@ botonPasar.addEventListener(
                 return;
             }
 
-
             mostrarMensaje(
                 "Has pasado el turno."
             );
-
 
             if (turno === "maquina") {
 
                 ejecutarTurnoMaquinaVisual();
             }
-
 
         } else {
 

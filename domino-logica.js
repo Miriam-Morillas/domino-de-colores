@@ -2,9 +2,9 @@ class Ficha {
     constructor(numeroA, colorA, numeroB, colorB) {
         this.numeroA = numeroA;
         this.colorA = colorA;
-
         this.numeroB = numeroB;
         this.colorB = colorB;
+        this.tipo = "normal";
     }
 }
 const colores = [
@@ -19,7 +19,6 @@ for (let numeroA = 0; numeroA <= 6; numeroA++) {
         let numeroB = numeroA;
         numeroB <= 6;
         numeroB++
-
     ) {
         const indiceColorA =
             Math.floor(
@@ -58,7 +57,6 @@ for (let numeroA = 0; numeroA <= 6; numeroA++) {
 
     }
 }
-
 
 for (let i = fichas.length - 1; i > 0; i--) {
     const indiceAleatorio =
@@ -133,12 +131,9 @@ for (const ficha of fichasMaquina) {
     }
 }
 
-
 let turno = null;
 
 let fichaInicial = null;
-
-
 
 if (dobleMasAltoJugador > dobleMasAltoMaquina) {
 
@@ -147,16 +142,12 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
     fichaInicial =
         fichaDobleMasAltoJugador;
 
-
-
 } else if (dobleMasAltoMaquina > dobleMasAltoJugador) {
 
     turno = "maquina";
 
     fichaInicial =
         fichaDobleMasAltoMaquina;
-
-
 
 } else {
 
@@ -190,7 +181,6 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         const sumaFicha =
             ficha.numeroA + ficha.numeroB;
 
-
         if (sumaFicha > sumaMasAltaMaquina) {
 
             sumaMasAltaMaquina =
@@ -201,14 +191,12 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         }
     }
 
-
     if (sumaMasAltaJugador > sumaMasAltaMaquina) {
 
         turno = "jugador";
 
         fichaInicial =
             fichaSumaMasAltaJugador;
-
 
     } else if (sumaMasAltaMaquina > sumaMasAltaJugador) {
 
@@ -217,12 +205,10 @@ if (dobleMasAltoJugador > dobleMasAltoMaquina) {
         fichaInicial =
             fichaSumaMasAltaMaquina;
 
-
     } else {
 
         const empiezaJugador =
             Math.random() < 0.5;
-
 
         if (empiezaJugador) {
 
@@ -283,6 +269,40 @@ if (turno === "jugador") {
     }
 
 }
+
+const fichasParaEspeciales =
+fichasJugador.concat(
+    fichasMaquina,
+    fichasPozo
+);
+const indiceRobaDos =
+Math.floor(
+    Math.random() *
+    fichasParaEspeciales.length
+);
+
+let indiceBloqueo =
+Math.floor(
+    Math.random() *
+    fichasParaEspeciales.length
+);
+
+while(
+    indiceBloqueo === indiceRobaDos
+) {
+    indiceBloqueo =
+    Math.floor(
+        Math.random() *
+        fichasParaEspeciales.length
+    );
+}
+fichasParaEspeciales[
+    indiceRobaDos
+].tipo ="roba2";
+
+fichasParaEspeciales[
+    indiceBloqueo
+].tipo = "bloqueo";
 
 let extremoIzquierdo =
     tablero[0].numeroA;
@@ -434,7 +454,22 @@ function jugarFichaJugador(ficha, lado) {
     if (comprobarFinPartida() !== null) {
         return true;
     }
-    turno = "maquina";
+    aplicarEfectoEspecial(
+        ficha,
+        "jugador"
+    );
+    if(ficha.tipo === "bloqueo") {
+        turno = "jugador";
+    } else {
+        turno = "maquina";
+    }
+    console.log(
+        "Ficha jugada correctamente"
+    );
+    console.log(
+        "Turno actual:",
+        turno
+    );
     return true;
 }
 function robarFicha(mano) {
@@ -450,6 +485,59 @@ function robarFicha(mano) {
         fichaRobada
     );
     return fichaRobada;
+}
+function aplicarEfectoEspecial(
+    ficha,
+    quienJuega
+) {
+
+    ultimoEfecto = null;
+
+    if (ficha.tipo === "roba2") {
+
+        let manoRival;
+
+        if (quienJuega === "jugador") {
+
+            manoRival =
+                fichasMaquina;
+
+        } else {
+
+            manoRival =
+                fichasJugador;
+        }
+
+        let cantidadRobada = 0;
+
+        for (let i = 0; i < 2; i++) {
+
+            if (fichasPozo.length === 0) {
+
+                break;
+            }
+
+            robarFicha(
+                manoRival
+            );
+
+            cantidadRobada++;
+        }
+
+        ultimoEfecto = {
+            tipo: "roba2",
+            jugador: quienJuega,
+            cantidad: cantidadRobada
+        };
+
+    } else if (
+        ficha.tipo === "bloqueo"
+    ) {
+        ultimoEfecto = {
+            tipo: "bloqueo",
+            jugador: quienJuega
+        };
+    }
 }
 
 function robarFichaJugador() {
@@ -662,9 +750,16 @@ function jugarTurnoMaquina() {
     if (comprobarFinPartida() !== null) {
         return true;
     }
-    turno = "jugador";
+    aplicarEfectoEspecial(
+        fichaElegida,
+        "maquina"
+    );
+    if (fichaElegida.tipo === "bloqueo") {
+        turno = "maquina";
+    } else {
+        turno = "jugador";
+    }
     return true;
-
 }
 function calcularPuntos(mano) {
     let total = 0;
@@ -731,6 +826,7 @@ function partidaBloqueada() {
 }
 let partidaTerminada = false;
 let resultadoPartida = null;
+let ultimoEfecto = null;
 
 function comprobarFinPartida() {
     if (fichasJugador.length === 0) {
