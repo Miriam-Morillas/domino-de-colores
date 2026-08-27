@@ -1,42 +1,29 @@
 :root {
-    /*color del borde de la pantalla */
-
+    
     --fieltro-1: #0f4a2c;
     --fieltro-2: #0b3320;
-
-    /*color del fondo de pantalla*/
 
     --madera-1: #6b4226;
     --madera-2: #3c2414;
     --madera-brillo: #9a6a3d;
 
-
     --marfil: #f7f2e4;
     --marfil-sombra: #d9d0b4;
-
-    /*sombra de los botones al estar activa */
 
     --oro: #e0b34d;
     --oro-suave: #f3d488;
 
-    /*colores de los cuadros llamados cristal  */
 
     --cristal-bg: rgba(20, 30, 24, 0.45);
     --cristal-borde: rgba(255, 255, 255, 0.14);
     --cristal-sombra: rgba(0, 0, 0, 0.45);
 
-    /*color de las letras */
-
     --texto-claro: #f4f1e8;
     --texto-tenue: #c9c2ad;
-
-    /*estados del juego */
 
     --estado-jugable: #e0b34d;
     --estado-seleccionada: #1f6fb2;
     --estado-no-jugable: #6b6459;
-
-    /*tamaño de las fichas */
 
     --ficha-ancho: clamp(26px, 3.4vh, 40px);
     --ficha-alto: clamp(52px, 6.8vh, 80px);
@@ -46,17 +33,14 @@
     box-sizing: border-box;
 }
 
-
 html,
-/*nos permite darle el margen y tamaño a la interfaz*/
+
 body {
     height: 100%;
     margin: 0;
     overflow: hidden;
 }
 
-
-/*le da un estilo a las letras del juego y color */
 body {
     font-family:
         "Segoe UI",
@@ -67,7 +51,7 @@ body {
     color: var(--texto-claro);
 
     padding: 10px;
-    /*es la combinacion de colores en degrade en la interfaz*/
+
     background:
         radial-gradient(ellipse at 50% 0%,
             rgba(255, 255, 255, 0.05),
@@ -80,14 +64,12 @@ body {
     display: flex;
 }
 
-/*da el margen y distancia*/
 h1,
 h2,
 h3 {
     margin: 0;
     font-weight: 600;
 }
-
 
 .marco-madera {
     flex: 1;
@@ -110,8 +92,6 @@ h3 {
         inset 0 0 0 2px rgba(0, 0, 0, 0.35),
         inset 0 2px 4px rgba(255, 255, 255, 0.15);
 }
-
-/* CABECERA */
 
 .cabecera {
     flex: 0 0 auto;
@@ -137,7 +117,6 @@ h3 {
     border: 1px solid var(--cristal-borde);
 }
 
-/*su funcion es mantener los colores y espacios en su lugar */
 .cabecera-icono {
     font-size: 1.3rem;
 
@@ -150,7 +129,6 @@ h3 {
             0.855);
 }
 
-
 .cabecera h1 {
     width: 100%;
 
@@ -160,9 +138,6 @@ h3 {
 
     letter-spacing: 0.05em;
 }
-
-
-/* === DISTRIBUCIÓN GENERAL=== */
 
 main {
     flex: 1;
@@ -176,7 +151,6 @@ main {
     gap: 10px;
 }
 
-
 .zona-juego {
     min-width: 0;
     min-height: 0;
@@ -187,7 +161,6 @@ main {
     gap: 4px;
 }
 
-
 .zona-lateral {
     min-height: 0;
 
@@ -196,7 +169,6 @@ main {
 
     gap: 8px;
 }
-
 
 .resultado-partida {
     display: none;
@@ -232,11 +204,9 @@ main {
     z-index: 1000;
 }
 
-
 .resultado-partida.visible {
     display: block;
 }
-
 
 .resultado-partida h2 {
     margin: 0 0 15px;
@@ -252,7 +222,6 @@ main {
     color: var(--oro-suave);
 }
 
-
 .resultado-partida h3 {
     margin: 0 0 20px;
 
@@ -260,7 +229,6 @@ main {
 
     color: var(--texto-claro);
 }
-
 
 .resultado-partida p {
     margin: 10px 0;
@@ -270,11 +238,9 @@ main {
     color: var(--texto-tenue);
 }
 
-
 .resultado-partida strong {
     color: var(--texto-claro);
 }
-
 
 .zona-juego h2,
 .zona-lateral h2 {
@@ -290,7 +256,6 @@ main {
 
     margin-bottom: 4px;
 }
-
 
 .maquina {
     flex: 0 0 auto;
@@ -325,7 +290,6 @@ main {
     gap: 10px;
 }
 
-
 .zona-fichas {
     flex: 0 0 120px;
 
@@ -337,7 +301,6 @@ main {
 
     gap: 6px;
 }
-
 
 .zona-jugador {
     order: 1;
@@ -353,11 +316,9 @@ main {
     padding: 6px 10px;
 }
 
-
 .zona-jugador h2 {
     margin-bottom: 8px;
 }
-
 
 .fichas-jugador {
     flex: 1;
@@ -381,7 +342,6 @@ main {
     overflow: hidden;
 }
 
-
 .zona-pozo {
     order: 2;
 
@@ -396,11 +356,9 @@ main {
     padding: 6px 10px;
 }
 
-
 .espacio-equilibrio {
     display: none;
 }
-
 
 .tablero-controles {
     flex: 1;
@@ -415,7 +373,6 @@ main {
 
     gap: 6px;
 }
-
 
 .tablero-central {
     flex: 1;
@@ -447,7 +404,6 @@ main {
     overflow: hidden;
 }
 
-
 .tablero-central h2 {
     flex: 0 0 auto;
 
@@ -456,7 +412,6 @@ main {
     text-shadow:
         0 1px 3px rgba(0, 0, 0, 0.8);
 }
-
 
 .cadena-fichas {
     flex: 1;
@@ -484,7 +439,6 @@ main {
     overflow: hidden;
 }
 
-
 .controles {
     flex: 0 0 auto;
 
@@ -492,7 +446,6 @@ main {
 
     width: 100%;
 }
-
 
 .controles-botones {
     display: flex;
@@ -504,13 +457,9 @@ main {
     gap: 6px;
 }
 
-
 .controles-botones button {
     flex: 1 1 auto;
 }
-
-
-/* BOTONES */
 
 button {
     display: inline-flex;
@@ -550,7 +499,6 @@ button {
         box-shadow 0.15s ease;
 }
 
-
 button:hover {
     transform: translateY(-2px);
 
@@ -558,11 +506,9 @@ button:hover {
         0 6px 14px rgba(0, 0, 0, 0.35);
 }
 
-
 button:active {
     transform: translateY(0);
 }
-
 
 .boton-principal {
     background:
@@ -576,15 +522,11 @@ button:active {
         rgba(0, 0, 0, 0.2);
 }
 
-
 .boton-icono {
     font-size: 0.85rem;
 
     line-height: 1;
 }
-
-
-/* =FICHA GENERAL = */
 
 .ficha {
     display: flex;
@@ -614,7 +556,6 @@ button:active {
     flex-shrink: 0;
 }
 
-
 .fichas-jugador .ficha:hover {
     transform: translateY(-6px);
 
@@ -623,7 +564,6 @@ button:active {
         inset 0 1px 0 rgba(255, 255, 255, 0.4),
         0 0 0 2px rgba(224, 179, 77, 0.5);
 }
-
 
 .ficha.seleccionada {
     transform: translateY(-10px);
@@ -634,7 +574,6 @@ button:active {
         0 0 0 3px var(--estado-seleccionada),
         0 0 16px rgba(31, 111, 178, 0.6);
 }
-
 
 .ficha-oculta {
     width: var(--ficha-ancho);
@@ -657,9 +596,6 @@ button:active {
     flex-shrink: 0;
 }
 
-
-/* = MITADES DE LA FICHA= */
-
 .mitad-arriba {
     height: 50%;
 
@@ -676,7 +612,6 @@ button:active {
     position: relative;
 }
 
-
 .mitad-abajo {
     height: 50%;
 
@@ -691,7 +626,6 @@ button:active {
     position: relative;
 }
 
-
 .patron-puntos {
     width: 100%;
 
@@ -701,7 +635,6 @@ button:active {
 
     flex-direction: column;
 }
-
 
 .fila-arriba,
 .fila-centro,
@@ -721,26 +654,21 @@ button:active {
     padding-right: 14%;
 }
 
-
 .fila-arriba {
     justify-content: flex-start;
 }
-
 
 .fila-centro {
     justify-content: center;
 }
 
-
 .fila-abajo {
     justify-content: flex-end;
 }
 
-
 .fila-doble {
     justify-content: space-between;
 }
-
 
 .punto {
     width: 26%;
@@ -756,8 +684,6 @@ button:active {
     background: black;
 }
 
-
-
 .fichas-pozo {
     position: relative;
 
@@ -772,7 +698,6 @@ button:active {
     overflow: hidden;
 }
 
-
 .fichas-pozo .ficha-oculta {
     position: absolute;
 
@@ -782,9 +707,6 @@ button:active {
 
     border-radius: 5px;
 }
-
-
-/* = FICHAS DEL TABLERO= */
 
 .cadena-fichas .ficha {
     flex-direction: row;
@@ -796,7 +718,6 @@ button:active {
     cursor: default;
 }
 
-
 .cadena-fichas .ficha:hover {
     transform: none;
 
@@ -804,7 +725,6 @@ button:active {
         0 4px 10px rgba(0, 0, 0, 0.45),
         inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
-
 
 .cadena-fichas .mitad-arriba {
     width: 50%;
@@ -816,7 +736,6 @@ button:active {
     border-right:
         2px solid rgba(0, 0, 0, 0.35);
 }
-
 
 .cadena-fichas .mitad-abajo {
     width: 50%;
@@ -842,16 +761,12 @@ button:active {
     height: 50%;
 }
 
-
-
 .panel-cristal {
     padding: 10px 14px;
 
     border-radius: 14px;
 
     background: var(--cristal-bg);
-
-
 
     border: 1px solid var(--cristal-borde);
 
@@ -862,12 +777,10 @@ button:active {
     -webkit-backdrop-filter: blur(10px);
 }
 
-
 .informacion-partida,
 .leyenda-estados {
     flex: 0 0 auto;
 }
-
 
 .informacion-partida p {
     display: flex;
@@ -881,14 +794,11 @@ button:active {
     color: var(--texto-tenue);
 }
 
-
 .informacion-partida span {
     font-weight: 700;
 
     color: var(--texto-claro);
 }
-
-
 
 .lista-estados {
     list-style: none;
@@ -906,7 +816,30 @@ button:active {
     font-size: 0.78rem;
 }
 
+.lista-estados li {
+    display: flex;
+    align-items: center;
+}
 
+.muestra-especial {
+    display: inline-block;
+
+    width: 16px;
+    height: 12px;
+
+    margin-right: 7px;
+
+    flex-shrink: 0;
+}
+
+.muestra-roba2 {
+    border: 2px dashed white;
+}
+
+
+.muestra-bloqueo {
+    border: 3px double white;
+}
 .estado-punto {
     display: inline-block;
 
@@ -919,14 +852,12 @@ button:active {
     margin-right: 7px;
 }
 
-
 .estado-jugable {
     background: var(--estado-jugable);
 
     box-shadow:
         0 0 8px var(--estado-jugable);
 }
-
 
 .estado-seleccionada {
     background: var(--estado-seleccionada);
@@ -935,12 +866,9 @@ button:active {
         0 0 8px var(--estado-seleccionada);
 }
 
-
 .estado-no-jugable {
     background: var(--estado-no-jugable);
 }
-
-
 
 .zona-mensajes {
     flex: 1;
@@ -960,8 +888,6 @@ button:active {
 }
 
 
-/* =======CONTROLES DESACTIVADOS=== */
-
 .controles button:disabled {
     opacity: 0.45;
 
@@ -969,17 +895,11 @@ button:active {
 }
 
 
-
-/* Ficha jugable */
-
 .fichas-jugador .ficha.jugable {
     box-shadow:
         0 0 0 2px #eabf45,
         0 0 10px rgba(234, 191, 69, 0.75);
 }
-
-
-/* Ficha no jugable */
 
 .fichas-jugador .ficha.no-jugable {
     opacity: 0.45;
@@ -987,8 +907,6 @@ button:active {
     filter: grayscale(55%);
 }
 
-
-/* Ficha seleccionada */
 
 .fichas-jugador .ficha.seleccionada {
     opacity: 1;
@@ -1001,4 +919,12 @@ button:active {
 
     box-shadow:
         0 0 10px rgba(22, 138, 209, 0.85);
+}
+
+.ficha.especial-roba2 {
+    border: 3px dashed white;
+}
+
+.ficha.especial-bloqueo {
+    border: 4px double white;
 }
