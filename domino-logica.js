@@ -5,7 +5,6 @@ class Ficha {
 
         this.numeroB = numeroB;
         this.colorB = colorB;
-        this.tipo = "normal";
     }
 }
 const colores = [
@@ -14,50 +13,122 @@ const colores = [
     "blue",
     "green"
 ];
+
+const coloresDobles = [
+    "red",
+    "red",
+    "yellow",
+    "yellow",
+    "blue",
+    "blue",
+    "green",
+    "green"
+];
+const indiceColorEliminar =
+Math.floor(
+    Math.random() *
+    coloresDobles.length
+);
+
+coloresDobles.splice(
+    indiceColorEliminar,
+    1
+);
+
+for (
+    let i = coloresDobles.length -1;
+    i > 0;
+    i --
+) {
+    const indiceAleatorio = 
+    Math.floor(
+        Math.random() *
+        (i + 1)
+    );
+    const colorTemporal =
+    coloresDobles[i];
+
+    coloresDobles[i] =
+    coloresDobles[
+        indiceAleatorio
+    ];
+    coloresDobles[
+        indiceAleatorio
+    ] =
+    colorTemporal;
+}
+
 const fichas = [];
-for (let numeroA = 0; numeroA <= 6; numeroA++) {
-    for (
+
+let indiceDoble = 0;
+
+for (
+    let numeroA = 0;
+    numeroA <= 6;
+    numeroA++
+) {
+     for (
         let numeroB = numeroA;
-        numeroB <= 6;
+        numeroB <=6;
         numeroB++
+     ) {
+        let colorA;
+        let colorB;
 
-    ) {
-        const indiceColorA =
-            Math.floor(
-                Math.random() * colores.length
-            );
-        const colorA =
-            colores[indiceColorA];
-
-        let indiceColorB =
-            Math.floor(
-                Math.random() * colores.length
-            );
-
-        let colorB =
-            colores[indiceColorB];
-
-        while (colorA === colorB) {
-            indiceColorB =
-                Math.floor(
-                    Math.random() * colores.length
-                );
+        if (
+            numeroA === numeroB
+        ) {
+            colorA = 
+            coloresDobles[
+                indiceDoble
+            ];
             colorB =
-                colores[indiceColorB];
+            colorA;
+            indiceDoble++;
+        } else {
+            const indiceColorA =
+            Math.floor(
+                Math.random() *
+                colores.length
+            );
+            colorA =
+            colores[
+                indiceColorA
+            ];
+            let indiceColorB =
+            Math.floor(
+                Math.random() *
+                colores.length
+            );
+            colorB =
+            colores [
+                indiceColorB
+            ];
+            while (
+                colorA === colorB
+            ) {
+                indiceColorB =
+                Math.floor(
+                    Math.random() *
+                    colores.length
+                );
+                colorB =
+                colores[
+                    indiceColorB
+                ];
+            }
         }
         const nuevaFicha =
-            new Ficha(
-                numeroA,
-                colorA,
-                numeroB,
-                colorB
-            );
-
+        new Ficha(
+            numeroA,
+            colorA,
+            numeroB, 
+            colorB
+        );
         fichas.push(
             nuevaFicha
         );
-
-    }
+     }
 }
 
 
@@ -285,46 +356,26 @@ if (turno === "jugador") {
 
 }
 
-const fichasParaEspeciales =
-fichasJugador.concat(
-    fichasMaquina,
-    fichasPozo
-);
-const indiceRobaDos =
-Math.floor(
-    Math.random() *
-    fichasParaEspeciales.length
-);
+let partidaTerminada =
+false;
 
-let indiceBloqueo =
-Math.floor(
-    Math.random() *
-    fichasParaEspeciales.length
-);
+let resultadoPartida =
+null;
 
-while(
-    indiceBloqueo === indiceRobaDos
-) {
-    indiceBloqueo =
-    Math.floor(
-        Math.random() *
-        fichasParaEspeciales.length
-    );
-}
-fichasParaEspeciales[
-    indiceRobaDos
-].tipo ="roba2";
-
-fichasParaEspeciales[
-    indiceBloqueo
-].tipo = "bloqueo";
-
+let ultimoEfecto =
+null;
 
 let extremoIzquierdo =
     tablero[0].numeroA;
 
+let colorExtremoIzquierdo =
+    tablero[0].colorA;    
+
 let extremoDerecho =
     tablero[0].numeroB;
+
+let colorExtremoDerecho =
+tablero[0].colorB;    
 
 function esJugable(ficha) {
 
@@ -377,115 +428,253 @@ function girarFicha(ficha) {
         colorTemporal;
 }
 
-function jugarFichaDerecha(ficha) {
-    if (ficha.numeroA === extremoDerecho) {
+function jugarFichaDerecha(
+    ficha
+) {
+    if (
+        ficha.numeroA ===
+        extremoDerecho
+    ) {
+        const coincideColor =
+        ficha.colorA ===
+        colorExtremoDerecho;
+
         tablero.push(
             ficha
         );
         extremoDerecho =
-            ficha.numeroB;
-    } else if (ficha.numeroB === extremoDerecho) {
-        girarFicha(
-            ficha
-        );
-        tablero.push(
-            ficha
-        );
-        extremoDerecho =
-            ficha.numeroB;
-    }
+        ficha.numeroB;
+
+        colorExtremoDerecho =
+        ficha.colorB;
+
+        return coincideColor;
+    } else if (
+    ficha.numeroB ===
+    extremoDerecho
+) {
+
+    girarFicha(
+        ficha
+    );
+
+    const coincideColor =
+        ficha.colorA ===
+        colorExtremoDerecho;
+
+    tablero.push(
+        ficha
+    );
+
+    extremoDerecho =
+        ficha.numeroB;
+
+    colorExtremoDerecho =
+        ficha.colorB;
+
+    return coincideColor;
+}
+    return false;
 }
 
-function jugarFichaIzquierda(ficha) {
-    if (ficha.numeroB === extremoIzquierdo) {
+function jugarFichaIzquierda(
+    ficha
+) {
+    if (
+        ficha.numeroB ===
+        extremoIzquierdo
+    ) {
+        const coincideColor =
+        ficha.colorB ===
+        colorExtremoIzquierdo;
+
         tablero.unshift(
             ficha
         );
+
         extremoIzquierdo =
-            ficha.numeroA;
-    } else if (ficha.numeroA === extremoIzquierdo) {
+        ficha.numeroA;
+
+        colorExtremoIzquierdo =
+        ficha.colorA;
+        return coincideColor;
+    } else if (
+        ficha.numeroA ===
+        extremoIzquierdo
+    ) {
         girarFicha(
             ficha
         );
+        const coincideColor =
+        ficha.colorB ===
+        colorExtremoIzquierdo;
+
         tablero.unshift(
             ficha
         );
 
         extremoIzquierdo =
-            ficha.numeroA;
+        ficha.numeroA;
+
+        colorExtremoIzquierdo =
+        ficha.colorA;
+
+        return coincideColor;
     }
+    return false;
 }
 
-function jugarFichaJugador(ficha, lado) {
-    if (turno !== "jugador") {
+function jugarFichaJugador(
+    ficha,
+    lado
+) {
+
+    if (
+        turno !==
+        "jugador"
+    ) {
+
         console.log(
             "Ahora no es el turno del jugador"
         );
+
         return false;
     }
+
+    ultimoEfecto =
+        null;
+
     const indiceFicha =
         fichasJugador.findIndex(
             fichaMano =>
-                fichaMano === ficha
+                fichaMano ===
+                ficha
         );
-    if (indiceFicha === -1) {
+
+    if (
+        indiceFicha === -1
+    ) {
+
         console.log(
             "La ficha no está en la mano del jugador"
         );
+
         return false;
     }
-    if (lado === "izquierda") {
-        if (puedeJugarIzquierda(ficha)) {
-            jugarFichaIzquierda(
+
+    let coincideColor =
+        false;
+
+    if (
+        lado ===
+        "izquierda"
+    ) {
+
+        if (
+            puedeJugarIzquierda(
                 ficha
-            );
+            )
+        ) {
+
+            coincideColor =
+                jugarFichaIzquierda(
+                    ficha
+                );
+
         } else {
+
             console.log(
                 "La ficha no puede jugarse a la izquierda"
             );
+
             return false;
         }
-    } else if (lado === "derecha") {
-        if (puedeJugarDerecha(ficha)) {
-            jugarFichaDerecha(
+
+    } else if (
+        lado ===
+        "derecha"
+    ) {
+
+        if (
+            puedeJugarDerecha(
                 ficha
-            );
+            )
+        ) {
+
+            coincideColor =
+                jugarFichaDerecha(
+                    ficha
+                );
+
         } else {
+
             console.log(
                 "La ficha no puede jugarse a la derecha"
             );
+
             return false;
         }
+
     } else {
+
         console.log(
             "Lado no válido"
         );
 
         return false;
     }
+
     fichasJugador.splice(
         indiceFicha,
         1
     );
-    if (comprobarFinPartida() !== null) {
+
+    if (
+        comprobarFinPartida() !==
+        null
+    ) {
+
         return true;
     }
-    aplicarEfectoEspecial(
+    aplicarEfectoColor(
         ficha,
-        "jugador"
+        "jugador",
+        coincideColor
     );
-    if(ficha.tipo === "bloqueo") {
-        turno = "jugador";
+
+    if (
+        ultimoEfecto !==
+        null
+    ) {
+
+        turno =
+            "jugador";
+
     } else {
-        turno = "maquina";
+
+        turno =
+            "maquina";
     }
+
     console.log(
         "Ficha jugada correctamente"
     );
+
+    console.log(
+        "Coincidencia de color:",
+        coincideColor
+    );
+
+    console.log(
+        "Efecto:",
+        ultimoEfecto
+    );
+
     console.log(
         "Turno actual:",
         turno
     );
+
     return true;
 }
 function robarFicha(mano) {
@@ -502,41 +691,53 @@ function robarFicha(mano) {
     );
     return fichaRobada;
 }
-function aplicarEfectoEspecial(
+
+function aplicarEfectoColor(
     ficha,
-    quienJuega
+    quienJuega,
+    coincideColor
 ) {
+    ultimoEfecto =
+    null;
+    if(
+        !coincideColor
+    ) {
+        return;
+    }
+    const esDoble =
+    ficha.numeroA ===
+    ficha.numeroB;
 
-    ultimoEfecto = null;
-
-
-    if (ficha.tipo === "roba2") {
-
+    if (
+        esDoble
+    ) {
         let manoRival;
 
-
-        if (quienJuega === "jugador") {
-
+        if (
+            quienJuega ===
+            "jugador"
+        ) {
             manoRival =
-                fichasMaquina;
-
+            fichasMaquina;
         } else {
-
             manoRival =
-                fichasJugador;
+            fichasJugador;
         }
 
+        let cantidadRobada =
+        0;
 
-        let cantidadRobada = 0;
-
-
-        for (let i = 0; i < 2; i++) {
-
-            if (fichasPozo.length === 0) {
-
+        for (
+            let i = 0;
+            i < 2;
+            i++
+        ) {
+            if (
+                fichasPozo.length ===
+                0
+            ) {
                 break;
             }
-
 
             robarFicha(
                 manoRival
@@ -544,50 +745,70 @@ function aplicarEfectoEspecial(
 
             cantidadRobada++;
         }
-
-
         ultimoEfecto = {
-            tipo: "roba2",
-            jugador: quienJuega,
-            cantidad: cantidadRobada
+            tipo:
+            "bloqueo-roba2",
+            jugador:
+            quienJuega,
+
+            cantidad:
+            cantidadRobada
         };
-
-
-    } else if (
-        ficha.tipo === "bloqueo"
-    ) {
-
+    } else {
         ultimoEfecto = {
-            tipo: "bloqueo",
-            jugador: quienJuega
+            tipo:
+            "bloqueo",
+
+            jugador:
+            quienJuega
         };
     }
 }
 
-function robarFichaJugador() {
-    if (turno !== "jugador") {
+ function robarFichaJugador() {
+
+    ultimoEfecto =
+        null;
+
+    if (
+        turno !==
+        "jugador"
+    ) {
+
         console.log(
             "Ahora no es el turno del jugador"
         );
+
         return false;
     }
+
     const jugablesJugador =
         obtenerFichasJugables(
             fichasJugador
         );
-    if (jugablesJugador.length > 0) {
+
+    if (
+        jugablesJugador.length > 0
+    ) {
+
         console.log(
             "El jugador tiene fichas jugables y no puede robar"
         );
-        return false;
 
+        return false;
     }
-    if (fichasPozo.length === 0) {
+
+    if (
+        fichasPozo.length === 0
+    ) {
+
         console.log(
             "No hay fichas en el pozo"
         );
+
         return false;
     }
+
     const fichaRobada =
         robarFicha(
             fichasJugador
@@ -598,10 +819,16 @@ function robarFichaJugador() {
         fichaRobada
     );
 
-    if (esJugable(fichaRobada)) {
+    if (
+        esJugable(
+            fichaRobada
+        )
+    ) {
+
         console.log(
             "La ficha robada se puede jugar"
         );
+
     } else {
         console.log(
             "La ficha robada no se puede jugar"
@@ -609,79 +836,375 @@ function robarFichaJugador() {
     }
     return true;
 }
+ 
 function pasarTurnoJugador() {
-    if (turno !== "jugador") {
+
+    ultimoEfecto =
+        null;
+
+    if (
+        turno !==
+        "jugador"
+    ) {
+
         console.log(
             "Ahora no es el turno del jugador"
         );
+
         return false;
     }
+
     const jugablesJugador =
         obtenerFichasJugables(
             fichasJugador
         );
-    if (jugablesJugador.length > 0) {
+
+    if (
+        jugablesJugador.length >
+        0
+    ) {
+
         console.log(
             "El jugador tiene fichas jugables y no puede pasar"
         );
+
         return false;
     }
-    if (fichasPozo.length > 0) {
+
+    if (
+        fichasPozo.length >
+        0
+    ) {
+
         console.log(
             "Todavía quedan fichas en el pozo. El jugador debe robar"
         );
+
         return false;
     }
-    if (comprobarFinPartida() !== null) {
+
+    if (
+        comprobarFinPartida() !==
+        null
+    ) {
+
         return true;
     }
-    turno = "maquina";
+
+    turno =
+        "maquina";
+
     console.log(
         "El jugador pasa turno"
     );
-    return true
+
+    return true;
 }
+
 function pasarTurnoMaquina() {
-    if (turno !== "maquina") {
+
+    ultimoEfecto =
+        null;
+
+    if (
+        turno !==
+        "maquina"
+    ) {
+
         console.log(
             "Ahora no es el turno de la máquina"
         );
+
         return false;
     }
+
     const jugablesMaquina =
         obtenerFichasJugables(
             fichasMaquina
         );
 
-    if (jugablesMaquina.length > 0) {
+    if (
+        jugablesMaquina.length >
+        0
+    ) {
+
         console.log(
             "La máquina tiene fichas jugables y no puede pasar"
         );
+
         return false;
     }
 
-    if (fichasPozo.length > 0) {
+    if (
+        fichasPozo.length >
+        0
+    ) {
+
         console.log(
             "Todavía quedan fichas en el pozo. La máquina debe robar"
         );
+
         return false;
     }
-    if (comprobarFinPartida() !== null) {
+
+    if (
+        comprobarFinPartida() !==
+        null
+    ) {
+
         return true;
     }
-    turno = "jugador";
+
+    turno =
+        "jugador";
+
+
     console.log(
         "La máquina pasa turno"
     );
     return true;
 }
+function valorarJugadaMaquina(
+    ficha,
+    lado
+) {
+
+    let colorConexion =
+        null;
+
+    let colorExtremo =
+        null;
+
+    if (
+        lado ===
+        "izquierda"
+    ) {
+
+        colorExtremo =
+            colorExtremoIzquierdo;
+
+
+        if (
+            ficha.numeroB ===
+            extremoIzquierdo
+        ) {
+
+            colorConexion =
+                ficha.colorB;
+
+
+        } else if (
+            ficha.numeroA ===
+            extremoIzquierdo
+        ) {
+
+            colorConexion =
+                ficha.colorA;
+
+        } else {
+
+            return -1;
+        }
+
+    } else if (
+        lado ===
+        "derecha"
+    ) {
+
+        colorExtremo =
+            colorExtremoDerecho;
+
+        if (
+            ficha.numeroA ===
+            extremoDerecho
+        ) {
+
+            colorConexion =
+                ficha.colorA;
+
+        } else if (
+            ficha.numeroB ===
+            extremoDerecho
+        ) {
+
+            colorConexion =
+                ficha.colorB;
+
+        } else {
+
+            return -1;
+        }
+
+    } else {
+
+        return -1;
+    }
+
+    const coincideColor =
+        colorConexion ===
+        colorExtremo;
+
+    const esDoble =
+        ficha.numeroA ===
+        ficha.numeroB;
+
+    let puntuacion =
+        ficha.numeroA +
+        ficha.numeroB;
+
+    if (
+        coincideColor &&
+        esDoble
+    ) {
+
+        puntuacion +=
+            100;
+
+    } else if (
+        coincideColor
+    ) {
+
+        puntuacion +=
+            50;
+    }
+    return puntuacion;
+}
+ 
+function elegirMejorJugadaMaquina(
+    jugablesMaquina
+) {
+
+    let mejorJugada =
+        null;
+
+    let mejorPuntuacion =
+        -1;
+
+    for (
+        const ficha of
+        jugablesMaquina
+    ) {
+
+        if (
+            puedeJugarIzquierda(
+                ficha
+            )
+        ) {
+
+            const puntuacionIzquierda =
+                valorarJugadaMaquina(
+                    ficha,
+                    "izquierda"
+                );
+
+            if (
+                puntuacionIzquierda >
+                mejorPuntuacion
+            ) {
+
+                mejorPuntuacion =
+                    puntuacionIzquierda;
+
+                mejorJugada = {
+
+                    ficha:
+                        ficha,
+
+                    lado:
+                        "izquierda"
+                };
+
+            } else if (
+                puntuacionIzquierda ===
+                    mejorPuntuacion &&
+                Math.random() < 0.5
+            ) {
+
+                mejorJugada = {
+
+                    ficha:
+                        ficha,
+
+                    lado:
+                        "izquierda"
+                };
+            }
+        }
+
+        if (
+            puedeJugarDerecha(
+                ficha
+            )
+        ) {
+
+            const puntuacionDerecha =
+                valorarJugadaMaquina(
+                    ficha,
+                    "derecha"
+                );
+
+            if (
+                puntuacionDerecha >
+                mejorPuntuacion
+            ) {
+
+                mejorPuntuacion =
+                    puntuacionDerecha;
+
+                mejorJugada = {
+
+                    ficha:
+                        ficha,
+
+                    lado:
+                        "derecha"
+                };
+
+            } else if (
+                puntuacionDerecha ===
+                    mejorPuntuacion &&
+                Math.random() < 0.5
+            ) {
+                mejorJugada = {
+
+                    ficha:
+                        ficha,
+
+                    lado:
+                        "derecha"
+                };
+            }
+        }
+    }
+    console.log(
+        "Mejor puntuación de la máquina:",
+        mejorPuntuacion
+    );
+    console.log(
+        "Mejor jugada encontrada:",
+        mejorJugada
+    );
+
+    return mejorJugada;
+}
+
 function jugarTurnoMaquina() {
-    if (turno !== "maquina") {
+
+    if (
+        turno !==
+        "maquina"
+    ) {
+
         console.log(
             "Ahora no es el turno de la máquina"
         );
+
         return false;
     }
+
+    ultimoEfecto =
+        null;
+
     let jugablesMaquina =
         obtenerFichasJugables(
             fichasMaquina
@@ -691,100 +1214,161 @@ function jugarTurnoMaquina() {
         jugablesMaquina.length === 0 &&
         fichasPozo.length > 0
     ) {
+
         const fichaRobada =
             robarFicha(
                 fichasMaquina
             );
+
         console.log(
             "La máquina ha robado:",
             fichaRobada
         );
+
         jugablesMaquina =
             obtenerFichasJugables(
                 fichasMaquina
             );
     }
-    if (jugablesMaquina.length === 0) {
+
+    if (
+        jugablesMaquina.length ===
+        0
+    ) {
+
         console.log(
             "La máquina no puede jugar"
         );
+
         return pasarTurnoMaquina();
     }
-    const fichaElegida =
-        jugablesMaquina[0];
 
-    const puedeIzquierda =
-        puedeJugarIzquierda(
-            fichaElegida
+    const mejorJugada =
+        elegirMejorJugadaMaquina(
+            jugablesMaquina
         );
 
-    const puedeDerecha =
-        puedeJugarDerecha(
-            fichaElegida
-        );
     if (
-        puedeIzquierda &&
-        puedeDerecha
+        mejorJugada ===
+        null
     ) {
-        const jugarIzquierda =
-            Math.random() < 0.5;
 
-        if (jugarIzquierda) {
+        console.log(
+            "Error: no se encontró ninguna jugada para la máquina"
+        );
+
+        return false;
+    }
+
+    const fichaElegida =
+        mejorJugada.ficha;
+
+    const ladoElegido =
+        mejorJugada.lado;
+
+    console.log(
+        "La máquina ha elegido:",
+        fichaElegida
+    );
+
+    console.log(
+        "Lado elegido:",
+        ladoElegido
+    );
+
+    let coincideColor =
+        false;
+
+    if (
+        ladoElegido ===
+        "izquierda"
+    ) {
+
+        coincideColor =
             jugarFichaIzquierda(
                 fichaElegida
             );
-            console.log(
-                "La máquina juega a la izquierda"
-            );
 
-        } else {
-            jugarFichaDerecha(
-                fichaElegida
-            );
-            console.log(
-                "La máquina juega a la derecha"
-            );
-        }
-
-    } else if (puedeIzquierda) {
-        jugarFichaIzquierda(
-            fichaElegida
-        );
         console.log(
             "La máquina juega a la izquierda"
         );
-    } else if (puedeDerecha) {
-        jugarFichaDerecha(
-            fichaElegida
+
+    } else if (
+        ladoElegido ===
+        "derecha"
+    ) {
+        coincideColor =
+            jugarFichaDerecha(
+                fichaElegida
+            );
+
+        console.log(
+            "La máquina juega a la derecha"
         );
-        console.log("La máquina juega a la derecha")
     }
+
     const indiceFicha =
         fichasMaquina.findIndex(
             ficha =>
-                ficha === fichaElegida
+                ficha ===
+                fichaElegida
         );
 
-    if (indiceFicha !== -1) {
+    if (
+        indiceFicha !==
+        -1
+    ) {
+
         fichasMaquina.splice(
             indiceFicha,
             1
         );
     }
-    if (comprobarFinPartida() !== null) {
+
+    if (
+        comprobarFinPartida() !==
+        null
+    ) {
+
         return true;
     }
-    aplicarEfectoEspecial(
-        fichaElegida,
-        "maquina"
-    );
-    if (fichaElegida.tipo === "bloqueo") {
-        turno = "maquina";
-    } else {
-        turno = "jugador";
-    }
-    return true;
 
+    aplicarEfectoColor(
+        fichaElegida,
+        "maquina",
+        coincideColor
+    );
+
+    if (
+        ultimoEfecto !==
+        null
+    ) {
+
+        turno =
+            "maquina";
+
+    } else {
+
+        turno =
+            "jugador";
+    }
+
+    console.log(
+        "Coincidencia de color:",
+        coincideColor
+    );
+
+    console.log(
+        "Efecto:",
+        ultimoEfecto
+    );
+
+    console.log(
+        "Turno actual:",
+        turno
+    );
+
+    return true;
 }
 function calcularPuntos(mano) {
     let total = 0;
@@ -849,9 +1433,6 @@ function partidaBloqueada() {
     }
     return false;
 }
-let partidaTerminada = false;
-let resultadoPartida = null;
-let ultimoEfecto = null;
 
 function comprobarFinPartida() {
     if (fichasJugador.length === 0) {
