@@ -25,8 +25,8 @@
     --estado-seleccionada: #1f6fb2;
     --estado-no-jugable: #6b6459;
 
-    --ficha-ancho: clamp(26px, 3.4vh, 40px);
-    --ficha-alto: clamp(52px, 6.8vh, 80px);
+    --ficha-ancho: 36 px;
+    --ficha-alto: 72px;
 }
 
 * {
@@ -836,7 +836,6 @@ button:active {
     border: 2px dashed white;
 }
 
-
 .muestra-bloqueo {
     border: 3px double white;
 }
@@ -878,7 +877,6 @@ button:active {
     overflow: hidden;
 }
 
-
 .zona-mensajes p {
     margin: 0;
 
@@ -887,13 +885,11 @@ button:active {
     color: var(--texto-tenue);
 }
 
-
 .controles button:disabled {
     opacity: 0.45;
 
     cursor: not-allowed;
 }
-
 
 .fichas-jugador .ficha.jugable {
     box-shadow:
@@ -906,7 +902,6 @@ button:active {
 
     filter: grayscale(55%);
 }
-
 
 .fichas-jugador .ficha.seleccionada {
     opacity: 1;
@@ -927,4 +922,213 @@ button:active {
 
 .ficha.especial-bloqueo {
     border: 4px double white;
+}
+
+@media (max-width: 1024px) {
+
+    body {
+        padding: 6px;
+    }
+
+    .marco-madera {
+        padding: 8px;
+        border-radius: 16px;
+    }
+
+    main {
+        grid-template-columns:
+            minmax(0, 1fr) 165px;
+
+        gap: 6px;
+    }
+
+    .zona-fichas {
+        flex: 0 0 110px;
+    }
+
+    .panel-cristal {
+        padding: 8px 10px;
+    }
+
+    .controles {
+        padding: 5px 8px;
+    }
+
+    button {
+        padding: 6px 8px;
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    html,
+    body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    body {
+        padding: 4px;
+        display: block;
+    }
+
+    .marco-madera {
+        width: 100%;
+        min-height: 100vh;
+
+        padding: 6px;
+
+        border-radius: 12px;
+    }
+
+    .cabecera {
+        padding: 6px 10px;
+    }
+
+    .cabecera h1 {
+        font-size: 1rem;
+    }
+
+    main {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+    .zona-juego {
+        width: 100%;
+    }
+
+    .zona-central {
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+    .zona-fichas {
+        flex: none;
+
+        width: 100%;
+    }
+
+    .zona-jugador {
+        width: 100%;
+
+        min-height: 110px;
+    }
+
+    .zona-pozo {
+        width: 100%;
+    }
+
+    .tablero-controles {
+        width: 100%;
+    }
+
+    .tablero-central {
+        min-height: 280px;
+
+        padding: 6px;
+
+        border-width: 5px;
+    }
+
+    .cadena-fichas {
+        min-height: 230px;
+
+        gap: 3px;
+    }
+
+    .fichas-maquina {
+        justify-content: center;
+
+        overflow-x: auto;
+    }
+
+    .fichas-jugador {
+        overflow: visible;
+
+        gap: 4px;
+    }
+
+    .controles {
+        padding: 5px;
+    }
+
+    .controles-botones {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 5px;
+    }
+
+    .controles-botones button {
+        width: 100%;
+
+        min-height: 38px;
+    }
+
+    .zona-lateral {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 6px;
+    }
+
+    .zona-mensajes {
+        grid-column:
+            1 / -1;
+    }
+
+    .resultado-partida {
+        width: 90vw;
+
+        max-width: 420px;
+
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    :root {
+        --ficha-ancho: 32px;
+        --ficha-alto: 64px;
+    }
+
+    .marco-madera {
+        padding: 4px;
+    }
+
+    .tablero-central {
+        min-height: 250px;
+    }
+
+    .cadena-fichas {
+        min-height: 200px;
+    }
+
+    .zona-lateral {
+        grid-template-columns:
+            1fr;
+    }
+
+    button {
+        font-size: 0.7rem;
+    }
+
+    .panel-cristal {
+        padding: 7px 8px;
+    }
 }
