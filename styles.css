@@ -25,8 +25,8 @@
     --estado-seleccionada: #1f6fb2;
     --estado-no-jugable: #6b6459;
 
-    --ficha-ancho: 36 px;
-    --ficha-alto: 72px;
+    --ficha-ancho: clamp(26px, 3.4vh, 40px);
+    --ficha-alto: clamp(52px, 6.8vh, 80px);
 }
 
 * {
