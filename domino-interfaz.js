@@ -247,8 +247,6 @@ function crearFichaVisual(ficha) {
         );
     }
 
-
-
     const mitadA =
         document.createElement("div");
     mitadA.classList.add(
@@ -284,20 +282,6 @@ function crearFichaVisual(ficha) {
         mitadB
     );
 
-   if (ficha.tipo === "roba2") {
-
-    fichaVisual.classList.add(
-        "especial-roba2"
-    );
-
-} else if (
-    ficha.tipo === "bloqueo"
-) {
-
-    fichaVisual.classList.add(
-        "especial-bloqueo"
-    );
-}
     return fichaVisual;
 }
 function crearFichaOculta() {
@@ -496,72 +480,75 @@ function mostrarMensaje(texto) {
         texto;
 }
 function mostrarMensajeEfecto() {
-
-    if (ultimoEfecto === null) {
-
+    if (
+        ultimoEfecto ===
+        null
+    ) {
         return false;
     }
+    if (
+        ultimoEfecto.tipo ===
+        "bloqueo" &&
+        ultimoEfecto.jugador ===
+        "jugador"
+    ) {
+        mostrarMensaje(
+            "Coinciden número y color. " +
+            "La máquina pierde su turno. " +
+            "Vuelves a jugar"
+        );
 
+        return true;
+    }
+    if (
+        ultimoEfecto.tipo ===
+        "bloqueo" &&
+        ultimoEfecto.jugador ===
+        "maquina"
+    ) {
+        mostrarMensaje(
+            "La máquina ha hecho coincidir " +
+            "número y color " +
+            "Pierdes tu turno"
+        );
+
+        return true;
+    }
 
     if (
-        ultimoEfecto.tipo === "roba2" &&
-        ultimoEfecto.jugador === "jugador"
+        ultimoEfecto.tipo ===
+        "bloqueo-roba2" &&
+        ultimoEfecto.jugador ===
+        "jugador"
     ) {
-
         mostrarMensaje(
-            "Has jugado +2. La máquina roba " +
+            "Doble con número y color " +
+            "La máquina pierde turno y roba " +
             ultimoEfecto.cantidad +
-            " fichas."
+            " fichas. Vuelve a jugar"
         );
 
         return true;
     }
-
-
     if (
-        ultimoEfecto.tipo === "roba2" &&
-        ultimoEfecto.jugador === "maquina"
+        ultimoEfecto.tipo ===
+        "bloqueo-roba2" &&
+        ultimoEfecto.jugador ===
+        "maquina"
     ) {
-
         mostrarMensaje(
-            "La máquina ha jugado +2. Has robado " +
+            "La máquina ha jugado un doble " +
+            "coincidiendo número y color. " +
+            "Pierdes tu turno y robas " +
             ultimoEfecto.cantidad +
-            " fichas."
+            " fichas"
         );
 
         return true;
     }
-
-
-    if (
-        ultimoEfecto.tipo === "bloqueo" &&
-        ultimoEfecto.jugador === "jugador"
-    ) {
-
-        mostrarMensaje(
-            "Has jugado una X. La máquina pierde su turno. Vuelves a jugar."
-        );
-
-        return true;
-    }
-
-
-    if (
-        ultimoEfecto.tipo === "bloqueo" &&
-        ultimoEfecto.jugador === "maquina"
-    ) {
-
-        mostrarMensaje(
-            "La máquina ha jugado una X. Pierdes tu turno."
-        );
-
-        return true;
-    }
-
 
     return false;
 }
-
 function mostrarResultadoFinal() {
     const zonaResultado =
         document.querySelector(
@@ -741,14 +728,16 @@ function activarControlesJugador() {
         "#btn-pasar"
     ).disabled = false;
 }
+
 function ejecutarTurnoMaquinaVisual() {
 
     console.log(
         "Entramos en el turno visual de la máquina"
     );
 
-
-    if (partidaTerminada) {
+    if (
+        partidaTerminada
+    ) {
 
         desactivarControlesJugador();
 
@@ -757,12 +746,13 @@ function ejecutarTurnoMaquinaVisual() {
         return;
     }
 
-
-    if (turno !== "maquina") {
+    if (
+        turno !==
+        "maquina"
+    ) {
 
         return;
     }
-
 
     desactivarControlesJugador();
 
@@ -770,6 +760,18 @@ function ejecutarTurnoMaquinaVisual() {
         "La máquina está pensando..."
     );
 
+    const tiempoPensamiento =
+        2000 +
+        Math.floor(
+            Math.random() *
+            1501
+        );
+
+    console.log(
+        "Tiempo de pensamiento:",
+        tiempoPensamiento,
+        "ms"
+    );
 
     setTimeout(
         function () {
@@ -778,8 +780,9 @@ function ejecutarTurnoMaquinaVisual() {
 
             actualizarInterfazVisual();
 
-
-            if (partidaTerminada) {
+            if (
+                partidaTerminada
+            ) {
 
                 desactivarControlesJugador();
 
@@ -788,10 +791,10 @@ function ejecutarTurnoMaquinaVisual() {
                 return;
             }
 
-
-            // La máquina ha jugado una X
-            // y vuelve a tener el turno
-            if (turno === "maquina") {
+            if (
+                turno ===
+                "maquina"
+            ) {
 
                 mostrarMensajeEfecto();
 
@@ -800,28 +803,13 @@ function ejecutarTurnoMaquinaVisual() {
 
                         ejecutarTurnoMaquinaVisual();
                     },
-                    1200
+
+                    2500
                 );
 
                 return;
             }
 
-
-            // La máquina ha jugado +2
-            if (
-                ultimoEfecto !== null &&
-                ultimoEfecto.tipo === "roba2"
-            ) {
-
-                mostrarMensajeEfecto();
-
-                activarControlesJugador();
-
-                return;
-            }
-
-
-            // Turno normal del jugador
             activarControlesJugador();
 
             mostrarMensaje(
@@ -829,6 +817,7 @@ function ejecutarTurnoMaquinaVisual() {
             );
         },
 
-        1500
+        tiempoPensamiento
     );
 }
+mostrarMarcador();
