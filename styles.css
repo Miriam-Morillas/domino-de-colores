@@ -1,5 +1,5 @@
 :root {
-    
+
     --fieltro-1: #0f4a2c;
     --fieltro-2: #0b3320;
 
@@ -13,7 +13,6 @@
     --oro: #e0b34d;
     --oro-suave: #f3d488;
 
-
     --cristal-bg: rgba(20, 30, 24, 0.45);
     --cristal-borde: rgba(255, 255, 255, 0.14);
     --cristal-sombra: rgba(0, 0, 0, 0.45);
@@ -25,8 +24,8 @@
     --estado-seleccionada: #1f6fb2;
     --estado-no-jugable: #6b6459;
 
-    --ficha-ancho: clamp(26px, 3.4vh, 40px);
-    --ficha-alto: clamp(52px, 6.8vh, 80px);
+    --ficha-ancho: 36px;
+    --ficha-alto: 72px;
 }
 
 * {
@@ -34,14 +33,19 @@
 }
 
 html,
-
 body {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
-    overflow: hidden;
+}
+
+html {
+    background: #06190f;
 }
 
 body {
+    min-height: 100vh;
+    min-height: 100dvh;
+
     font-family:
         "Segoe UI",
         "Trebuchet MS",
@@ -53,15 +57,22 @@ body {
     padding: 10px;
 
     background:
-        radial-gradient(ellipse at 50% 0%,
+        radial-gradient(
+            ellipse at 50% 0%,
             rgba(255, 255, 255, 0.05),
-            transparent 60%),
-        radial-gradient(ellipse at center,
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at center,
             var(--fieltro-1) 0%,
             var(--fieltro-2) 70%,
-            #06190f 100%);
+            #06190f 100%
+        );
 
     display: flex;
+
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 h1,
@@ -73,7 +84,12 @@ h3 {
 
 .marco-madera {
     flex: 1;
+
+    width: 100%;
     min-width: 0;
+
+    min-height: calc(100vh - 20px);
+    min-height: calc(100dvh - 20px);
 
     display: flex;
     flex-direction: column;
@@ -82,13 +98,16 @@ h3 {
 
     border-radius: 20px;
 
-    background: linear-gradient(160deg,
+    background:
+        linear-gradient(
+            160deg,
             var(--madera-brillo),
             var(--madera-1) 35%,
-            var(--madera-2) 100%);
+            var(--madera-2) 100%
+        );
 
-
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55),
         inset 0 0 0 2px rgba(0, 0, 0, 0.35),
         inset 0 2px 4px rgba(255, 255, 255, 0.15);
 }
@@ -110,9 +129,11 @@ h3 {
     border-radius: 12px;
 
     background:
-        linear-gradient(180deg,
+        linear-gradient(
+            180deg,
             rgba(255, 255, 255, 0.06),
-            rgba(0, 0, 0, 0.15));
+            rgba(0, 0, 0, 0.15)
+        );
 
     border: 1px solid var(--cristal-borde);
 }
@@ -123,10 +144,12 @@ h3 {
     color: var(--oro);
 
     text-shadow:
-        0 0 12px hsla(34,
+        0 0 12px hsla(
+            34,
             76%,
             53%,
-            0.855);
+            0.855
+        );
 }
 
 .cabecera h1 {
@@ -141,6 +164,8 @@ h3 {
 
 main {
     flex: 1;
+
+    min-width: 0;
     min-height: 0;
 
     display: grid;
@@ -162,6 +187,7 @@ main {
 }
 
 .zona-lateral {
+    min-width: 0;
     min-height: 0;
 
     display: flex;
@@ -178,26 +204,32 @@ main {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
-    width: min(420px, 85vw);
+    width:
+        min(420px, 85vw);
 
     padding: 25px;
 
     border-radius: 16px;
 
     background:
-        linear-gradient(160deg,
+        linear-gradient(
+            160deg,
             var(--madera-brillo),
             var(--madera-1) 45%,
-            var(--madera-2));
+            var(--madera-2)
+        );
 
-    border: 2px solid var(--oro);
+    border:
+        2px solid var(--oro);
 
     box-shadow:
         0 20px 50px rgba(0, 0, 0, 0.7);
 
-    color: var(--texto-claro);
+    color:
+        var(--texto-claro);
 
     text-align: center;
 
@@ -209,7 +241,8 @@ main {
 }
 
 .resultado-partida h2 {
-    margin: 0 0 15px;
+    margin:
+        0 0 15px;
 
     font-size: 0.85rem;
 
@@ -217,29 +250,36 @@ main {
 
     letter-spacing: 0.1em;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 
-    color: var(--oro-suave);
+    color:
+        var(--oro-suave);
 }
 
 .resultado-partida h3 {
-    margin: 0 0 20px;
+    margin:
+        0 0 20px;
 
     font-size: 1.4rem;
 
-    color: var(--texto-claro);
+    color:
+        var(--texto-claro);
 }
 
 .resultado-partida p {
-    margin: 10px 0;
+    margin:
+        10px 0;
 
     font-size: 0.9rem;
 
-    color: var(--texto-tenue);
+    color:
+        var(--texto-tenue);
 }
 
 .resultado-partida strong {
-    color: var(--texto-claro);
+    color:
+        var(--texto-claro);
 }
 
 .zona-juego h2,
@@ -250,15 +290,18 @@ main {
 
     letter-spacing: 0.1em;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 
-    color: var(--texto-tenue);
+    color:
+        var(--texto-tenue);
 
     margin-bottom: 4px;
 }
 
 .maquina {
     flex: 0 0 auto;
+
     display: flex;
     flex-direction: column;
 
@@ -270,19 +313,34 @@ main {
 }
 
 .fichas-maquina {
-    min-height: var(--ficha-alto);
+    min-height:
+        var(--ficha-alto);
+
+    width: 100%;
+
+    min-width: 0;
+
     display: flex;
+
     flex-direction: row;
+
     flex-wrap: nowrap;
+
     align-items: center;
-    justify-content: flex-start;
+
+    justify-content:
+        flex-start;
 
     gap: 4px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .zona-central {
     flex: 1;
 
+    min-width: 0;
     min-height: 0;
 
     display: flex;
@@ -291,7 +349,10 @@ main {
 }
 
 .zona-fichas {
-    flex: 0 0 120px;
+    flex:
+        0 0 120px;
+
+    min-width: 120px;
 
     min-height: 0;
 
@@ -307,6 +368,7 @@ main {
 
     flex: 1;
 
+    min-width: 0;
     min-height: 0;
 
     display: flex;
@@ -323,6 +385,7 @@ main {
 .fichas-jugador {
     flex: 1;
 
+    min-width: 0;
     min-height: 0;
 
     display: flex;
@@ -339,13 +402,14 @@ main {
 
     gap: 4px;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .zona-pozo {
     order: 2;
 
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 
     display: flex;
 
@@ -364,7 +428,6 @@ main {
     flex: 1;
 
     min-width: 0;
-
     min-height: 0;
 
     display: flex;
@@ -377,7 +440,9 @@ main {
 .tablero-central {
     flex: 1;
 
-    min-height: 0;
+    min-width: 0;
+
+    min-height: 300px;
 
     text-align: center;
 
@@ -385,7 +450,8 @@ main {
 
     flex-direction: column;
 
-    background-image: url("fondonegro.png");
+    background-image:
+        url("fondonegro.png");
 
     background-size: cover;
 
@@ -397,17 +463,18 @@ main {
 
     padding: 6px 10px;
 
-    box-sizing: border-box;
-
-    border: 8px solid #072b0a;
+    border:
+        8px solid #072b0a;
 
     overflow: hidden;
 }
 
 .tablero-central h2 {
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 
-    color: var(--oro-suave);
+    color:
+        var(--oro-suave);
 
     text-shadow:
         0 1px 3px rgba(0, 0, 0, 0.8);
@@ -416,6 +483,7 @@ main {
 .cadena-fichas {
     flex: 1;
 
+    min-width: 0;
     min-height: 0;
 
     width: 100%;
@@ -434,15 +502,15 @@ main {
 
     flex-wrap: wrap;
 
-    box-sizing: border-box;
-
     overflow: hidden;
 }
 
 .controles {
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 
-    padding: 6px 14px;
+    padding:
+        6px 14px;
 
     width: 100%;
 }
@@ -458,7 +526,8 @@ main {
 }
 
 .controles-botones button {
-    flex: 1 1 auto;
+    flex:
+        1 1 auto;
 }
 
 button {
@@ -470,7 +539,8 @@ button {
 
     gap: 6px;
 
-    padding: 6px 10px;
+    padding:
+        6px 10px;
 
     border-radius: 9px;
 
@@ -478,11 +548,14 @@ button {
         1px solid rgba(255, 255, 255, 0.14);
 
     background:
-        linear-gradient(180deg,
+        linear-gradient(
+            180deg,
             rgba(255, 255, 255, 0.08),
-            rgba(255, 255, 255, 0.02));
+            rgba(255, 255, 255, 0.02)
+        );
 
-    color: var(--texto-claro);
+    color:
+        var(--texto-claro);
 
     font-size: 0.78rem;
 
@@ -500,23 +573,28 @@ button {
 }
 
 button:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
         0 6px 14px rgba(0, 0, 0, 0.35);
 }
 
 button:active {
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 .boton-principal {
     background:
-        linear-gradient(180deg,
+        linear-gradient(
+            180deg,
             var(--oro-suave),
-            var(--oro));
+            var(--oro)
+        );
 
-    color: #2a2118;
+    color:
+        #2a2118;
 
     border-color:
         rgba(0, 0, 0, 0.2);
@@ -533,15 +611,33 @@ button:active {
 
     flex-direction: column;
 
-    width: var(--ficha-ancho);
+    width:
+        var(--ficha-ancho);
 
-    height: var(--ficha-alto);
+    min-width:
+        var(--ficha-ancho);
+
+    max-width:
+        var(--ficha-ancho);
+
+    height:
+        var(--ficha-alto);
+
+    min-height:
+        var(--ficha-alto);
+
+    max-height:
+        var(--ficha-alto);
+
+    flex:
+        0 0 var(--ficha-ancho);
 
     border-radius: 4px;
 
     overflow: hidden;
 
-    border: 2px solid black;
+    border:
+        2px solid black;
 
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.45);
@@ -552,12 +648,11 @@ button:active {
         transform 0.15s ease,
         box-shadow 0.15s ease,
         filter 0.15s ease;
-
-    flex-shrink: 0;
 }
 
 .fichas-jugador .ficha:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
     box-shadow:
         0 10px 18px rgba(0, 0, 0, 0.5),
@@ -566,7 +661,8 @@ button:active {
 }
 
 .ficha.seleccionada {
-    transform: translateY(-10px);
+    transform:
+        translateY(-10px);
 
     box-shadow:
         0 10px 20px rgba(0, 0, 0, 0.55),
@@ -576,15 +672,31 @@ button:active {
 }
 
 .ficha-oculta {
-    width: var(--ficha-ancho);
+    width:
+        var(--ficha-ancho);
 
-    height: var(--ficha-alto);
+    min-width:
+        var(--ficha-ancho);
+
+    max-width:
+        var(--ficha-ancho);
+
+    height:
+        var(--ficha-alto);
+
+    min-height:
+        var(--ficha-alto);
+
+    max-height:
+        var(--ficha-alto);
+
+    flex:
+        0 0 var(--ficha-ancho);
 
     border-radius: 4px;
 
-    box-sizing: border-box;
-
-    border: 2px solid black;
+    border:
+        2px solid black;
 
     background-color: white;
 
@@ -592,38 +704,33 @@ button:active {
         0 4px 10px rgba(0, 0, 0, 0.45);
 
     position: relative;
+}
 
-    flex-shrink: 0;
+.mitad-arriba,
+.mitad-abajo {
+    width: 100%;
+
+    min-width: 0;
+
+    flex:
+        0 0 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
 }
 
 .mitad-arriba {
-    height: 50%;
-
-    box-sizing: border-box;
-
-    border-bottom: 2px solid black;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    position: relative;
+    border-bottom:
+        2px solid black;
 }
 
 .mitad-abajo {
-    height: 50%;
-
-    box-sizing: border-box;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    position: relative;
+    border-bottom: none;
 }
 
 .patron-puntos {
@@ -643,8 +750,6 @@ button:active {
 
     width: 100%;
 
-    box-sizing: border-box;
-
     display: flex;
 
     align-items: center;
@@ -655,25 +760,30 @@ button:active {
 }
 
 .fila-arriba {
-    justify-content: flex-start;
+    justify-content:
+        flex-start;
 }
 
 .fila-centro {
-    justify-content: center;
+    justify-content:
+        center;
 }
 
 .fila-abajo {
-    justify-content: flex-end;
+    justify-content:
+        flex-end;
 }
 
 .fila-doble {
-    justify-content: space-between;
+    justify-content:
+        space-between;
 }
 
 .punto {
     width: 26%;
 
-    aspect-ratio: 1 / 1;
+    aspect-ratio:
+        1 / 1;
 
     max-width: 11px;
 
@@ -681,7 +791,8 @@ button:active {
 
     border-radius: 50%;
 
-    background: black;
+    background:
+        black;
 }
 
 .fichas-pozo {
@@ -689,11 +800,14 @@ button:active {
 
     width: 156px;
 
+    max-width: 100%;
+
     height: 132px;
 
     margin-top: 6px;
 
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 
     overflow: hidden;
 }
@@ -703,7 +817,17 @@ button:active {
 
     width: 26px;
 
+    min-width: 26px;
+
+    max-width: 26px;
+
     height: 50px;
+
+    min-height: 50px;
+
+    max-height: 50px;
+
+    flex: none;
 
     border-radius: 5px;
 }
@@ -711,9 +835,26 @@ button:active {
 .cadena-fichas .ficha {
     flex-direction: row;
 
-    width: var(--ficha-alto);
+    width:
+        var(--ficha-alto);
 
-    height: var(--ficha-ancho);
+    min-width:
+        var(--ficha-alto);
+
+    max-width:
+        var(--ficha-alto);
+
+    height:
+        var(--ficha-ancho);
+
+    min-height:
+        var(--ficha-ancho);
+
+    max-height:
+        var(--ficha-ancho);
+
+    flex:
+        0 0 var(--ficha-alto);
 
     cursor: default;
 }
@@ -726,78 +867,113 @@ button:active {
         inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-.cadena-fichas .mitad-arriba {
+.cadena-fichas .mitad-arriba,
+.cadena-fichas .mitad-abajo {
     width: 50%;
 
     height: 100%;
 
+    flex:
+        0 0 50%;
+}
+
+.cadena-fichas .mitad-arriba {
     border-bottom: none;
 
     border-right:
         2px solid rgba(0, 0, 0, 0.35);
 }
 
-.cadena-fichas .mitad-abajo {
-    width: 50%;
-
-    height: 100%;
-}
-
 .cadena-fichas .ficha.doble {
     flex-direction: column;
-    width: var(--ficha-ancho);
-    height: var(--ficha-alto);
+
+    width:
+        var(--ficha-ancho);
+
+    min-width:
+        var(--ficha-ancho);
+
+    max-width:
+        var(--ficha-ancho);
+
+    height:
+        var(--ficha-alto);
+
+    min-height:
+        var(--ficha-alto);
+
+    max-height:
+        var(--ficha-alto);
+
+    flex:
+        0 0 var(--ficha-ancho);
+}
+
+.cadena-fichas .ficha.doble .mitad-arriba,
+.cadena-fichas .ficha.doble .mitad-abajo {
+    width: 100%;
+
+    height: 50%;
+
+    flex:
+        0 0 50%;
 }
 
 .cadena-fichas .ficha.doble .mitad-arriba {
-    width: 100%;
-    height: 50%;
     border-right: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.35);
-}
 
-.cadena-fichas .ficha.doble .mitad-abajo {
-    width: 100%;
-    height: 50%;
+    border-bottom:
+        2px solid rgba(0, 0, 0, 0.35);
 }
 
 .panel-cristal {
-    padding: 10px 14px;
+    padding:
+        10px 14px;
 
     border-radius: 14px;
 
-    background: var(--cristal-bg);
+    background:
+        var(--cristal-bg);
 
-    border: 1px solid var(--cristal-borde);
+    border:
+        1px solid var(--cristal-borde);
 
-    box-shadow: 0 10px 26px var(--cristal-sombra);
+    box-shadow:
+        0 10px 26px var(--cristal-sombra);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:
+        blur(10px);
 
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter:
+        blur(10px);
 }
 
 .informacion-partida,
 .leyenda-estados {
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 }
 
 .informacion-partida p {
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
-    margin: 0 0 4px;
+    margin:
+        0 0 4px;
 
     font-size: 0.78rem;
 
-    color: var(--texto-tenue);
+    color:
+        var(--texto-tenue);
 }
 
 .informacion-partida span {
     font-weight: 700;
 
-    color: var(--texto-claro);
+    color:
+        var(--texto-claro);
 }
 
 .lista-estados {
@@ -818,27 +994,10 @@ button:active {
 
 .lista-estados li {
     display: flex;
+
     align-items: center;
 }
 
-.muestra-especial {
-    display: inline-block;
-
-    width: 16px;
-    height: 12px;
-
-    margin-right: 7px;
-
-    flex-shrink: 0;
-}
-
-.muestra-roba2 {
-    border: 2px dashed white;
-}
-
-.muestra-bloqueo {
-    border: 3px double white;
-}
 .estado-punto {
     display: inline-block;
 
@@ -852,21 +1011,24 @@ button:active {
 }
 
 .estado-jugable {
-    background: var(--estado-jugable);
+    background:
+        var(--estado-jugable);
 
     box-shadow:
         0 0 8px var(--estado-jugable);
 }
 
 .estado-seleccionada {
-    background: var(--estado-seleccionada);
+    background:
+        var(--estado-seleccionada);
 
     box-shadow:
         0 0 8px var(--estado-seleccionada);
 }
 
 .estado-no-jugable {
-    background: var(--estado-no-jugable);
+    background:
+        var(--estado-no-jugable);
 }
 
 .zona-mensajes {
@@ -882,13 +1044,15 @@ button:active {
 
     font-size: 0.78rem;
 
-    color: var(--texto-tenue);
+    color:
+        var(--texto-tenue);
 }
 
 .controles button:disabled {
     opacity: 0.45;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 }
 
 .fichas-jugador .ficha.jugable {
@@ -900,7 +1064,8 @@ button:active {
 .fichas-jugador .ficha.no-jugable {
     opacity: 0.45;
 
-    filter: grayscale(55%);
+    filter:
+        grayscale(55%);
 }
 
 .fichas-jugador .ficha.seleccionada {
@@ -908,20 +1073,14 @@ button:active {
 
     filter: none;
 
-    outline: 3px solid #168ad1;
+    outline:
+        3px solid #168ad1;
 
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
 
     box-shadow:
         0 0 10px rgba(22, 138, 209, 0.85);
-}
-
-.ficha.especial-roba2 {
-    border: 3px dashed white;
-}
-
-.ficha.especial-bloqueo {
-    border: 4px double white;
 }
 
 @media (max-width: 1024px) {
@@ -931,7 +1090,14 @@ button:active {
     }
 
     .marco-madera {
+        min-height:
+            calc(100vh - 12px);
+
+        min-height:
+            calc(100dvh - 12px);
+
         padding: 8px;
+
         border-radius: 16px;
     }
 
@@ -943,41 +1109,45 @@ button:active {
     }
 
     .zona-fichas {
-        flex: 0 0 110px;
+        flex-basis: 120px;
+
+        min-width: 120px;
     }
 
     .panel-cristal {
-        padding: 8px 10px;
+        padding:
+            8px 10px;
     }
 
     .controles {
-        padding: 5px 8px;
+        padding:
+            5px 8px;
     }
 
     button {
-        padding: 6px 8px;
+        padding:
+            6px 8px;
+
         font-size: 0.72rem;
     }
 }
 
 @media (max-width: 768px) {
 
-    html,
-    body {
-        height: auto;
-        min-height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
     body {
         padding: 4px;
+
         display: block;
     }
 
     .marco-madera {
         width: 100%;
-        min-height: 100vh;
+
+        min-height:
+            calc(100vh - 8px);
+
+        min-height:
+            calc(100dvh - 8px);
 
         padding: 6px;
 
@@ -985,7 +1155,8 @@ button:active {
     }
 
     .cabecera {
-        padding: 6px 10px;
+        padding:
+            6px 10px;
     }
 
     .cabecera h1 {
@@ -1014,12 +1185,14 @@ button:active {
         flex: none;
 
         width: 100%;
+
+        min-width: 0;
     }
 
     .zona-jugador {
         width: 100%;
 
-        min-height: 110px;
+        min-height: 120px;
     }
 
     .zona-pozo {
@@ -1031,7 +1204,7 @@ button:active {
     }
 
     .tablero-central {
-        min-height: 280px;
+        min-height: 300px;
 
         padding: 6px;
 
@@ -1039,15 +1212,14 @@ button:active {
     }
 
     .cadena-fichas {
-        min-height: 230px;
+        min-height: 240px;
 
         gap: 3px;
     }
 
     .fichas-maquina {
-        justify-content: center;
-
-        overflow-x: auto;
+        justify-content:
+            flex-start;
     }
 
     .fichas-jugador {
@@ -1064,7 +1236,10 @@ button:active {
         display: grid;
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
         gap: 5px;
     }
@@ -1081,7 +1256,10 @@ button:active {
         display: grid;
 
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
         gap: 6px;
     }
@@ -1101,34 +1279,24 @@ button:active {
 }
 
 @media (max-width: 480px) {
-
-    :root {
-        --ficha-ancho: 32px;
-        --ficha-alto: 64px;
-    }
-
     .marco-madera {
         padding: 4px;
     }
-
     .tablero-central {
-        min-height: 250px;
+        min-height: 280px;
     }
-
     .cadena-fichas {
-        min-height: 200px;
+        min-height: 220px;
     }
-
     .zona-lateral {
         grid-template-columns:
             1fr;
     }
-
     button {
         font-size: 0.7rem;
     }
-
     .panel-cristal {
-        padding: 7px 8px;
+        padding:
+            7px 8px;
     }
 }
