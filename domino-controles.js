@@ -7,7 +7,10 @@ botonIzquierda.addEventListener(
     "click",
     function () {
 
-        if (fichaSeleccionada === null) {
+        if (
+            fichaSeleccionada ===
+            null
+        ) {
 
             mostrarMensaje(
                 "Selecciona una ficha antes de elegir un lado."
@@ -27,48 +30,36 @@ botonIzquierda.addEventListener(
             fichaSeleccionada =
                 null;
 
-           actualizarInterfazVisual();
+            actualizarInterfazVisual();
 
-if (partidaTerminada) {
+            if (
+                partidaTerminada
+            ) {
 
-    mostrarMensajeResultado();
+                mostrarMensajeResultado();
 
-    return;
-}
+                return;
+            }
 
+            if (
+                turno ===
+                "jugador"
+            ) {
 
-// Si la ficha ha bloqueado a la máquina,
-// el jugador vuelve a jugar
-if (turno === "jugador") {
+                mostrarMensajeEfecto();
 
-    mostrarMensajeEfecto();
+                activarControlesJugador();
 
-    activarControlesJugador();
+                return;
+            }
 
-    return;
-}
-
-
-// Si ahora juega la máquina
-if (turno === "maquina") {
-
-    if (ultimoEfecto !== null) {
-
-        mostrarMensajeEfecto();
-
-        setTimeout(
-            function () {
+            if (
+                turno ===
+                "maquina"
+            ) {
 
                 ejecutarTurnoMaquinaVisual();
-            },
-            1200
-        );
-
-    } else {
-
-        ejecutarTurnoMaquinaVisual();
-    }
-}
+            }
 
         } else {
 
@@ -88,7 +79,10 @@ botonDerecha.addEventListener(
     "click",
     function () {
 
-        if (fichaSeleccionada === null) {
+        if (
+            fichaSeleccionada ===
+            null
+        ) {
 
             mostrarMensaje(
                 "Selecciona una ficha antes de elegir un lado."
@@ -110,14 +104,34 @@ botonDerecha.addEventListener(
 
             actualizarInterfazVisual();
 
-            if (partidaTerminada) {
+            if (
+                partidaTerminada
+            ) {
 
                 mostrarMensajeResultado();
 
                 return;
             }
 
-            ejecutarTurnoMaquinaVisual();
+            if (
+                turno ===
+                "jugador"
+            ) {
+
+                mostrarMensajeEfecto();
+
+                activarControlesJugador();
+
+                return;
+            }
+
+            if (
+                turno ===
+                "maquina"
+            ) {
+
+                ejecutarTurnoMaquinaVisual();
+            }
 
         } else {
 
@@ -133,14 +147,12 @@ const botonRobar =
         "#btn-robar"
     );
 
-
 botonRobar.addEventListener(
     "click",
     function () {
 
         const roboCorrecto =
             robarFichaJugador();
-
 
         if (roboCorrecto) {
 
@@ -149,21 +161,23 @@ botonRobar.addEventListener(
 
             actualizarInterfazVisual();
 
-
             const jugablesJugador =
                 obtenerFichasJugables(
                     fichasJugador
                 );
 
-
-            if (jugablesJugador.length > 0) {
+            if (
+                jugablesJugador.length >
+                0
+            ) {
 
                 mostrarMensaje(
                     "Has robado una ficha jugable. Selecciónala y juega."
                 );
 
             } else if (
-                fichasPozo.length > 0
+                fichasPozo.length >
+                0
             ) {
 
                 mostrarMensaje(
@@ -177,16 +191,17 @@ botonRobar.addEventListener(
                 );
             }
 
-
         } else {
+            if (
+                turno !==
+                "jugador"
+            ) {
 
-            if (turno !== "jugador") {
+         mostrarMensaje(
+         "Espera a que termine el turno de la máquina."
+         );
 
-                mostrarMensaje(
-                    "Espera a que termine el turno de la máquina."
-                );
-
-            } else if (
+               } else if (
                 obtenerFichasJugables(
                     fichasJugador
                 ).length > 0
@@ -197,7 +212,8 @@ botonRobar.addEventListener(
                 );
 
             } else if (
-                fichasPozo.length === 0
+                fichasPozo.length ===
+                0
             ) {
 
                 mostrarMensaje(
@@ -219,14 +235,12 @@ const botonPasar =
         "#btn-pasar"
     );
 
-
 botonPasar.addEventListener(
     "click",
     function () {
 
         const paseCorrecto =
             pasarTurnoJugador();
-
 
         if (paseCorrecto) {
 
@@ -235,29 +249,33 @@ botonPasar.addEventListener(
 
             actualizarInterfazVisual();
 
-
-            if (partidaTerminada) {
+            if (
+                partidaTerminada
+            ) {
 
                 mostrarMensajeResultado();
 
                 return;
             }
 
-
             mostrarMensaje(
                 "Has pasado el turno."
             );
 
-
-            if (turno === "maquina") {
+            if (
+                turno ===
+                "maquina"
+            ) {
 
                 ejecutarTurnoMaquinaVisual();
             }
 
-
         } else {
 
-            if (turno !== "jugador") {
+            if (
+                turno !==
+                "jugador"
+            ) {
 
                 mostrarMensaje(
                     "Espera a que termine el turno de la máquina."
@@ -274,7 +292,8 @@ botonPasar.addEventListener(
                 );
 
             } else if (
-                fichasPozo.length > 0
+                fichasPozo.length >
+                0
             ) {
 
                 mostrarMensaje(
@@ -290,23 +309,32 @@ botonPasar.addEventListener(
         }
     }
 );
+
 if (
     turno === "maquina" &&
     !partidaTerminada
 ) {
+
     ejecutarTurnoMaquinaVisual();
+
 } else {
+
     mostrarMensaje(
-        "Tu turno. Selecciona una ficha"
+        "Tu turno. Selecciona una ficha."
     );
 }
+
 const botonNuevaPartida =
     document.querySelector(
         "#btn-nueva-partida"
     );
+
 botonNuevaPartida.addEventListener(
     "click",
     function () {
-        location.reload();
+
+        location.href =
+            location.pathname +
+            "?jugando=1";
     }
 );
