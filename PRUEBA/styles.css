@@ -1,0 +1,1356 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@700&display=swap'
+);
+
+
+:root {
+
+    /* COLOR DEL BORDE DE LA PANTALLA */
+    --fieltro-1: #0fb83c;
+    --fieltro-2: #9bb421;
+
+    --madera-1: #6b4226;
+    --madera-2: #2e1a0e;
+    --madera-brillo: #b8834f;
+
+    --marfil: #f7f2e4;
+    --marfil-sombra: #d9d0b4;
+
+
+    /* BOTONES Y ESTADO JUGABLE */
+
+    --oro: #e0b34d;
+    --oro-suave: #f3d488;
+
+
+    /* PANELES */
+
+    --cristal-bg:
+        rgba(20, 30, 24, 0.45);
+
+    --cristal-borde:
+        rgba(255, 255, 255, 0.14);
+
+    --cristal-sombra:
+        rgba(0, 0, 0, 0.45);
+
+
+    /* TEXTO */
+
+    --texto-claro: #f4f1e8;
+    --texto-tenue: #c9c2ad;
+
+
+    /* ESTADOS DEL JUEGO */
+
+    --estado-jugable: #e0b34d;
+
+    --estado-seleccionada:
+        #1f6fb2;
+
+    --estado-no-jugable:
+        #6b6459;
+
+
+    /* TAMAÑO DE LAS FICHAS */
+
+    --ficha-ancho:
+        clamp(26px,
+            min(4.6vh, 4.4vw),
+            50px);
+
+    --ficha-alto:
+        clamp(40px,
+            min(7.2vh, 6.8vw),
+            80px);
+
+
+    /* GENERAL */
+
+    * {
+
+        box-sizing:
+            border-box;
+    }
+
+
+    html,
+    body {
+
+
+        height:
+            100%;
+
+        height:
+            100dvh;
+
+        width:
+            100%;
+
+        margin:
+            0;
+
+        overflow:
+            hidden;
+
+        -webkit-tap-highlight-color:
+            transparent;
+
+        -webkit-touch-callout:
+            none;
+
+        touch-action:
+            manipulation;
+    }
+
+
+    body {
+
+        font-family:
+            "Segoe UI",
+            "Trebuchet MS",
+            system-ui,
+            sans-serif;
+
+        color:
+            var(--texto-claro);
+
+        padding:
+            max(8px, env(safe-area-inset-top)) max(6px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
+
+        background:
+
+            radial-gradient(ellipse at 50% 0%,
+                rgba(255,
+                    255,
+                    255,
+                    0.05),
+                transparent 60%),
+
+            radial-gradient(ellipse at center,
+                var(--fieltro-1) 0%,
+                var(--fieltro-2) 70%,
+                #06190f 100%);
+
+        display:
+            flex;
+
+        box-sizing:
+            border-box;
+    }
+
+
+    h1,
+    h2,
+    h3 {
+
+        margin:
+            0;
+
+        font-weight:
+            600;
+    }
+
+
+    /* ============================================================
+   ANIMACIONES
+   ============================================================ */
+
+    @keyframes latido-dorado {
+
+        0%,
+        100% {
+
+            box-shadow:
+
+                0 20px 50px rgba(0, 0, 0, 0.55),
+
+                inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+
+                inset 0 2px 4px rgba(255, 255, 255, 0.15),
+
+                0 0 0 0 var(--brillo-oro-suave);
+        }
+
+
+        50% {
+
+            box-shadow:
+
+                0 20px 50px rgba(0, 0, 0, 0.55),
+
+                inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+
+                inset 0 2px 4px rgba(255, 255, 255, 0.15),
+
+                0 0 26px 4px var(--brillo-oro-suave);
+        }
+    }
+
+
+    @keyframes latido-tablero {
+
+        0%,
+        100% {
+
+            box-shadow:
+
+                inset 0 0 30px rgba(0, 0, 0, 0.6),
+
+                0 0 0 2px rgba(224, 179, 77, 0.35);
+        }
+
+
+        50% {
+
+            box-shadow:
+
+                inset 0 0 30px rgba(0, 0, 0, 0.6),
+
+                0 0 0 2px rgba(224, 179, 77, 0.35),
+
+                0 0 22px 4px var(--brillo-oro-suave);
+        }
+    }
+
+
+    @keyframes aparecer-ficha {
+
+        from {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(10px) scale(0.85);
+        }
+
+
+        to {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0) scale(1);
+        }
+    }
+
+
+    @keyframes pulso-jugable {
+
+        0%,
+        100% {
+
+            box-shadow:
+
+                0 0 0 2px #eabf45,
+
+                0 0 10px rgba(234,
+                    191,
+                    69,
+                    0.75);
+        }
+
+
+        50% {
+
+            box-shadow:
+
+                0 0 0 2px #eabf45,
+
+                0 0 20px 4px rgba(234,
+                    191,
+                    69,
+                    0.95);
+        }
+    }
+
+
+
+
+
+    @keyframes pulso-punto {
+
+        0%,
+        100% {
+
+            box-shadow:
+
+                0 0 8px var(--estado-jugable);
+        }
+
+
+        50% {
+
+            box-shadow:
+
+                0 0 14px 2px var(--estado-jugable);
+        }
+    }
+
+
+    @keyframes entrada-resultado {
+
+        from {
+
+            opacity:
+                0;
+
+            transform:
+                translate(-50%, -50%) scale(0.85);
+        }
+
+
+        to {
+
+            opacity:
+                1;
+
+            transform:
+                translate(-50%, -50%) scale(1);
+        }
+    }
+
+
+    /* ============================================================
+   MARCO PRINCIPAL
+   ============================================================ */
+
+    .marco-madera {
+
+        flex:
+            1;
+
+        min-width:
+            0;
+
+        min-height:
+            0;
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        padding:
+            clamp(6px, 1.2vh, 12px);
+
+        border-radius:
+            clamp(10px, 1.8vw, 20px);
+
+
+        background-image:
+
+            linear-gradient(rgba(70, 35, 15, 0.12),
+                rgba(35, 15, 5, 0.18)),
+
+            url("fondo-madera.png");
+
+
+        background-size:
+            cover;
+
+        background-position:
+            center;
+
+        background-repeat:
+            no-repeat;
+
+
+        box-shadow:
+
+            0 20px 50px rgba(0, 0, 0, 0.55),
+
+            inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+
+            inset 0 2px 4px rgba(255, 255, 255, 0.15);
+
+
+        animation:
+
+            latido-dorado 6s ease-in-out infinite;
+
+        position:
+            relative;
+
+        overflow:
+            visible;
+    }
+
+
+    /* ============================================================
+   CABECERA DEL JUEGO
+   ============================================================ */
+
+    .cabecera {
+
+        flex:
+            0 0 auto;
+
+        height:
+            60px;
+
+        display:
+            flex;
+
+        flex-wrap:
+            wrap;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+
+        gap:
+            4px 10px;
+
+        padding:
+            2px 18px;
+
+        margin-top:
+            10px;
+
+        margin-bottom:
+            2px;
+
+        overflow:
+            visible;
+
+        position:
+            relative;
+
+        z-index:
+            50;
+    }
+
+
+    .cabecera-icono {
+
+        font-size:
+            1.3rem;
+
+        color:
+            var(--oro);
+
+        text-shadow:
+
+            0 0 12px hsla(34, 76%, 53%, 0.855);
+    }
+
+
+    .cabecera h1 {
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        display:
+            flex;
+
+        justify-content:
+            center;
+
+        align-items:
+            center;
+    }
+
+
+    .logo-titulo {
+
+        height:
+            135px;
+
+        width:
+            auto;
+
+        max-width:
+            90%;
+
+        object-fit:
+            contain;
+
+        transform:
+            translateY(28px);
+
+        filter:
+
+            drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+
+        pointer-events:
+            none;
+    }
+
+
+    /* ============================================================
+   DISTRIBUCIÓN PRINCIPAL
+   ============================================================ */
+
+    main {
+
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        display:
+            grid;
+
+        grid-template-columns:
+            minmax(0, 1fr) clamp(160px, 18vw, 200px);
+
+        gap:
+            clamp(6px, 1vw, 10px);
+    }
+
+
+    .zona-juego {
+
+        min-width:
+            0;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            4px;
+    }
+
+
+    .zona-lateral {
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            clamp(6px, 1vh, 8px);
+    }
+
+
+    /* ============================================================
+   MÁQUINA
+   ============================================================ */
+
+    .maquina {
+
+        flex:
+            0 0 auto;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        padding:
+            2px 10px;
+    }
+
+
+    .maquina h2,
+    .zona-juego .maquina h2 {
+
+        margin-bottom:
+            2px;
+
+        font-size:
+            clamp(0.7rem, 1.2vh, 0.85rem);
+
+        color:
+            #ffffff !important;
+
+        text-shadow:
+
+            0 1px 3px rgba(0, 0, 0, 0.95),
+            0 0 8px rgba(255, 255, 255, 0.45);
+    }
+
+
+    .fichas-maquina {
+
+        min-height:
+            var(--ficha-alto);
+
+        display:
+            flex;
+
+        flex-direction:
+            row;
+
+        flex-wrap:
+            nowrap;
+
+        align-items:
+            center;
+
+        gap:
+            4px;
+
+        overflow-x:
+            auto;
+
+        scrollbar-width:
+            none;
+
+        -ms-overflow-style:
+            none;
+
+        padding-bottom:
+            2px;
+    }
+
+
+    .fichas-maquina::-webkit-scrollbar {
+
+        display:
+            none;
+    }
+
+
+    /* ============================================================
+   ZONA CENTRAL
+   ============================================================ */
+
+    .zona-central {
+
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        gap:
+            clamp(6px, 1vw, 10px);
+    }
+
+
+    .zona-fichas {
+
+        flex:
+            0 0 clamp(110px, 13vw, 135px);
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            6px;
+    }
+
+
+    /* ============================================================
+   JUGADOR
+   ============================================================ */
+
+    .zona-jugador {
+
+        order:
+            1;
+
+        flex:
+            1 1 auto;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        justify-content:
+            center;
+
+        padding:
+            clamp(6px, 1vh, 12px) clamp(6px, 1vw, 10px);
+
+        margin-top:
+            0;
+    }
+
+
+    .zona-jugador h2,
+    .zona-juego .zona-jugador h2 {
+
+        margin-bottom:
+            4px;
+
+        font-size:
+            clamp(0.7rem, 1.2vh, 0.85rem);
+
+        color:
+            #ffffff !important;
+
+        text-shadow:
+
+            0 1px 3px rgba(0, 0, 0, 0.95),
+            0 0 8px rgba(255, 255, 255, 0.45);
+    }
+
+
+    .fichas-jugador {
+
+        display:
+            flex;
+
+        flex-direction:
+            row;
+
+        flex-wrap:
+            wrap;
+
+        justify-content:
+            center;
+
+        align-items:
+            center;
+
+        align-content:
+            center;
+
+        gap:
+            4px;
+
+        overflow-y:
+            auto;
+
+        max-height:
+            100%;
+
+        scrollbar-width:
+            thin;
+
+        scrollbar-color:
+            rgba(224, 179, 77, 0.4) transparent;
+    }
+
+
+    /* ============================================================
+   POZO
+   ============================================================ */
+
+    .zona-pozo {
+
+        order:
+            2;
+
+        flex:
+            0 0 auto;
+
+        margin-top:
+            auto;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+
+        padding:
+            6px 8px;
+    }
+
+
+    .fichas-pozo {
+
+        position:
+            relative;
+
+        width:
+            156px;
+
+        height:
+            132px;
+
+        max-width:
+            100%;
+
+        margin-top:
+            4px;
+
+        overflow:
+            hidden;
+
+        transform-origin:
+            center center;
+    }
+
+
+    .fichas-pozo .ficha-oculta {
+
+        position:
+            absolute;
+
+        width:
+            26px;
+
+        height:
+            50px;
+
+        border-radius:
+            5px;
+    }
+
+
+    /* ============================================================
+   TABLERO
+   ============================================================ */
+
+    .tablero-controles {
+
+        flex:
+            1;
+
+        min-width:
+            0;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            clamp(4px, 0.8vh, 8px);
+    }
+
+
+    .tablero-central {
+
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        min-width:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        background-image:
+            url("fondonegro.png");
+
+        background-size:
+            cover;
+
+        background-position:
+            center;
+
+        background-repeat:
+            no-repeat;
+
+        border-radius:
+            clamp(10px, 1.5vw, 18px);
+
+        padding:
+            clamp(4px, 0.8vh, 8px) clamp(6px, 1vw, 10px);
+
+        border:
+            clamp(4px, 0.8vw, 8px) solid #159a45;
+
+        overflow:
+            hidden;
+
+        box-shadow:
+
+            inset 0 0 30px rgba(0, 0, 0, 0.6),
+
+            0 0 0 2px rgba(224, 179, 77, 0.35);
+
+        animation:
+
+            latido-tablero 6s ease-in-out infinite;
+
+        position:
+            relative;
+    }
+
+
+    .cadena-fichas {
+
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        width:
+            100%;
+
+        display:
+            flex;
+
+        justify-content:
+            center;
+
+        align-items:
+            center;
+
+        align-content:
+            center;
+
+        gap:
+            4px;
+
+        flex-wrap:
+            wrap;
+
+        overflow:
+            auto;
+
+        scrollbar-width:
+            thin;
+
+        scrollbar-color:
+            rgba(224, 179, 77, 0.4) transparent;
+
+        -webkit-overflow-scrolling:
+            touch;
+
+        padding:
+            4px;
+    }
+
+
+    /* ============================================================
+   CONTROLES
+   ============================================================ */
+
+    .controles {
+
+        flex:
+            0 0 auto;
+
+        padding:
+            clamp(4px, 0.8vh, 8px) clamp(8px, 1.2vw, 14px);
+
+        width:
+            100%;
+    }
+
+
+    .controles-botones {
+
+        display:
+            flex;
+
+        flex-direction:
+            row;
+
+        flex-wrap:
+            wrap;
+
+        gap:
+            6px;
+    }
+
+
+    .controles-botones button,
+    .controles-botones label {
+
+        flex:
+            1 1 auto;
+    }
+
+
+    /* ============================================================
+   BOTONES
+   ============================================================ */
+
+    button,
+    .controles-botones label {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        gap:
+            6px;
+
+        padding:
+            6px 10px;
+
+        border-radius:
+            9px;
+
+        border:
+
+            1px solid rgba(255, 255, 255, 0.14);
+
+        background:
+
+            linear-gradient(180deg,
+                rgba(255, 255, 255, 0.08),
+                rgba(255, 255, 255, 0.02));
+
+        color:
+            var(--texto-claro);
+
+        font-size:
+            0.78rem;
+
+        font-weight:
+            600;
+
+        cursor:
+            pointer;
+
+        font-family:
+            inherit;
+
+        transition:
+
+            transform 0.15s ease,
+            box-shadow 0.15s ease;
+    }
+
+
+    button:hover,
+    .controles-botones label:hover {
+
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+
+            0 6px 14px rgba(0, 0, 0, 0.35);
+    }
+
+
+    button:active,
+    .controles-botones label:active {
+
+        transform:
+            translateY(0);
+    }
+
+
+    .boton-principal {
+
+        background:
+
+            linear-gradient(180deg,
+                var(--oro-suave),
+                var(--oro));
+
+        color:
+            #2a2118;
+    }
+
+
+    .boton-reglas-juego {
+
+        background:
+
+            linear-gradient(180deg,
+                #55b0ff,
+                #1560c9);
+
+        color:
+            white;
+    }
+
+
+    .boton-salir-juego {
+
+        background:
+
+            linear-gradient(180deg,
+                #ff7a63,
+                #b3140e);
+
+        color:
+            white;
+    }
+
+
+    .boton-icono {
+
+        font-size:
+            0.85rem;
+    }
+
+
+    /* ============================================================
+   FICHA
+   ============================================================ */
+
+    .ficha {
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        width:
+            var(--ficha-ancho);
+
+        height:
+            var(--ficha-alto);
+
+        border-radius:
+            4px;
+
+        overflow:
+            hidden;
+
+        border:
+            2px solid black;
+
+        box-shadow:
+
+            0 4px 10px rgba(0, 0, 0, 0.45);
+
+        cursor:
+            pointer;
+
+        flex-shrink:
+            0;
+
+        position:
+            relative;
+
+        animation:
+
+            aparecer-ficha 0.25s ease-out;
+    }
+
+
+    .ficha::before {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        inset:
+            0;
+
+        background:
+
+            linear-gradient(135deg,
+                rgba(255, 255, 255, 0.15),
+                transparent 35%);
+
+        pointer-events:
+            none;
+    }
+
+
+    .ficha-oculta {
+
+        width:
+            var(--ficha-ancho);
+
+        height:
+            var(--ficha-alto);
+
+        border-radius:
+            4px;
+
+        border:
+            2px solid black;
+
+        background:
+
+            linear-gradient(135deg,
+                white,
+                var(--marfil-sombra),
+                white);
+
+        box-shadow:
+
+            0 4px 10px rgba(0, 0, 0, 0.45);
+
+        flex-shrink:
+            0;
+
+        animation:
+
+            aparecer-ficha 0.25s ease-out;
+    }
+
+
+    /* ============================================================
+   MITADES
+   ============================================================ */
+
+    .mitad-arriba {
+
+        height:
+            50%;
+
+        border-bottom:
+            2px solid black;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+
+    .mitad-abajo {
+
+        height:
+            50%;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+    }
+
+    /* ============================================================
+   PUNTOS
+   ============================================================ */
+
+    .patron-puntos {
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+    }
+
+
+    .fila-arriba,
+    .fila-centro,
+    .fila-abajo {
+
+        flex-grow:
+            1;
+
+        width:
+            100%;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        padding-left:
+            14%;
+
+        padding-right:
+            14%;
+    }
+
+
+    .fila-arriba {
+
+        justify-content:
+            flex-start;
+    }
+
+
+    .fila-centro {
+
+        justify-content:
+            center;
+    }
+
+
+    .fila-abajo {
+
+        justify-content:
+            flex-end;
+    }
+
+
+    .fila-doble {
+
+        justify-content:
+            space-between;
+    }
+
+
+    .punto {
+
+        width:
+            26%;
+
+        aspect-ratio:
+            1 / 1;
+
+        max-width:
+            11px;
+
+        max-height:
+            11px;
+
+        border-radius:
+            50%;
+
+        background:
+            black;
+    }
+}

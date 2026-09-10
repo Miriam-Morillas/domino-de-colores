@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DomUno</title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="marco-madera">
+
+
+        <!-- ==================================================
+             CABECERA
+             ================================================== -->
+
+        <header class="cabecera">
+
+            <h1>DomUno</h1>
+
+        </header>
+
+
+        <main>
+
+
+            <!-- ==================================================
+                 ZONA PRINCIPAL DEL JUEGO
+                 ================================================== -->
+
+            <div class="zona-juego">
+
+
+                <!-- ==================================================
+                     MÁQUINA
+                     ================================================== -->
+
+                <section class="maquina">
+
+                    <h2>Máquina</h2>
+
+
+                    <div class="fichas-maquina">
+
+                        <!--
+                        Las fichas de la máquina
+                        se crean con JavaScript
+                        -->
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     ZONA CENTRAL
+                     ================================================== -->
+
+                <div class="zona-central">
+
+
+                    <!-- ==================================================
+                         JUGADOR Y POZO
+                         ================================================== -->
+
+                    <div class="zona-fichas">
+
+
+                        <!-- POZO -->
+
+                        <section
+                            class="zona-pozo panel-cristal"
+                        >
+
+                            <h2>Pozo</h2>
+
+
+                            <div class="fichas-pozo">
+
+                                <!--
+                                Las fichas del pozo
+                                se crean con JavaScript
+                                -->
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- JUGADOR -->
+
+                        <section class="zona-jugador">
+
+                            <h2>
+                                Zona del jugador
+                            </h2>
+
+
+                            <div class="fichas-jugador">
+
+                                <!--
+                                Las fichas del jugador
+                                se crean con JavaScript
+                                -->
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         TABLERO Y CONTROLES
+                         ================================================== -->
+
+                    <div class="tablero-controles">
+
+
+                        <!-- TABLERO -->
+
+                        <section class="tablero-central">
+
+                            <div class="cadena-fichas">
+
+                                <!--
+                                Las fichas jugadas
+                                aparecen aquí
+                                -->
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- CONTROLES -->
+
+                        <section
+                            class="controles panel-cristal"
+                        >
+
+                            <h2>Controles</h2>
+
+
+                            <div class="controles-botones">
+
+
+                                <button
+                                    type="button"
+                                    id="btn-izquierda"
+                                >
+
+                                    <span class="boton-icono">
+                                        &#8592;
+                                    </span>
+
+                                    Izquierda
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    id="btn-derecha"
+                                >
+
+                                    <span class="boton-icono">
+                                        &#8594;
+                                    </span>
+
+                                    Derecha
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    id="btn-robar"
+                                >
+
+                                    <span class="boton-icono">
+                                        &#8635;
+                                    </span>
+
+                                    Robar
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    id="btn-pasar"
+                                >
+
+                                    <span class="boton-icono">
+                                        &#10005;
+                                    </span>
+
+                                    Pasar
+
+                                </button>
+
+
+                                <button
+                                    type="button"
+                                    id="btn-nueva-partida"
+                                    class="boton-principal"
+                                >
+
+                                    <span class="boton-icono">
+                                        &#10003;
+                                    </span>
+
+                                    Nueva partida
+
+                                </button>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="espacio-equilibrio">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================================
+                 ZONA LATERAL
+                 ================================================== -->
+
+            <div class="zona-lateral">
+
+
+                <!-- ==================================================
+                     INFORMACIÓN DE LA PARTIDA
+                     ================================================== -->
+
+                <section
+                    class="informacion-partida panel-cristal"
+                >
+
+                    <h2>
+                        Información de la partida
+                    </h2>
+
+
+                    <p>
+
+                        Turno:
+
+                        <span id="info-turno"></span>
+
+                    </p>
+
+
+                    <p>
+
+                        Pozo:
+
+                        <span id="info-pozo"></span>
+
+                    </p>
+
+
+                    <p>
+
+                        Fichas de la máquina:
+
+                        <span id="info-maquina"></span>
+
+                    </p>
+
+
+                    <p>
+
+                        Fichas del jugador:
+
+                        <span id="info-jugador"></span>
+
+                    </p>
+
+
+                    <p>
+
+                        Victorias / Derrotas:
+
+                        <span id="info-marcador"></span>
+
+                    </p>
+
+                </section>
+
+
+                <!-- ==================================================
+                     LEYENDA Y EFECTOS
+                     ================================================== -->
+
+                <section
+                    class="leyenda-estados panel-cristal"
+                >
+
+                    <h2>
+                        Leyenda y efectos
+                    </h2>
+
+
+                    <ul class="lista-estados">
+
+
+                        <!-- ESTADOS VISUALES -->
+
+                        <li>
+
+                            <span
+                                class="estado-punto estado-jugable"
+                            ></span>
+
+                            Jugable
+
+                        </li>
+
+
+                        <li>
+
+                            <span
+                                class="estado-punto estado-seleccionada"
+                            ></span>
+
+                            Seleccionada
+
+                        </li>
+
+
+                        <li>
+
+                            <span
+                                class="estado-punto estado-no-jugable"
+                            ></span>
+
+                            No jugable
+
+                        </li>
+
+
+                        <!-- NUEVA MECÁNICA -->
+
+                        <li class="separador-reglas">
+
+                            <span
+                                class="regla-icono regla-normal"
+                            >
+                                N
+                            </span>
+
+                            Mismo número:
+                            jugada normal
+
+                        </li>
+
+
+                        <li>
+
+                            <span
+                                class="regla-icono regla-color"
+                            >
+                                C
+                            </span>
+
+                            Número + color:
+                            bloquea
+
+                        </li>
+
+
+                        <li>
+
+                            <span
+                                class="regla-icono regla-doble"
+                            >
+                                +2
+                            </span>
+
+                            Doble + color:
+                            bloquea y roba 2
+
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+                <!-- ==================================================
+                     ZONA DE MENSAJES
+                     ================================================== -->
+
+                <section
+                    class="zona-mensajes panel-cristal"
+                >
+
+                    <h2>
+                        Zona de mensajes
+                    </h2>
+
+
+                    <p id="mensaje-juego"></p>
+
+                </section>
+
+            </div>
+
+
+            <!-- ==================================================
+                 RESULTADO FINAL
+                 ================================================== -->
+
+            <section
+                class="resultado-partida"
+                id="resultado-partida"
+            >
+
+                <h2>
+                    Resultado de la partida
+                </h2>
+
+
+                <h3 id="resultado-titulo"></h3>
+
+
+                <p>
+
+                    Ganador:
+
+                    <strong
+                        id="resultado-ganador"
+                    ></strong>
+
+                </p>
+
+
+                <p>
+
+                    Perdedor:
+
+                    <strong
+                        id="resultado-perdedor"
+                    ></strong>
+
+                </p>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+         ================================================== -->
+
+    <script src="domino-logica.js"></script>
+
+    <script src="domino-interfaz.js"></script>
+
+    <script src="domino-controles.js"></script>
+
+
+</body>
+
+</html>
