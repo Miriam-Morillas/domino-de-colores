@@ -1,0 +1,1302 @@
+:root {
+
+    --fieltro-1: #0f4a2c;
+    --fieltro-2: #0b3320;
+
+    --madera-1: #6b4226;
+    --madera-2: #3c2414;
+    --madera-brillo: #9a6a3d;
+
+    --marfil: #f7f2e4;
+    --marfil-sombra: #d9d0b4;
+
+    --oro: #e0b34d;
+    --oro-suave: #f3d488;
+
+    --cristal-bg: rgba(20, 30, 24, 0.45);
+    --cristal-borde: rgba(255, 255, 255, 0.14);
+    --cristal-sombra: rgba(0, 0, 0, 0.45);
+
+    --texto-claro: #f4f1e8;
+    --texto-tenue: #c9c2ad;
+
+    --estado-jugable: #e0b34d;
+    --estado-seleccionada: #1f6fb2;
+    --estado-no-jugable: #6b6459;
+
+    --ficha-ancho: 36px;
+    --ficha-alto: 72px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    margin: 0;
+}
+
+html {
+    background: #06190f;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    font-family:
+        "Segoe UI",
+        "Trebuchet MS",
+        system-ui,
+        sans-serif;
+
+    color: var(--texto-claro);
+
+    padding: 10px;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 255, 255, 0.05),
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at center,
+            var(--fieltro-1) 0%,
+            var(--fieltro-2) 70%,
+            #06190f 100%
+        );
+
+    display: flex;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.marco-madera {
+    flex: 1;
+
+    width: 100%;
+    min-width: 0;
+
+    min-height: calc(100vh - 20px);
+    min-height: calc(100dvh - 20px);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 10px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            160deg,
+            var(--madera-brillo),
+            var(--madera-1) 35%,
+            var(--madera-2) 100%
+        );
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55),
+        inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+        inset 0 2px 4px rgba(255, 255, 255, 0.15);
+}
+
+.cabecera {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    gap: 10px;
+
+    padding: 8px 18px;
+    margin-bottom: 4px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.06),
+            rgba(0, 0, 0, 0.15)
+        );
+
+    border: 1px solid var(--cristal-borde);
+}
+
+.cabecera-icono {
+    font-size: 1.3rem;
+
+    color: var(--oro);
+
+    text-shadow:
+        0 0 12px hsla(
+            34,
+            76%,
+            53%,
+            0.855
+        );
+}
+
+.cabecera h1 {
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 1.2rem;
+
+    letter-spacing: 0.05em;
+}
+
+main {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 190px;
+
+    gap: 10px;
+}
+
+.zona-juego {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.zona-lateral {
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.resultado-partida {
+    display: none;
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width:
+        min(420px, 85vw);
+
+    padding: 25px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            160deg,
+            var(--madera-brillo),
+            var(--madera-1) 45%,
+            var(--madera-2)
+        );
+
+    border:
+        2px solid var(--oro);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.7);
+
+    color:
+        var(--texto-claro);
+
+    text-align: center;
+
+    z-index: 1000;
+}
+
+.resultado-partida.visible {
+    display: block;
+}
+
+.resultado-partida h2 {
+    margin:
+        0 0 15px;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        var(--oro-suave);
+}
+
+.resultado-partida h3 {
+    margin:
+        0 0 20px;
+
+    font-size: 1.4rem;
+
+    color:
+        var(--texto-claro);
+}
+
+.resultado-partida p {
+    margin:
+        10px 0;
+
+    font-size: 0.9rem;
+
+    color:
+        var(--texto-tenue);
+}
+
+.resultado-partida strong {
+    color:
+        var(--texto-claro);
+}
+
+.zona-juego h2,
+.zona-lateral h2 {
+    font-size: 0.68rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.1em;
+
+    text-transform:
+        uppercase;
+
+    color:
+        var(--texto-tenue);
+
+    margin-bottom: 4px;
+}
+
+.maquina {
+    flex: 0 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 2px 10px;
+}
+
+.maquina h2 {
+    margin-bottom: 4px;
+}
+
+.fichas-maquina {
+    min-height:
+        var(--ficha-alto);
+
+    width: 100%;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: nowrap;
+
+    align-items: center;
+
+    justify-content:
+        flex-start;
+
+    gap: 4px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.zona-central {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.zona-fichas {
+    flex:
+        0 0 120px;
+
+    min-width: 120px;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.zona-jugador {
+    order: 1;
+
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 6px 10px;
+}
+
+.zona-jugador h2 {
+    margin-bottom: 8px;
+}
+
+.fichas-jugador {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    align-content: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    overflow: visible;
+}
+
+.zona-pozo {
+    order: 2;
+
+    flex:
+        0 0 auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 6px 10px;
+}
+
+.espacio-equilibrio {
+    display: none;
+}
+
+.tablero-controles {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.tablero-central {
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 300px;
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background-image:
+        url("fondonegro.png");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    border-radius: 18px;
+
+    padding: 6px 10px;
+
+    border:
+        8px solid #072b0a;
+
+    overflow: hidden;
+}
+
+.tablero-central h2 {
+    flex:
+        0 0 auto;
+
+    color:
+        var(--oro-suave);
+
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.cadena-fichas {
+    flex: 1;
+
+    min-width: 0;
+    min-height: 0;
+
+    width: 100%;
+
+    border: none;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    align-content: center;
+
+    gap: 4px;
+
+    flex-wrap: wrap;
+
+    overflow: hidden;
+}
+
+.controles {
+    flex:
+        0 0 auto;
+
+    padding:
+        6px 14px;
+
+    width: 100%;
+}
+
+.controles-botones {
+    display: flex;
+
+    flex-direction: row;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+}
+
+.controles-botones button {
+    flex:
+        1 1 auto;
+}
+
+button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    padding:
+        6px 10px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.14);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    color:
+        var(--texto-claro);
+
+    font-size: 0.78rem;
+
+    font-weight: 600;
+
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+button:hover {
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+button:active {
+    transform:
+        translateY(0);
+}
+
+.boton-principal {
+    background:
+        linear-gradient(
+            180deg,
+            var(--oro-suave),
+            var(--oro)
+        );
+
+    color:
+        #2a2118;
+
+    border-color:
+        rgba(0, 0, 0, 0.2);
+}
+
+.boton-icono {
+    font-size: 0.85rem;
+
+    line-height: 1;
+}
+
+.ficha {
+    display: flex;
+
+    flex-direction: column;
+
+    width:
+        var(--ficha-ancho);
+
+    min-width:
+        var(--ficha-ancho);
+
+    max-width:
+        var(--ficha-ancho);
+
+    height:
+        var(--ficha-alto);
+
+    min-height:
+        var(--ficha-alto);
+
+    max-height:
+        var(--ficha-alto);
+
+    flex:
+        0 0 var(--ficha-ancho);
+
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    border:
+        2px solid black;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.45);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        filter 0.15s ease;
+}
+
+.fichas-jugador .ficha:hover {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 10px 18px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 2px rgba(224, 179, 77, 0.5);
+}
+
+.ficha.seleccionada {
+    transform:
+        translateY(-10px);
+
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 3px var(--estado-seleccionada),
+        0 0 16px rgba(31, 111, 178, 0.6);
+}
+
+.ficha-oculta {
+    width:
+        var(--ficha-ancho);
+
+    min-width:
+        var(--ficha-ancho);
+
+    max-width:
+        var(--ficha-ancho);
+
+    height:
+        var(--ficha-alto);
+
+    min-height:
+        var(--ficha-alto);
+
+    max-height:
+        var(--ficha-alto);
+
+    flex:
+        0 0 var(--ficha-ancho);
+
+    border-radius: 4px;
+
+    border:
+        2px solid black;
+
+    background-color: white;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.45);
+
+    position: relative;
+}
+
+.mitad-arriba,
+.mitad-abajo {
+    width: 100%;
+
+    min-width: 0;
+
+    flex:
+        0 0 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+}
+
+.mitad-arriba {
+    border-bottom:
+        2px solid black;
+}
+
+.mitad-abajo {
+    border-bottom: none;
+}
+
+.patron-puntos {
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.fila-arriba,
+.fila-centro,
+.fila-abajo {
+    flex-grow: 1;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding-left: 14%;
+
+    padding-right: 14%;
+}
+
+.fila-arriba {
+    justify-content:
+        flex-start;
+}
+
+.fila-centro {
+    justify-content:
+        center;
+}
+
+.fila-abajo {
+    justify-content:
+        flex-end;
+}
+
+.fila-doble {
+    justify-content:
+        space-between;
+}
+
+.punto {
+    width: 26%;
+
+    aspect-ratio:
+        1 / 1;
+
+    max-width: 11px;
+
+    max-height: 11px;
+
+    border-radius: 50%;
+
+    background:
+        black;
+}
+
+.fichas-pozo {
+    position: relative;
+
+    width: 156px;
+
+    max-width: 100%;
+
+    height: 132px;
+
+    margin-top: 6px;
+
+    flex:
+        0 0 auto;
+
+    overflow: hidden;
+}
+
+.fichas-pozo .ficha-oculta {
+    position: absolute;
+
+    width: 26px;
+
+    min-width: 26px;
+
+    max-width: 26px;
+
+    height: 50px;
+
+    min-height: 50px;
+
+    max-height: 50px;
+
+    flex: none;
+
+    border-radius: 5px;
+}
+
+.cadena-fichas .ficha {
+    flex-direction: row;
+
+    width:
+        var(--ficha-alto);
+
+    min-width:
+        var(--ficha-alto);
+
+    max-width:
+        var(--ficha-alto);
+
+    height:
+        var(--ficha-ancho);
+
+    min-height:
+        var(--ficha-ancho);
+
+    max-height:
+        var(--ficha-ancho);
+
+    flex:
+        0 0 var(--ficha-alto);
+
+    cursor: default;
+}
+
+.cadena-fichas .ficha:hover {
+    transform: none;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.cadena-fichas .mitad-arriba,
+.cadena-fichas .mitad-abajo {
+    width: 50%;
+
+    height: 100%;
+
+    flex:
+        0 0 50%;
+}
+
+.cadena-fichas .mitad-arriba {
+    border-bottom: none;
+
+    border-right:
+        2px solid rgba(0, 0, 0, 0.35);
+}
+
+.cadena-fichas .ficha.doble {
+    flex-direction: column;
+
+    width:
+        var(--ficha-ancho);
+
+    min-width:
+        var(--ficha-ancho);
+
+    max-width:
+        var(--ficha-ancho);
+
+    height:
+        var(--ficha-alto);
+
+    min-height:
+        var(--ficha-alto);
+
+    max-height:
+        var(--ficha-alto);
+
+    flex:
+        0 0 var(--ficha-ancho);
+}
+
+.cadena-fichas .ficha.doble .mitad-arriba,
+.cadena-fichas .ficha.doble .mitad-abajo {
+    width: 100%;
+
+    height: 50%;
+
+    flex:
+        0 0 50%;
+}
+
+.cadena-fichas .ficha.doble .mitad-arriba {
+    border-right: none;
+
+    border-bottom:
+        2px solid rgba(0, 0, 0, 0.35);
+}
+
+.panel-cristal {
+    padding:
+        10px 14px;
+
+    border-radius: 14px;
+
+    background:
+        var(--cristal-bg);
+
+    border:
+        1px solid var(--cristal-borde);
+
+    box-shadow:
+        0 10px 26px var(--cristal-sombra);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+}
+
+.informacion-partida,
+.leyenda-estados {
+    flex:
+        0 0 auto;
+}
+
+.informacion-partida p {
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    margin:
+        0 0 4px;
+
+    font-size: 0.78rem;
+
+    color:
+        var(--texto-tenue);
+}
+
+.informacion-partida span {
+    font-weight: 700;
+
+    color:
+        var(--texto-claro);
+}
+
+.lista-estados {
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    font-size: 0.78rem;
+}
+
+.lista-estados li {
+    display: flex;
+
+    align-items: center;
+}
+
+.estado-punto {
+    display: inline-block;
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+    margin-right: 7px;
+}
+
+.estado-jugable {
+    background:
+        var(--estado-jugable);
+
+    box-shadow:
+        0 0 8px var(--estado-jugable);
+}
+
+.estado-seleccionada {
+    background:
+        var(--estado-seleccionada);
+
+    box-shadow:
+        0 0 8px var(--estado-seleccionada);
+}
+
+.estado-no-jugable {
+    background:
+        var(--estado-no-jugable);
+}
+
+.zona-mensajes {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow: hidden;
+}
+
+.zona-mensajes p {
+    margin: 0;
+
+    font-size: 0.78rem;
+
+    color:
+        var(--texto-tenue);
+}
+
+.controles button:disabled {
+    opacity: 0.45;
+
+    cursor:
+        not-allowed;
+}
+
+.fichas-jugador .ficha.jugable {
+    box-shadow:
+        0 0 0 2px #eabf45,
+        0 0 10px rgba(234, 191, 69, 0.75);
+}
+
+.fichas-jugador .ficha.no-jugable {
+    opacity: 0.45;
+
+    filter:
+        grayscale(55%);
+}
+
+.fichas-jugador .ficha.seleccionada {
+    opacity: 1;
+
+    filter: none;
+
+    outline:
+        3px solid #168ad1;
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 0 10px rgba(22, 138, 209, 0.85);
+}
+
+@media (max-width: 1024px) {
+
+    body {
+        padding: 6px;
+    }
+
+    .marco-madera {
+        min-height:
+            calc(100vh - 12px);
+
+        min-height:
+            calc(100dvh - 12px);
+
+        padding: 8px;
+
+        border-radius: 16px;
+    }
+
+    main {
+        grid-template-columns:
+            minmax(0, 1fr) 165px;
+
+        gap: 6px;
+    }
+
+    .zona-fichas {
+        flex-basis: 120px;
+
+        min-width: 120px;
+    }
+
+    .panel-cristal {
+        padding:
+            8px 10px;
+    }
+
+    .controles {
+        padding:
+            5px 8px;
+    }
+
+    button {
+        padding:
+            6px 8px;
+
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    body {
+        padding: 4px;
+
+        display: block;
+    }
+
+    .marco-madera {
+        width: 100%;
+
+        min-height:
+            calc(100vh - 8px);
+
+        min-height:
+            calc(100dvh - 8px);
+
+        padding: 6px;
+
+        border-radius: 12px;
+    }
+
+    .cabecera {
+        padding:
+            6px 10px;
+    }
+
+    .cabecera h1 {
+        font-size: 1rem;
+    }
+
+    main {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+    .zona-juego {
+        width: 100%;
+    }
+
+    .zona-central {
+        flex-direction: column;
+
+        gap: 6px;
+    }
+
+    .zona-fichas {
+        flex: none;
+
+        width: 100%;
+
+        min-width: 0;
+    }
+
+    .zona-jugador {
+        width: 100%;
+
+        min-height: 120px;
+    }
+
+    .zona-pozo {
+        width: 100%;
+    }
+
+    .tablero-controles {
+        width: 100%;
+    }
+
+    .tablero-central {
+        min-height: 300px;
+
+        padding: 6px;
+
+        border-width: 5px;
+    }
+
+    .cadena-fichas {
+        min-height: 240px;
+
+        gap: 3px;
+    }
+
+    .fichas-maquina {
+        justify-content:
+            flex-start;
+    }
+
+    .fichas-jugador {
+        overflow: visible;
+
+        gap: 4px;
+    }
+
+    .controles {
+        padding: 5px;
+    }
+
+    .controles-botones {
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 5px;
+    }
+
+    .controles-botones button {
+        width: 100%;
+
+        min-height: 38px;
+    }
+
+    .zona-lateral {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 6px;
+    }
+
+    .zona-mensajes {
+        grid-column:
+            1 / -1;
+    }
+
+    .resultado-partida {
+        width: 90vw;
+
+        max-width: 420px;
+
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .marco-madera {
+        padding: 4px;
+    }
+    .tablero-central {
+        min-height: 280px;
+    }
+    .cadena-fichas {
+        min-height: 220px;
+    }
+    .zona-lateral {
+        grid-template-columns:
+            1fr;
+    }
+    button {
+        font-size: 0.7rem;
+    }
+    .panel-cristal {
+        padding:
+            7px 8px;
+    }
+}
