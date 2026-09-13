@@ -1,6 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@700&display=swap'
+);
+
+
+/* ============================================================
+   VARIABLES
+   ============================================================ */
 
 :root {
+
     --fieltro-1: #0fb83c;
     --fieltro-2: #9bb421;
 
@@ -39,56 +46,73 @@
         #6b6459;
 
     --ficha-ancho:
-        36px;
+        clamp(23px,
+            min(4.1vh, 3.9vw),
+            45px);
 
     --ficha-alto:
-        72px;
+        clamp(46px,
+            min(8.2vh, 7.8vw),
+            90px);
 
     --neon-esmeralda:
         #37e6a4;
 
     --neon-esmeralda-suave:
-        rgba(
-            55,
+        rgba(55,
             230,
             164,
-            0.55
-        );
+            0.55);
 
     --brillo-oro-suave:
-        rgba(
-            224,
+        rgba(224,
             179,
             77,
-            0.55
-        );
+            0.55);
 }
 
+
+/* ============================================================
+   GENERAL
+   ============================================================ */
+
 * {
+
     box-sizing:
         border-box;
 }
 
+
 html,
 body {
-    min-height:
+
+    height:
+        100%;
+
+    height:
+        100dvh;
+
+    width:
         100%;
 
     margin:
         0;
+
+    overflow:
+        hidden;
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+    -webkit-touch-callout:
+        none;
+
+    touch-action:
+        manipulation;
 }
 
-html {
-    background:
-        #06190f;
-}
 
 body {
-    min-height:
-        100vh;
-
-    min-height:
-        100dvh;
 
     font-family:
         "Segoe UI",
@@ -100,41 +124,34 @@ body {
         var(--texto-claro);
 
     padding:
-        10px;
+        max(8px, env(safe-area-inset-top)) max(6px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) max(6px, env(safe-area-inset-left));
 
     background:
 
-        radial-gradient(
-            ellipse at 50% 0%,
-            rgba(
+        radial-gradient(ellipse at 50% 0%,
+            rgba(255,
                 255,
                 255,
-                255,
-                0.05
-            ),
-            transparent 60%
-        ),
+                0.05),
+            transparent 60%),
 
-        radial-gradient(
-            ellipse at center,
+        radial-gradient(ellipse at center,
             var(--fieltro-1) 0%,
             var(--fieltro-2) 70%,
-            #06190f 100%
-        );
+            #06190f 100%);
 
     display:
         flex;
 
-    overflow-x:
-        hidden;
-
-    overflow-y:
-        auto;
+    box-sizing:
+        border-box;
 }
+
 
 h1,
 h2,
 h3 {
+
     margin:
         0;
 
@@ -142,218 +159,188 @@ h3 {
         600;
 }
 
+
+/* ============================================================
+   ANIMACIONES
+   ============================================================ */
+
 @keyframes latido-dorado {
 
     0%,
     100% {
+
         box-shadow:
-            0 20px 50px rgba(
-                0,
-                0,
-                0,
-                0.55
-            ),
 
-            inset 0 0 0 2px rgba(
-                0,
-                0,
-                0,
-                0.35
-            ),
+            0 20px 50px rgba(0, 0, 0, 0.55),
 
-            inset 0 2px 4px rgba(
-                255,
-                255,
-                255,
-                0.15
-            ),
+            inset 0 0 0 2px rgba(0, 0, 0, 0.35),
 
-            0 0 0 0
-            var(--brillo-oro-suave);
+            inset 0 2px 4px rgba(255, 255, 255, 0.15),
+
+            0 0 0 0 var(--brillo-oro-suave);
     }
+
 
     50% {
+
         box-shadow:
-            0 20px 50px rgba(
-                0,
-                0,
-                0,
-                0.55
-            ),
 
-            inset 0 0 0 2px rgba(
-                0,
-                0,
-                0,
-                0.35
-            ),
+            0 20px 50px rgba(0, 0, 0, 0.55),
 
-            inset 0 2px 4px rgba(
-                255,
-                255,
-                255,
-                0.15
-            ),
+            inset 0 0 0 2px rgba(0, 0, 0, 0.35),
 
-            0 0 26px 4px
-            var(--brillo-oro-suave);
+            inset 0 2px 4px rgba(255, 255, 255, 0.15),
+
+            0 0 26px 4px var(--brillo-oro-suave);
     }
 }
+
 
 @keyframes latido-tablero {
 
     0%,
     100% {
-        box-shadow:
-            inset 0 0 30px rgba(
-                0,
-                0,
-                0,
-                0.6
-            ),
 
-            0 0 0 2px rgba(
-                224,
-                179,
-                77,
-                0.35
-            );
+        box-shadow:
+
+            inset 0 0 30px rgba(0, 0, 0, 0.6),
+
+            0 0 0 2px rgba(224, 179, 77, 0.35);
     }
+
 
     50% {
+
         box-shadow:
-            inset 0 0 30px rgba(
-                0,
-                0,
-                0,
-                0.6
-            ),
 
-            0 0 0 2px rgba(
-                224,
-                179,
-                77,
-                0.35
-            ),
+            inset 0 0 30px rgba(0, 0, 0, 0.6),
 
-            0 0 22px 4px
-            var(--brillo-oro-suave);
+            0 0 0 2px rgba(224, 179, 77, 0.35),
+
+            0 0 22px 4px var(--brillo-oro-suave);
     }
 }
+
 
 @keyframes aparecer-ficha {
 
     from {
+
         opacity:
             0;
 
         transform:
-            translateY(10px)
-            scale(0.85);
+            translateY(10px) scale(0.85);
     }
 
+
     to {
+
         opacity:
             1;
 
         transform:
-            translateY(0)
-            scale(1);
+            translateY(0) scale(1);
     }
 }
+
 
 @keyframes pulso-jugable {
 
     0%,
     100% {
-        box-shadow:
-            0 0 0 2px
-            #eabf45,
 
-            0 0 10px rgba(
-                234,
+        box-shadow:
+
+            0 0 0 2px #eabf45,
+
+            0 0 10px rgba(234,
                 191,
                 69,
-                0.75
-            );
+                0.75);
     }
+
 
     50% {
-        box-shadow:
-            0 0 0 2px
-            #eabf45,
 
-            0 0 20px 4px rgba(
-                234,
+        box-shadow:
+
+            0 0 0 2px #eabf45,
+
+            0 0 20px 4px rgba(234,
                 191,
                 69,
-                0.95
-            );
+                0.95);
     }
 }
+
+
+
+
 
 @keyframes pulso-punto {
 
     0%,
     100% {
+
         box-shadow:
-            0 0 8px
-            var(--estado-jugable);
+
+            0 0 8px var(--estado-jugable);
     }
 
+
     50% {
+
         box-shadow:
-            0 0 14px 2px
-            var(--estado-jugable);
+
+            0 0 14px 2px var(--estado-jugable);
     }
 }
+
 
 @keyframes entrada-resultado {
 
     from {
+
         opacity:
             0;
 
         transform:
-            translate(
-                -50%,
-                -50%
-            )
-            scale(0.85);
+            translate(-50%, -50%) scale(0.85);
     }
 
+
     to {
+
         opacity:
             1;
 
         transform:
-            translate(
-                -50%,
-                -50%
-            )
-            scale(1);
+            translate(-50%, -50%) scale(1);
     }
 }
 
+
+/* ============================================================
+   MARCO PRINCIPAL
+   ============================================================ */
+
 .marco-madera {
+
     flex:
         1;
-
-    width:
-        100%;
 
     min-width:
         0;
 
     min-height:
-        calc(
-            100vh - 20px
-        );
+        0;
 
-    min-height:
-        calc(
-            100dvh - 20px
-        );
+    width:
+        100%;
+
+    height:
+        100%;
 
     display:
         flex;
@@ -362,29 +349,19 @@ h3 {
         column;
 
     padding:
-        10px;
+        clamp(6px, 1.2vh, 12px);
 
     border-radius:
-        20px;
+        clamp(10px, 1.8vw, 20px);
+
 
     background-image:
 
-        linear-gradient(
-            rgba(
-                70,
-                35,
-                15,
-                0.12
-            ),
-            rgba(
-                35,
-                15,
-                5,
-                0.18
-            )
-        ),
+        linear-gradient(rgba(70, 35, 15, 0.12),
+            rgba(35, 15, 5, 0.18)),
 
         url("fondo-madera.png");
+
 
     background-size:
         cover;
@@ -395,36 +372,34 @@ h3 {
     background-repeat:
         no-repeat;
 
+
     box-shadow:
-        0 20px 50px rgba(
-            0,
-            0,
-            0,
-            0.55
-        ),
 
-        inset 0 0 0 2px rgba(
-            0,
-            0,
-            0,
-            0.35
-        ),
+        0 20px 50px rgba(0, 0, 0, 0.55),
 
-        inset 0 2px 4px rgba(
-            255,
-            255,
-            255,
-            0.15
-        );
+        inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+
+        inset 0 2px 4px rgba(255, 255, 255, 0.15);
+
 
     animation:
-        latido-dorado
-        6s
-        ease-in-out
-        infinite;
+
+        latido-dorado 6s ease-in-out infinite;
+
+    position:
+        relative;
+
+    overflow:
+        visible;
 }
 
+
+/* ============================================================
+   CABECERA DEL JUEGO
+   ============================================================ */
+
 .cabecera {
+
     flex:
         0 0 auto;
 
@@ -450,10 +425,13 @@ h3 {
         4px 10px;
 
     padding:
-        8px 18px;
+        2px 18px;
+
+    margin-top:
+        10px;
 
     margin-bottom:
-        4px;
+        2px;
 
     overflow:
         visible;
@@ -462,10 +440,12 @@ h3 {
         relative;
 
     z-index:
-        5;
+        50;
 }
 
+
 .cabecera-icono {
+
     font-size:
         1.3rem;
 
@@ -473,17 +453,17 @@ h3 {
         var(--oro);
 
     text-shadow:
-        0 0 12px
-        hsla(
-            34,
-            76%,
-            53%,
-            0.855
-        );
+
+        0 0 12px hsla(34, 76%, 53%, 0.855);
 }
 
+
 .cabecera h1 {
+
     width:
+        100%;
+
+    height:
         100%;
 
     display:
@@ -491,42 +471,46 @@ h3 {
 
     justify-content:
         center;
+
+    align-items:
+        center;
 }
 
+
 .logo-titulo {
+
     height:
-        150px;
+        135px;
 
     width:
         auto;
 
     max-width:
-        100%;
+        90%;
 
     object-fit:
         contain;
 
     transform:
-        translateY(-30px);
+        translateY(28px);
 
     filter:
-        drop-shadow(
-            0 3px 6px
-            rgba(
-                0,
-                0,
-                0,
-                0.5
-            )
-        );
+
+        drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
+
+    pointer-events:
+        none;
 }
 
+
+/* ============================================================
+   DISTRIBUCIÓN PRINCIPAL
+   ============================================================ */
+
 main {
+
     flex:
         1;
-
-    min-width:
-        0;
 
     min-height:
         0;
@@ -535,17 +519,15 @@ main {
         grid;
 
     grid-template-columns:
-        minmax(
-            0,
-            1fr
-        )
-        190px;
+        minmax(0, 1fr) clamp(160px, 18vw, 200px);
 
     gap:
-        10px;
+        clamp(6px, 1vw, 10px);
 }
 
+
 .zona-juego {
+
     min-width:
         0;
 
@@ -562,9 +544,8 @@ main {
         4px;
 }
 
+
 .zona-lateral {
-    min-width:
-        0;
 
     min-height:
         0;
@@ -576,10 +557,16 @@ main {
         column;
 
     gap:
-        8px;
+        clamp(6px, 1vh, 8px);
 }
 
+
+/* ============================================================
+   MÁQUINA
+   ============================================================ */
+
 .maquina {
+
     flex:
         0 0 auto;
 
@@ -593,35 +580,30 @@ main {
         2px 10px;
 }
 
-.maquina h2 {
+
+.maquina h2,
+.zona-juego .maquina h2 {
+
     margin-bottom:
-        4px;
+        2px;
 
     font-size:
-        0.85rem;
+        clamp(0.7rem, 1.2vh, 0.85rem);
 
     color:
-        white;
+        #ffffff !important;
 
     text-shadow:
-        0 1px 2px
-        rgba(
-            0,
-            0,
-            0,
-            0.8
-        );
+
+        0 1px 3px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(255, 255, 255, 0.45);
 }
 
+
 .fichas-maquina {
+
     min-height:
         var(--ficha-alto);
-
-    width:
-        100%;
-
-    min-width:
-        0;
 
     display:
         flex;
@@ -635,25 +617,38 @@ main {
     align-items:
         center;
 
-    justify-content:
-        flex-start;
-
     gap:
         4px;
 
     overflow-x:
         auto;
 
-    overflow-y:
-        hidden;
+    scrollbar-width:
+        none;
+
+    -ms-overflow-style:
+        none;
+
+    padding-bottom:
+        2px;
 }
 
+
+.fichas-maquina::-webkit-scrollbar {
+
+    display:
+        none;
+}
+
+
+/* ============================================================
+   ZONA CENTRAL
+   ============================================================ */
+
 .zona-central {
+
     flex:
         1;
-
-    min-width:
-        0;
 
     min-height:
         0;
@@ -662,15 +657,14 @@ main {
         flex;
 
     gap:
-        10px;
+        clamp(6px, 1vw, 10px);
 }
 
-.zona-fichas {
-    flex:
-        0 0 120px;
 
-    min-width:
-        120px;
+.zona-fichas {
+
+    flex:
+        0 0 clamp(110px, 13vw, 135px);
 
     min-height:
         0;
@@ -685,15 +679,18 @@ main {
         6px;
 }
 
+
+/* ============================================================
+   JUGADOR
+   ============================================================ */
+
 .zona-jugador {
+
     order:
         1;
 
     flex:
-        1;
-
-    min-width:
-        0;
+        1 1 auto;
 
     min-height:
         0;
@@ -708,41 +705,33 @@ main {
         center;
 
     padding:
-        6px 10px;
+        clamp(6px, 1vh, 12px) clamp(6px, 1vw, 10px);
 
     margin-top:
         0;
 }
 
-.zona-jugador h2 {
+
+.zona-jugador h2,
+.zona-juego .zona-jugador h2 {
+
     margin-bottom:
-        8px;
+        4px;
 
     font-size:
-        0.85rem;
+        clamp(0.7rem, 1.2vh, 0.85rem);
 
     color:
-        white;
+        #ffffff !important;
 
     text-shadow:
-        0 1px 2px
-        rgba(
-            0,
-            0,
-            0,
-            0.8
-        );
+
+        0 1px 3px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(255, 255, 255, 0.45);
 }
 
+
 .fichas-jugador {
-    flex:
-        1;
-
-    min-width:
-        0;
-
-    min-height:
-        0;
 
     display:
         flex;
@@ -765,11 +754,26 @@ main {
     gap:
         4px;
 
-    overflow:
-        visible;
+    overflow-y:
+        auto;
+
+    max-height:
+        100%;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(224, 179, 77, 0.4) transparent;
 }
 
+
+/* ============================================================
+   POZO
+   ============================================================ */
+
 .zona-pozo {
+
     order:
         2;
 
@@ -789,59 +793,57 @@ main {
         center;
 
     padding:
-        6px 10px;
+        6px 8px;
 }
 
+
 .fichas-pozo {
+
     position:
         relative;
 
     width:
         156px;
 
-    max-width:
-        100%;
-
     height:
         132px;
 
+    max-width:
+        100%;
+
     margin-top:
-        6px;
+        4px;
 
     overflow:
         hidden;
+
+    transform-origin:
+        center center;
 }
 
+
 .fichas-pozo .ficha-oculta {
+
     position:
         absolute;
 
     width:
         26px;
 
-    min-width:
-        26px;
-
-    max-width:
-        26px;
-
     height:
         50px;
-
-    min-height:
-        50px;
-
-    max-height:
-        50px;
-
-    flex:
-        none;
 
     border-radius:
         5px;
 }
 
+
+/* ============================================================
+   TABLERO
+   ============================================================ */
+
 .tablero-controles {
+
     flex:
         1;
 
@@ -858,18 +860,20 @@ main {
         column;
 
     gap:
-        6px;
+        clamp(4px, 0.8vh, 8px);
 }
 
+
 .tablero-central {
+
     flex:
         1;
 
-    min-width:
+    min-height:
         0;
 
-    min-height:
-        300px;
+    min-width:
+        0;
 
     display:
         flex;
@@ -890,48 +894,36 @@ main {
         no-repeat;
 
     border-radius:
-        18px;
+        clamp(10px, 1.5vw, 18px);
 
     padding:
-        6px 10px;
+        clamp(4px, 0.8vh, 8px) clamp(6px, 1vw, 10px);
 
     border:
-        8px solid
-        #159a45;
+        clamp(4px, 0.8vw, 8px) solid #159a45;
 
     overflow:
         hidden;
 
     box-shadow:
-        inset 0 0 30px
-        rgba(
-            0,
-            0,
-            0,
-            0.6
-        ),
 
-        0 0 0 2px
-        rgba(
-            224,
-            179,
-            77,
-            0.35
-        );
+        inset 0 0 30px rgba(0, 0, 0, 0.6),
+
+        0 0 0 2px rgba(224, 179, 77, 0.35);
 
     animation:
-        latido-tablero
-        6s
-        ease-in-out
-        infinite;
+
+        latido-tablero 6s ease-in-out infinite;
+
+    position:
+        relative;
 }
 
+
 .cadena-fichas {
+
     flex:
         1;
-
-    min-width:
-        0;
 
     min-height:
         0;
@@ -958,21 +950,41 @@ main {
         wrap;
 
     overflow:
-        hidden;
+        auto;
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+        rgba(224, 179, 77, 0.4) transparent;
+
+    -webkit-overflow-scrolling:
+        touch;
+
+    padding:
+        4px;
 }
 
+
+/* ============================================================
+   CONTROLES
+   ============================================================ */
+
 .controles {
+
     flex:
         0 0 auto;
 
     padding:
-        6px 14px;
+        clamp(4px, 0.8vh, 8px) clamp(8px, 1.2vw, 14px);
 
     width:
         100%;
 }
 
+
 .controles-botones {
+
     display:
         flex;
 
@@ -986,14 +998,22 @@ main {
         6px;
 }
 
+
 .controles-botones button,
 .controles-botones label {
+
     flex:
         1 1 auto;
 }
 
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
 button,
 .controles-botones label {
+
     display:
         inline-flex;
 
@@ -1013,30 +1033,14 @@ button,
         9px;
 
     border:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            0.14
-        );
+
+        1px solid rgba(255, 255, 255, 0.14);
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.08
-            ),
-            rgba(
-                255,
-                255,
-                255,
-                0.02
-            )
-        );
+
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.02));
 
     color:
         var(--texto-claro);
@@ -1054,73 +1058,84 @@ button,
         inherit;
 
     transition:
+
         transform 0.15s ease,
         box-shadow 0.15s ease;
 }
 
+
 button:hover,
 .controles-botones label:hover {
+
     transform:
         translateY(-2px);
 
     box-shadow:
-        0 6px 14px
-        rgba(
-            0,
-            0,
-            0,
-            0.35
-        );
+
+        0 6px 14px rgba(0, 0, 0, 0.35);
 }
+
 
 button:active,
 .controles-botones label:active {
+
     transform:
         translateY(0);
 }
 
+
 .boton-principal {
+
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             var(--oro-suave),
-            var(--oro)
-        );
+            var(--oro));
 
     color:
         #2a2118;
 }
 
+
 .boton-reglas-juego {
+
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             #55b0ff,
-            #1560c9
-        );
+            #1560c9);
 
     color:
         white;
 }
+
 
 .boton-salir-juego {
+
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             #ff7a63,
-            #b3140e
-        );
+            #b3140e);
 
     color:
         white;
 }
 
+
 .boton-icono {
+
     font-size:
         0.85rem;
 }
 
+
+/* ============================================================
+   FICHA
+   ============================================================ */
+
 .ficha {
+
     display:
         flex;
 
@@ -1130,24 +1145,8 @@ button:active,
     width:
         var(--ficha-ancho);
 
-    min-width:
-        var(--ficha-ancho);
-
-    max-width:
-        var(--ficha-ancho);
-
     height:
         var(--ficha-alto);
-
-    min-height:
-        var(--ficha-alto);
-
-    max-height:
-        var(--ficha-alto);
-
-    flex:
-        0 0
-        var(--ficha-ancho);
 
     border-radius:
         4px;
@@ -1159,27 +1158,26 @@ button:active,
         2px solid black;
 
     box-shadow:
-        0 4px 10px
-        rgba(
-            0,
-            0,
-            0,
-            0.45
-        );
+
+        0 4px 10px rgba(0, 0, 0, 0.45);
 
     cursor:
         pointer;
+
+    flex-shrink:
+        0;
 
     position:
         relative;
 
     animation:
-        aparecer-ficha
-        0.25s
-        ease-out;
+
+        aparecer-ficha 0.25s ease-out;
 }
 
+
 .ficha::before {
+
     content:
         "";
 
@@ -1190,43 +1188,23 @@ button:active,
         0;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.15
-            ),
-            transparent 35%
-        );
+
+        linear-gradient(135deg,
+            rgba(255, 255, 255, 0.15),
+            transparent 35%);
 
     pointer-events:
         none;
 }
 
+
 .ficha-oculta {
+
     width:
-        var(--ficha-ancho);
-
-    min-width:
-        var(--ficha-ancho);
-
-    max-width:
         var(--ficha-ancho);
 
     height:
         var(--ficha-alto);
-
-    min-height:
-        var(--ficha-alto);
-
-    max-height:
-        var(--ficha-alto);
-
-    flex:
-        0 0
-        var(--ficha-ancho);
 
     border-radius:
         4px;
@@ -1235,41 +1213,36 @@ button:active,
         2px solid black;
 
     background:
-        linear-gradient(
-            135deg,
+
+        linear-gradient(135deg,
             white,
             var(--marfil-sombra),
-            white
-        );
+            white);
 
     box-shadow:
-        0 4px 10px
-        rgba(
-            0,
-            0,
-            0,
-            0.45
-        );
+
+        0 4px 10px rgba(0, 0, 0, 0.45);
+
+    flex-shrink:
+        0;
 
     animation:
-        aparecer-ficha
-        0.25s
-        ease-out;
+
+        aparecer-ficha 0.25s ease-out;
 }
 
-.mitad-arriba,
-.mitad-abajo {
-    width:
-        100%;
 
-    min-width:
-        0;
+/* ============================================================
+   MITADES
+   ============================================================ */
+
+.mitad-arriba {
 
     height:
         50%;
 
-    flex:
-        0 0 50%;
+    border-bottom:
+        2px solid black;
 
     display:
         flex;
@@ -1281,12 +1254,29 @@ button:active,
         center;
 }
 
-.mitad-arriba {
-    border-bottom:
-        2px solid black;
+
+.mitad-abajo {
+
+    height:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
 }
 
+
+/* ============================================================
+   PUNTOS
+   ============================================================ */
+
 .patron-puntos {
+
     width:
         100%;
 
@@ -1300,9 +1290,11 @@ button:active,
         column;
 }
 
+
 .fila-arriba,
 .fila-centro,
 .fila-abajo {
+
     flex-grow:
         1;
 
@@ -1322,27 +1314,37 @@ button:active,
         14%;
 }
 
+
 .fila-arriba {
+
     justify-content:
         flex-start;
 }
 
+
 .fila-centro {
+
     justify-content:
         center;
 }
 
+
 .fila-abajo {
+
     justify-content:
         flex-end;
 }
 
+
 .fila-doble {
+
     justify-content:
         space-between;
 }
 
+
 .punto {
+
     width:
         26%;
 
@@ -1362,31 +1364,21 @@ button:active,
         black;
 }
 
+
+/* ============================================================
+   FICHAS DEL TABLERO
+   ============================================================ */
+
 .cadena-fichas .ficha {
+
     flex-direction:
         row;
 
     width:
         var(--ficha-alto);
 
-    min-width:
-        var(--ficha-alto);
-
-    max-width:
-        var(--ficha-alto);
-
     height:
         var(--ficha-ancho);
-
-    min-height:
-        var(--ficha-ancho);
-
-    max-height:
-        var(--ficha-ancho);
-
-    flex:
-        0 0
-        var(--ficha-alto);
 
     cursor:
         default;
@@ -1395,26 +1387,23 @@ button:active,
         none;
 }
 
+
 .cadena-fichas .ficha:last-child {
+
     animation:
-        recien-colocada
-        0.4s
-        ease-out;
+
+        recien-colocada 0.4s ease-out;
 }
 
-.cadena-fichas .mitad-arriba,
-.cadena-fichas .mitad-abajo {
+
+.cadena-fichas .mitad-arriba {
+
     width:
         50%;
 
     height:
         100%;
 
-    flex:
-        0 0 50%;
-}
-
-.cadena-fichas .mitad-arriba {
     border-bottom:
         none;
 
@@ -1422,46 +1411,42 @@ button:active,
         2px solid black;
 }
 
+
+.cadena-fichas .mitad-abajo {
+
+    width:
+        50%;
+
+    height:
+        100%;
+}
+
+
+/* ============================================================
+   DOBLES
+   ============================================================ */
+
 .cadena-fichas .ficha.doble {
+
     flex-direction:
         column;
 
     width:
         var(--ficha-ancho);
 
-    min-width:
-        var(--ficha-ancho);
-
-    max-width:
-        var(--ficha-ancho);
-
     height:
         var(--ficha-alto);
-
-    min-height:
-        var(--ficha-alto);
-
-    max-height:
-        var(--ficha-alto);
-
-    flex:
-        0 0
-        var(--ficha-ancho);
 }
 
-.cadena-fichas .ficha.doble .mitad-arriba,
-.cadena-fichas .ficha.doble .mitad-abajo {
+
+.cadena-fichas .ficha.doble .mitad-arriba {
+
     width:
         100%;
 
     height:
         50%;
 
-    flex:
-        0 0 50%;
-}
-
-.cadena-fichas .ficha.doble .mitad-arriba {
     border-right:
         none;
 
@@ -1469,7 +1454,23 @@ button:active,
         2px solid black;
 }
 
+
+.cadena-fichas .ficha.doble .mitad-abajo {
+
+    width:
+        100%;
+
+    height:
+        50%;
+}
+
+
+/* ============================================================
+   PANELES
+   ============================================================ */
+
 .panel-cristal {
+
     padding:
         10px 14px;
 
@@ -1480,12 +1481,11 @@ button:active,
         var(--cristal-bg);
 
     border:
-        1px solid
-        var(--cristal-borde);
+        1px solid var(--cristal-borde);
 
     box-shadow:
-        0 10px 26px
-        var(--cristal-sombra);
+
+        0 10px 26px var(--cristal-sombra);
 
     backdrop-filter:
         blur(10px);
@@ -1494,32 +1494,33 @@ button:active,
         blur(10px);
 
     transition:
-        border-color
-        0.25s ease,
 
-        box-shadow
-        0.25s ease;
+        border-color 0.25s ease,
+
+        box-shadow 0.25s ease;
 }
 
+
 .panel-cristal:hover {
+
     border-color:
         var(--brillo-oro-suave);
 
     box-shadow:
-        0 10px 26px
-        var(--cristal-sombra),
 
-        0 0 18px
-        rgba(
-            224,
-            179,
-            77,
-            0.25
-        );
+        0 10px 26px var(--cristal-sombra),
+
+        0 0 18px rgba(224, 179, 77, 0.25);
 }
+
+
+/* ============================================================
+   TÍTULOS DE LAS ZONAS
+   ============================================================ */
 
 .zona-juego h2,
 .zona-lateral h2 {
+
     font-size:
         0.68rem;
 
@@ -1539,7 +1540,26 @@ button:active,
         4px;
 }
 
+
+.maquina h2,
+.zona-jugador h2 {
+
+    color:
+        #ffffff !important;
+
+    text-shadow:
+
+        0 1px 3px rgba(0, 0, 0, 0.95),
+        0 0 8px rgba(255, 255, 255, 0.45);
+}
+
+
+/* ============================================================
+   INFORMACIÓN
+   ============================================================ */
+
 .informacion-partida p {
+
     display:
         flex;
 
@@ -1556,7 +1576,9 @@ button:active,
         var(--texto-tenue);
 }
 
+
 .informacion-partida span {
+
     color:
         var(--texto-claro);
 
@@ -1564,7 +1586,13 @@ button:active,
         700;
 }
 
+
+/* ============================================================
+   LEYENDA
+   ============================================================ */
+
 .lista-estados {
+
     list-style:
         none;
 
@@ -1587,7 +1615,9 @@ button:active,
         0.75rem;
 }
 
+
 .lista-estados li {
+
     display:
         flex;
 
@@ -1598,7 +1628,9 @@ button:active,
         1.25;
 }
 
+
 .separador-reglas {
+
     margin-top:
         5px;
 
@@ -1606,11 +1638,13 @@ button:active,
         8px;
 
     border-top:
-        1px solid
-        var(--cristal-borde);
+
+        1px solid var(--cristal-borde);
 }
 
+
 .estado-punto {
+
     display:
         inline-block;
 
@@ -1630,36 +1664,46 @@ button:active,
         0;
 }
 
+
 .estado-jugable {
+
     background:
         var(--estado-jugable);
 
     box-shadow:
-        0 0 8px
-        var(--estado-jugable);
+
+        0 0 8px var(--estado-jugable);
 
     animation:
-        pulso-punto
-        3.2s
-        ease-in-out
-        infinite;
+
+        pulso-punto 3.2s ease-in-out infinite;
 }
 
+
 .estado-seleccionada {
+
     background:
         var(--estado-seleccionada);
 
     box-shadow:
-        0 0 8px
-        var(--estado-seleccionada);
+
+        0 0 8px var(--estado-seleccionada);
 }
 
+
 .estado-no-jugable {
+
     background:
         var(--estado-no-jugable);
 }
 
+
+/* ============================================================
+   MENSAJES
+   ============================================================ */
+
 .zona-mensajes {
+
     flex:
         1;
 
@@ -1670,7 +1714,9 @@ button:active,
         hidden;
 }
 
+
 .zona-mensajes p {
+
     margin:
         0;
 
@@ -1684,31 +1730,29 @@ button:active,
         1.35;
 }
 
-.fichas-jugador .ficha.jugable {
-    box-shadow:
-        0 0 0 2px
-        #eabf45,
 
-        0 0 10px
-        rgba(
-            234,
-            191,
-            69,
-            0.75
-        );
+/* ============================================================
+   ESTADOS DE LAS FICHAS
+   ============================================================ */
+
+.fichas-jugador .ficha.jugable {
+
+    box-shadow:
+
+        0 0 0 2px #eabf45,
+
+        0 0 10px rgba(234, 191, 69, 0.75);
 
     animation:
-        aparecer-ficha
-        0.25s
-        ease-out,
 
-        pulso-jugable
-        3.2s
-        ease-in-out
-        infinite;
+        aparecer-ficha 0.25s ease-out,
+
+        pulso-jugable 3.2s ease-in-out infinite;
 }
 
+
 .fichas-jugador .ficha.no-jugable {
+
     opacity:
         0.75;
 
@@ -1716,7 +1760,9 @@ button:active,
         grayscale(25%);
 }
 
+
 .fichas-jugador .ficha.seleccionada {
+
     opacity:
         1;
 
@@ -1724,23 +1770,22 @@ button:active,
         none;
 
     outline:
-        3px solid
-        #168ad1;
+        3px solid #168ad1;
 
     transform:
         translateY(-5px);
 
     box-shadow:
-        0 0 10px
-        rgba(
-            22,
+
+        0 0 10px rgba(22,
             138,
             209,
-            0.85
-        );
+            0.85);
 }
 
+
 .controles button:disabled {
+
     opacity:
         0.45;
 
@@ -1748,7 +1793,13 @@ button:active,
         not-allowed;
 }
 
+
+/* ============================================================
+   RESULTADO FINAL
+   ============================================================ */
+
 .resultado-partida {
+
     display:
         none;
 
@@ -1762,16 +1813,12 @@ button:active,
         50%;
 
     transform:
-        translate(
-            -50%,
-            -50%
-        );
+        translate(-50%,
+            -50%);
 
     width:
-        min(
-            420px,
-            85vw
-        );
+        min(420px,
+            85vw);
 
     padding:
         25px;
@@ -1780,33 +1827,20 @@ button:active,
         16px;
 
     background:
-        linear-gradient(
-            160deg,
+
+        linear-gradient(160deg,
             var(--madera-brillo),
             var(--madera-1) 45%,
-            var(--madera-2)
-        );
+            var(--madera-2));
 
     border:
-        2px solid
-        var(--oro);
+        2px solid var(--oro);
 
     box-shadow:
-        0 20px 50px
-        rgba(
-            0,
-            0,
-            0,
-            0.7
-        ),
 
-        0 0 0 9999px
-        rgba(
-            0,
-            0,
-            0,
-            0.55
-        );
+        0 20px 50px rgba(0, 0, 0, 0.7),
+
+        0 0 0 9999px rgba(0, 0, 0, 0.55);
 
     color:
         var(--texto-claro);
@@ -1818,17 +1852,20 @@ button:active,
         1000;
 }
 
+
 .resultado-partida.visible {
+
     display:
         block;
 
     animation:
-        entrada-resultado
-        0.35s
-        ease-out;
+
+        entrada-resultado 0.35s ease-out;
 }
 
+
 .resultado-partida h2 {
+
     color:
         var(--oro-suave);
 
@@ -1842,7 +1879,9 @@ button:active,
         0.85rem;
 }
 
+
 .resultado-partida h3 {
+
     margin:
         15px 0 20px;
 
@@ -1850,17 +1889,31 @@ button:active,
         1.4rem;
 }
 
+
 .resultado-partida p {
+
     color:
         var(--texto-tenue);
 }
 
+
+/* ============================================================
+   ELEMENTOS OCULTOS
+   ============================================================ */
+
 .check-oculto {
+
     display:
         none;
 }
 
+
+/* ============================================================
+   PANTALLA DE INICIO
+   ============================================================ */
+
 .pantalla-inicio {
+
     display:
         none;
 
@@ -1883,31 +1936,19 @@ button:active,
         center;
 
     padding:
-        30px 20px;
+        clamp(16px, 3.5vh, 30px) 20px;
 
     background-color:
         #4a2d17;
 
     background-image:
-        linear-gradient(
-            180deg,
-            rgba(
-                28,
-                20,
-                15,
-                0.10
-            ),
-            rgba(
-                28,
-                20,
-                15,
-                0.20
-            )
-        ),
 
-        url(
-            "inicio nuevo/inicioIn.png"
-        );
+        linear-gradient(180deg,
+            rgba(28, 20, 15, 0.10),
+            rgba(28, 20, 15, 0.20)),
+
+        url("inicio nuevo/inicioIn.png");
+
 
     background-position:
         center;
@@ -1918,17 +1959,30 @@ button:active,
     background-repeat:
         no-repeat;
 
-    overflow:
+    overflow-y:
+        auto;
+
+    overflow-x:
         hidden;
+
+    scrollbar-width:
+        none;
 }
 
-#check-inicio:checked
-~ .pantalla-inicio {
+
+#check-inicio:checked~.pantalla-inicio {
+
     display:
         flex;
 }
 
+
+/* ============================================================
+   DESTELLOS DEL INICIO
+   ============================================================ */
+
 .destello-inicio {
+
     position:
         absolute;
 
@@ -1948,21 +2002,10 @@ button:active,
         translateX(-50%);
 
     background:
-        repeating-conic-gradient(
-            from 0deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.20
-            )
-            0deg
-            4deg,
 
-            transparent
-            4deg
-            13deg
-        );
+        repeating-conic-gradient(from 0deg,
+            rgba(255, 255, 255, 0.20) 0deg 4deg,
+            transparent 4deg 13deg);
 
     opacity:
         0.22;
@@ -1974,13 +2017,13 @@ button:active,
         none;
 
     animation:
-        girar-salida
-        18s
-        linear
-        infinite;
+
+        girar-salida 18s linear infinite;
 }
 
+
 .flash-inicio {
+
     position:
         absolute;
 
@@ -1997,40 +2040,12 @@ button:active,
         900px;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(
-                255,
-                255,
-                255,
-                0.95
-            )
-            0%,
 
-            rgba(
-                255,
-                226,
-                150,
-                0.75
-            )
-            30%,
-
-            rgba(
-                255,
-                187,
-                130,
-                0.25
-            )
-            55%,
-
-            rgba(
-                255,
-                187,
-                130,
-                0
-            )
-            72%
-        );
+        radial-gradient(circle,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 226, 150, 0.75) 30%,
+            rgba(255, 187, 130, 0.25) 55%,
+            rgba(255, 187, 130, 0) 72%);
 
     border-radius:
         50%;
@@ -2042,62 +2057,56 @@ button:active,
         0;
 
     transform:
-        translate(
-            -50%,
-            -50%
-        )
-        scale(0.1);
+        translate(-50%, -50%) scale(0.1);
 
     opacity:
         0;
 
     animation:
-        destello-explosion
-        1.4s
-        ease-out
-        both;
+
+        destello-explosion 1.4s ease-out both;
 }
+
 
 @keyframes destello-explosion {
 
     0% {
+
         transform:
-            translate(
-                -50%,
-                -50%
-            )
-            scale(0.1);
+            translate(-50%, -50%) scale(0.1);
 
         opacity:
             0;
     }
 
+
     18% {
+
         transform:
-            translate(
-                -50%,
-                -50%
-            )
-            scale(1);
+            translate(-50%, -50%) scale(1);
 
         opacity:
             1;
     }
 
+
     100% {
+
         transform:
-            translate(
-                -50%,
-                -50%
-            )
-            scale(1.9);
+            translate(-50%, -50%) scale(1.9);
 
         opacity:
             0;
     }
 }
 
+
+/* ============================================================
+   LOGO DE INICIO
+   ============================================================ */
+
 .cabecera-inicio {
+
     position:
         relative;
 
@@ -2108,43 +2117,38 @@ button:active,
         center;
 }
 
+
 .logo-inicio {
+
     display:
         block;
 
     width:
-        min(
-            560px,
-            88vw
-        );
+        min(560px,
+            86vw);
+
+    max-height:
+        clamp(100px, 26vh, 260px);
 
     height:
         auto;
 
+    object-fit:
+        contain;
+
+    margin:
+        0 auto;
+
     filter:
-        drop-shadow(
-            0 0 14px
-            rgba(
-                255,
-                255,
-                255,
-                0.65
-            )
-        )
-        drop-shadow(
-            0 8px 14px
-            rgba(
-                0,
-                0,
-                0,
-                0.45
-            )
-        );
+
+        drop-shadow(0 0 14px rgba(255, 255, 255, 0.65)) drop-shadow(0 8px 14px rgba(0, 0, 0, 0.45));
 }
 
+
 .subtitulo-inicio {
+
     margin:
-        10px 0 0;
+        clamp(6px, 1.2vh, 12px) 0 0;
 
     font-family:
         "Fredoka",
@@ -2154,11 +2158,9 @@ button:active,
         700;
 
     font-size:
-        clamp(
-            0.8rem,
+        clamp(0.75rem,
             1.6vw,
-            1rem
-        );
+            1rem);
 
     letter-spacing:
         0.06em;
@@ -2170,24 +2172,19 @@ button:active,
         #fff6e6;
 
     text-shadow:
-        0 0 8px
-        rgba(
-            62,
-            142,
-            247,
-            0.9
-        ),
 
-        0 2px 4px
-        rgba(
-            0,
-            0,
-            0,
-            0.6
-        );
+        0 0 8px rgba(62, 142, 247, 0.9),
+
+        0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
+
+/* ============================================================
+   MENÚ DE INICIO
+   ============================================================ */
+
 .menu-botones {
+
     position:
         relative;
 
@@ -2201,19 +2198,19 @@ button:active,
         column;
 
     gap:
-        16px;
+        clamp(8px, 1.8vh, 16px);
 
     width:
-        min(
-            320px,
-            86vw
-        );
+        min(320px,
+            86vw);
 
     margin-top:
-        35px;
+        clamp(16px, 3vh, 35px);
 }
 
+
 .boton-menu {
+
     display:
         flex;
 
@@ -2224,7 +2221,10 @@ button:active,
         center;
 
     padding:
-        16px 22px;
+        clamp(10px, 1.8vh, 16px) clamp(16px, 3vw, 22px);
+
+    min-height:
+        clamp(42px, 5.5vh, 56px);
 
     font-family:
         "Fredoka",
@@ -2234,7 +2234,7 @@ button:active,
         700;
 
     font-size:
-        1.2rem;
+        clamp(0.95rem, 2vh, 1.2rem);
 
     text-transform:
         uppercase;
@@ -2243,44 +2243,20 @@ button:active,
         #fff6d8;
 
     border:
-        3px solid
-        #2a1a10;
+        3px solid #2a1a10;
 
     border-radius:
         14px;
 
     box-shadow:
-        inset 0 2px 4px
-        rgba(
-            255,
-            255,
-            255,
-            0.55
-        ),
 
-        inset 0 -10px 16px
-        rgba(
-            0,
-            0,
-            0,
-            0.25
-        ),
+        inset 0 2px 4px rgba(255, 255, 255, 0.55),
 
-        0 6px 0
-        rgba(
-            0,
-            0,
-            0,
-            0.35
-        ),
+        inset 0 -10px 16px rgba(0, 0, 0, 0.25),
 
-        0 10px 14px
-        rgba(
-            0,
-            0,
-            0,
-            0.35
-        );
+        0 6px 0 rgba(0, 0, 0, 0.35),
+
+        0 10px 14px rgba(0, 0, 0, 0.35);
 
     cursor:
         pointer;
@@ -2289,7 +2265,9 @@ button:active,
         0.15s;
 }
 
+
 .boton-menu:hover {
+
     transform:
         translateY(-2px);
 
@@ -2297,67 +2275,48 @@ button:active,
         brightness(1.08);
 }
 
+
 .boton-jugar {
+
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             #ff6b5a,
             #e2231a 55%,
-            #b3140e
-        );
+            #b3140e);
 }
+
 
 .boton-reglas {
+
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             #4fa3ff,
             #1a63d6 55%,
-            #0d3f96
-        );
+            #0d3f96);
 }
+
 
 .boton-salir {
+
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             #6fd97f,
             #2fa84a 55%,
-            #1c7a34
-        );
+            #1c7a34);
 }
 
-.creditos-inicio {
-    position:
-        relative;
 
-    z-index:
-        2;
 
-    margin-top:
-        26px;
 
-    font-family:
-        "Fredoka",
-        sans-serif;
-
-    font-weight:
-        700;
-
-    color:
-        white;
-
-    text-shadow:
-        0 2px 6px
-        rgba(
-            0,
-            0,
-            0,
-            0.7
-        );
-}
+/* ============================================================
+   PANTALLA DE SALIDA
+   ============================================================ */
 
 .pantalla-salida {
+
     display:
         none;
 
@@ -2380,58 +2339,70 @@ button:active,
         center;
 
     gap:
-        14px;
+        clamp(8px, 2vh, 14px);
 
     text-align:
         center;
 
-    overflow:
+    overflow-y:
+        auto;
+
+    overflow-x:
         hidden;
 
+    padding:
+        clamp(16px, 3.5vh, 30px) 20px;
+
     background:
-        linear-gradient(
-            -45deg,
+
+        linear-gradient(-45deg,
             #ff6b5a,
             #ffd23f,
             #4fa3ff,
-            #6fd97f
-        );
+            #6fd97f);
 
     background-size:
         600% 1000%;
 
     animation:
-        fondo-fiesta
-        6s
-        ease
-        infinite;
+
+        fondo-fiesta 6s ease infinite;
 }
 
-#check-salida:checked
-~ .pantalla-salida {
+
+#check-salida:checked~.pantalla-salida {
+
     display:
         flex;
 }
 
+
 @keyframes fondo-fiesta {
 
     0% {
+
         background-position:
             0% 50%;
     }
 
+
     50% {
+
         background-position:
             100% 50%;
     }
 
+
     100% {
+
         background-position:
             0% 50%;
     }
 }
 
+
 .destello-salida {
+
     position:
         absolute;
 
@@ -2451,26 +2422,10 @@ button:active,
         translateX(-50%);
 
     background:
-        repeating-conic-gradient(
-            from 0deg,
-            rgba(
-                255,
-                255,
-                255,
-                0.55
-            )
-            0deg
-            4deg,
 
-            rgba(
-                255,
-                255,
-                255,
-                0
-            )
-            4deg
-            13deg
-        );
+        repeating-conic-gradient(from 0deg,
+            rgba(255, 255, 255, 0.55) 0deg 4deg,
+            rgba(255, 255, 255, 0) 4deg 13deg);
 
     opacity:
         0.5;
@@ -2485,28 +2440,30 @@ button:active,
         0;
 
     animation:
-        girar-salida
-        18s
-        linear
-        infinite;
+
+        girar-salida 18s linear infinite;
 }
+
 
 @keyframes girar-salida {
 
     from {
+
         transform:
-            translateX(-50%)
-            rotate(0deg);
+            translateX(-50%) rotate(0deg);
     }
 
+
     to {
+
         transform:
-            translateX(-50%)
-            rotate(360deg);
+            translateX(-50%) rotate(360deg);
     }
 }
 
+
 .logo-salida-inline {
+
     position:
         relative;
 
@@ -2520,24 +2477,19 @@ button:active,
         middle;
 
     filter:
-        drop-shadow(
-            0 3px 6px
-            rgba(
-                0,
-                0,
-                0,
-                0.4
-            )
-        );
+
+        drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
 }
 
+
 .mensaje-salida {
+
     font-family:
         "Fredoka",
         sans-serif;
 
     font-size:
-        2.2rem;
+        clamp(1.3rem, 4.5vw, 2.2rem);
 
     font-weight:
         700;
@@ -2546,16 +2498,16 @@ button:active,
         white;
 
     text-shadow:
-        0 4px 10px
-        rgba(
-            0,
-            0,
-            0,
-            0.5
-        );
+
+        0 4px 10px rgba(0, 0, 0, 0.5);
+
+    padding:
+        0 14px;
 }
 
+
 .boton-volver-salida {
+
     position:
         relative;
 
@@ -2563,13 +2515,17 @@ button:active,
         1;
 
     width:
-        min(
-            280px,
-            80vw
-        );
+        min(280px,
+            80vw);
 }
 
+
+/* ============================================================
+   PANEL DE REGLAS
+   ============================================================ */
+
 .panel-reglas {
+
     display:
         none;
 
@@ -2589,29 +2545,29 @@ button:active,
         center;
 
     padding:
-        20px;
+        clamp(10px, 2vh, 20px);
 
     background:
-        rgba(
+
+        rgba(0,
             0,
             0,
-            0,
-            0.65
-        );
+            0.65);
 }
 
-#check-reglas:checked
-~ .panel-reglas {
+
+#check-reglas:checked~.panel-reglas {
+
     display:
         flex;
 }
 
+
 .panel-reglas-contenido {
+
     width:
-        min(
-            500px,
-            90vw
-        );
+        min(500px,
+            92vw);
 
     max-height:
         85vh;
@@ -2620,7 +2576,7 @@ button:active,
         auto;
 
     padding:
-        24px 28px;
+        clamp(16px, 2.5vh, 24px) clamp(16px, 3vw, 28px);
 
     border-radius:
         16px;
@@ -2629,23 +2585,19 @@ button:active,
         white;
 
     border:
-        2px solid
-        var(--oro);
+        2px solid var(--oro);
 
     box-shadow:
-        0 20px 50px
-        rgba(
-            0,
-            0,
-            0,
-            0.7
-        );
+
+        0 20px 50px rgba(0, 0, 0, 0.7);
 
     color:
         black;
 }
 
+
 .panel-reglas-contenido h2 {
+
     margin-bottom:
         14px;
 
@@ -2653,7 +2605,9 @@ button:active,
         center;
 }
 
+
 .panel-reglas-contenido ul {
+
     padding-left:
         20px;
 
@@ -2667,143 +2621,287 @@ button:active,
         10px;
 
     font-size:
-        0.85rem;
+        clamp(0.78rem, 1.4vh, 0.85rem);
 
     line-height:
         1.4;
 }
 
+
 .boton-cerrar-reglas {
+
     width:
         100%;
 
     background:
-        linear-gradient(
-            180deg,
+
+        linear-gradient(180deg,
             var(--oro-suave),
-            var(--oro)
-        );
+            var(--oro));
 
     color:
         #2a2118;
 }
 
-@media (
-    prefers-reduced-motion:
-    reduce
-) {
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
     *::after {
+
         animation-duration:
-            0.001ms
-            !important;
+            0.001ms !important;
 
         animation-iteration-count:
-            1
-            !important;
+            1 !important;
 
         transition-duration:
-            0.001ms
-            !important;
+            0.001ms !important;
     }
 }
 
-@media (
-    max-width:
-    1024px
-) {
 
-    body {
-        padding:
-            6px;
+/* ============================================================
+   RESPONSIVE: MÓVIL EN HORIZONTAL (LANDSCAPE BAJA ALTURA)
+   ============================================================ */
+
+@media (max-height: 550px) and (orientation: landscape) {
+
+    :root {
+
+        --ficha-ancho:
+            clamp(20px, 5vh, 32px);
+
+        --ficha-alto:
+            clamp(40px, 10vh, 64px);
     }
 
     .marco-madera {
-        min-height:
-            calc(
-                100vh - 12px
-            );
-
-        min-height:
-            calc(
-                100dvh - 12px
-            );
 
         padding:
-            8px;
+            4px;
 
         border-radius:
-            16px;
+            10px;
     }
 
     main {
+
         grid-template-columns:
-            minmax(
-                0,
-                1fr
-            )
-            165px;
+            minmax(0, 1fr) 142px;
 
         gap:
-            6px;
+            5px;
+    }
+
+    .maquina {
+
+        padding:
+            1px 6px;
+    }
+
+    .maquina h2 {
+
+        font-size:
+            0.68rem;
+
+        margin-bottom:
+            1px;
+    }
+
+    .zona-central {
+
+        gap:
+            5px;
     }
 
     .zona-fichas {
-        flex-basis:
-            120px;
 
-        min-width:
-            120px;
+        flex:
+            0 0 92px;
+
+        gap:
+            4px;
     }
 
-    .panel-cristal {
+    .zona-jugador {
+
         padding:
-            8px 10px;
+            3px 6px;
+    }
+
+    .zona-jugador h2 {
+
+        font-size:
+            0.68rem;
+
+        margin-bottom:
+            2px;
+    }
+
+    .fichas-jugador {
+
+        gap:
+            3px;
+    }
+
+    .zona-pozo {
+
+        padding:
+            3px 6px;
+    }
+
+    .fichas-pozo {
+
+        width:
+            88px;
+
+        height:
+            72px;
+
+        transform:
+            scale(0.62);
+
+        transform-origin:
+            top center;
+
+        margin-top:
+            0;
+    }
+
+    .tablero-controles {
+
+        gap:
+            4px;
+    }
+
+    .tablero-central {
+
+        border-width:
+            4px;
+
+        border-radius:
+            10px;
+
+        padding:
+            3px 6px;
+    }
+
+    .cadena-fichas {
+
+        gap:
+            3px;
+
+        padding:
+            2px;
     }
 
     .controles {
+
         padding:
-            5px 8px;
+            3px 6px;
     }
 
-    button,
+    .controles-botones {
+
+        gap:
+            3px;
+    }
+
+    .controles-botones button,
     .controles-botones label {
+
+        min-height:
+            26px;
+
         padding:
-            6px 8px;
+            2px 5px;
+
+        font-size:
+            0.68rem;
+
+        border-radius:
+            6px;
+    }
+
+    .boton-icono {
 
         font-size:
             0.72rem;
     }
-}
 
-@media (
-    max-width:
-    768px
-) {
+    .zona-lateral {
 
-    body {
-        padding:
+        gap:
             4px;
+    }
+
+    .panel-cristal {
+
+        padding:
+            4px 8px;
+
+        border-radius:
+            8px;
+    }
+
+    .informacion-partida p {
+
+        font-size:
+            0.68rem;
+
+        margin:
+            0 0 2px;
+    }
+
+    .leyenda-estados {
 
         display:
-            block;
+            none;
+    }
+
+    .zona-mensajes {
+
+        flex:
+            1;
+
+        min-height:
+            0;
+    }
+
+    .zona-mensajes p {
+
+        font-size:
+            0.68rem;
+
+        line-height:
+            1.25;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE: MÓVIL Y TABLET EN VERTICAL (PORTRAIT)
+   ============================================================ */
+
+@media (max-width: 768px) and (orientation: portrait),
+(max-width: 580px) {
+
+    :root {
+
+        --ficha-ancho:
+            clamp(23px, min(4.3vh, 5.9vw), 41px);
+
+        --ficha-alto:
+            clamp(46px, min(8.6vh, 11.8vw), 82px);
     }
 
     .marco-madera {
-        width:
-            100%;
-
-        min-height:
-            calc(
-                100vh - 8px
-            );
-
-        min-height:
-            calc(
-                100dvh - 8px
-            );
 
         padding:
             6px;
@@ -2813,16 +2911,28 @@ button:active,
     }
 
     .cabecera {
-        padding:
-            6px 10px;
+
+        height:
+            44px;
+
+        margin-top:
+            4px;
+
+        margin-bottom:
+            0;
     }
 
-    .cabecera h1 {
-        font-size:
-            1rem;
+    .logo-titulo {
+
+        height:
+            52px;
+
+        transform:
+            none;
     }
 
     main {
+
         display:
             flex;
 
@@ -2830,184 +2940,397 @@ button:active,
             column;
 
         gap:
-            6px;
+            5px;
+
+        overflow:
+            hidden;
     }
 
     .zona-juego {
-        width:
-            100%;
-    }
 
-    .zona-central {
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
         flex-direction:
             column;
 
         gap:
-            6px;
+            4px;
     }
 
-    .zona-fichas {
-        flex:
-            none;
-
-        width:
-            100%;
-
-        min-width:
-            0;
-    }
-
-    .zona-jugador {
-        width:
-            100%;
-
-        min-height:
-            120px;
-    }
-
-    .zona-pozo {
-        width:
-            100%;
-    }
-
-    .tablero-controles {
-        width:
-            100%;
-    }
-
-    .tablero-central {
-        min-height:
-            300px;
+    .maquina {
 
         padding:
-            6px;
-
-        border-width:
-            5px;
+            2px 4px;
     }
 
-    .cadena-fichas {
-        min-height:
-            240px;
+    .maquina h2 {
+
+        font-size:
+            0.72rem;
+
+        margin-bottom:
+            2px;
+    }
+
+    .fichas-maquina {
 
         gap:
             3px;
     }
 
-    .fichas-maquina {
-        justify-content:
-            flex-start;
-    }
+    .zona-central {
 
-    .fichas-jugador {
-        overflow:
-            visible;
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
 
         gap:
-            4px;
+            5px;
+    }
+
+    .tablero-controles {
+
+        order:
+            1;
+
+        flex:
+            1;
+
+        min-height:
+            0;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            5px;
+    }
+
+    .tablero-central {
+
+        flex:
+            1;
+
+        min-height:
+            130px;
+
+        border-width:
+            5px;
+
+        border-radius:
+            12px;
+
+        padding:
+            4px 6px;
     }
 
     .controles {
+
+        order:
+            2;
+
         padding:
-            5px;
+            4px 6px;
     }
 
     .controles-botones {
-        display:
-            grid;
-
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(
-                    0,
-                    1fr
-                )
-            );
 
         gap:
-            5px;
+            4px;
     }
 
     .controles-botones button,
     .controles-botones label {
-        width:
-            100%;
 
         min-height:
-            38px;
+            34px;
+
+        padding:
+            3px 6px;
+
+        font-size:
+            0.72rem;
     }
 
-    .zona-lateral {
-        width:
-            100%;
+    .zona-fichas {
+
+        order:
+            2;
+
+        flex:
+            0 0 auto;
 
         display:
-            grid;
+            flex;
 
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(
-                    0,
-                    1fr
-                )
-            );
+        flex-direction:
+            row;
 
         gap:
             6px;
+
+        align-items:
+            stretch;
     }
 
-    .zona-mensajes {
-        grid-column:
-            1 / -1;
-    }
+    .zona-pozo {
 
-    .resultado-partida {
+        flex:
+            0 0 auto;
+
         width:
-            90vw;
+            88px;
 
-        max-width:
-            420px;
+        margin:
+            0;
 
         padding:
-            18px;
+            4px 6px;
+
+        justify-content:
+            center;
     }
-}
 
-@media (
-    max-width:
-    480px
-) {
+    .zona-pozo h2 {
 
-    .marco-madera {
+        font-size:
+            0.68rem;
+
+        margin-bottom:
+            2px;
+    }
+
+    .fichas-pozo {
+
+        width:
+            80px;
+
+        height:
+            62px;
+
+        transform:
+            scale(0.55);
+
+        transform-origin:
+            center center;
+
+        margin-top:
+            0;
+    }
+
+    .zona-jugador {
+
+        flex:
+            1;
+
+        min-width:
+            0;
+
+        margin-top:
+            0;
+
         padding:
-            4px;
+            4px 8px;
+
+        justify-content:
+            center;
     }
 
-    .tablero-central {
-        min-height:
-            280px;
+    .zona-jugador h2 {
+
+        font-size:
+            0.68rem;
+
+        margin-bottom:
+            2px;
     }
 
-    .cadena-fichas {
-        min-height:
-            220px;
+    .fichas-jugador {
+
+        gap:
+            3px;
+
+        max-height:
+            85px;
+
+        overflow-y:
+            auto;
     }
 
     .zona-lateral {
-        grid-template-columns:
-            1fr;
+
+        order:
+            -1;
+
+        flex:
+            0 0 auto;
+
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        gap:
+            4px;
+
+        margin-top:
+            10px;
+
+        margin-bottom:
+            2px;
     }
 
-    button,
-    .controles-botones label {
-        font-size:
-            0.7rem;
-    }
+    .informacion-partida {
 
-    .panel-cristal {
         padding:
-            7px 8px;
+            4px 8px;
+
+        border-radius:
+            8px;
+
+        display:
+            flex;
+
+        flex-direction:
+            row;
+
+        flex-wrap:
+            wrap;
+
+        justify-content:
+            space-around;
+
+        align-items:
+            center;
+
+        gap:
+            4px 8px;
+    }
+
+    .informacion-partida h2 {
+
+        display:
+            none;
+    }
+
+    .informacion-partida p {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            4px;
+
+        margin:
+            0;
+
+        font-size:
+            0.72rem;
+    }
+
+    .zona-mensajes {
+
+        padding:
+            4px 8px;
+
+        border-radius:
+            8px;
+
+        min-height:
+            26px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        text-align:
+            center;
+    }
+
+    .zona-mensajes h2 {
+
+        display:
+            none;
+    }
+
+    .zona-mensajes p {
+
+        font-size:
+            0.72rem;
+
+        line-height:
+            1.25;
+
+        margin:
+            0;
+    }
+
+    .leyenda-estados {
+
+        display:
+            none;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVE: PANTALLAS EXTRA PEQUEÑAS (MÓVILES COMPACTOS)
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+    :root {
+
+        --ficha-ancho:
+            clamp(19px, 5.4vw, 27px);
+
+        --ficha-alto:
+            clamp(38px, 10.8vw, 54px);
+    }
+
+    .controles-botones button,
+    .controles-botones label {
+
+        min-height:
+            30px;
+
+        font-size:
+            0.64rem;
+
+        padding:
+            2px 4px;
+    }
+
+    .boton-icono {
+
+        font-size:
+            0.68rem;
     }
 }
