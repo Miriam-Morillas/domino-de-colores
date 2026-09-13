@@ -1,340 +1,235 @@
 const botonIzquierda =
-    document.querySelector(
-        "#btn-izquierda"
-    );
+    document.querySelector("#btn-izquierda");
 
-botonIzquierda.addEventListener(
-    "click",
-    function () {
+botonIzquierda.addEventListener("click", function () {
 
-        if (
-            fichaSeleccionada ===
-            null
-        ) {
+    if (fichaSeleccionada === null) {
+        mostrarMensaje(
+            "Selecciona una ficha antes de elegir un lado."
+        );
+        return;
+    }
 
-            mostrarMensaje(
-                "Selecciona una ficha antes de elegir un lado."
-            );
+    const jugadaCorrecta =
+        jugarFichaJugador(
+            fichaSeleccionada,
+            "izquierda"
+        );
 
+    if (jugadaCorrecta) {
+        fichaSeleccionada = null;
+
+        actualizarInterfazVisual();
+
+        if (partidaTerminada) {
+            mostrarMensajeResultado();
             return;
         }
 
-        const jugadaCorrecta =
-            jugarFichaJugador(
-                fichaSeleccionada,
-                "izquierda"
-            );
-
-        if (jugadaCorrecta) {
-
-            fichaSeleccionada =
-                null;
-
-            actualizarInterfazVisual();
-
-            if (
-                partidaTerminada
-            ) {
-
-                mostrarMensajeResultado();
-
-                return;
-            }
-
-            if (
-                turno ===
-                "jugador"
-            ) {
-
-                mostrarMensajeEfecto();
-
-                activarControlesJugador();
-
-                return;
-            }
-
-            if (
-                turno ===
-                "maquina"
-            ) {
-
-                ejecutarTurnoMaquinaVisual();
-            }
-
-        } else {
-
-            mostrarMensaje(
-                "Esa ficha no encaja en el extremo izquierdo."
-            );
+        if (turno === "jugador") {
+            mostrarMensajeEfecto();
+            activarControlesJugador();
+            return;
         }
+
+        if (turno === "maquina") {
+            ejecutarTurnoMaquinaVisual();
+        }
+
+    } else {
+        mostrarMensaje(
+            "Esa ficha no encaja en el extremo izquierdo."
+        );
     }
-);
+});
+
 
 const botonDerecha =
-    document.querySelector(
-        "#btn-derecha"
-    );
+    document.querySelector("#btn-derecha");
 
-botonDerecha.addEventListener(
-    "click",
-    function () {
+botonDerecha.addEventListener("click", function () {
 
-        if (
-            fichaSeleccionada ===
-            null
-        ) {
+    if (fichaSeleccionada === null) {
+        mostrarMensaje(
+            "Selecciona una ficha antes de elegir un lado."
+        );
+        return;
+    }
 
-            mostrarMensaje(
-                "Selecciona una ficha antes de elegir un lado."
-            );
+    const jugadaCorrecta =
+        jugarFichaJugador(
+            fichaSeleccionada,
+            "derecha"
+        );
 
+    if (jugadaCorrecta) {
+        fichaSeleccionada = null;
+
+        actualizarInterfazVisual();
+
+        if (partidaTerminada) {
+            mostrarMensajeResultado();
             return;
         }
 
-        const jugadaCorrecta =
-            jugarFichaJugador(
-                fichaSeleccionada,
-                "derecha"
-            );
-
-        if (jugadaCorrecta) {
-
-            fichaSeleccionada =
-                null;
-
-            actualizarInterfazVisual();
-
-            if (
-                partidaTerminada
-            ) {
-
-                mostrarMensajeResultado();
-
-                return;
-            }
-
-            if (
-                turno ===
-                "jugador"
-            ) {
-
-                mostrarMensajeEfecto();
-
-                activarControlesJugador();
-
-                return;
-            }
-
-            if (
-                turno ===
-                "maquina"
-            ) {
-
-                ejecutarTurnoMaquinaVisual();
-            }
-
-        } else {
-
-            mostrarMensaje(
-                "Esa ficha no encaja en el extremo derecho."
-            );
+        if (turno === "jugador") {
+            mostrarMensajeEfecto();
+            activarControlesJugador();
+            return;
         }
+
+        if (turno === "maquina") {
+            ejecutarTurnoMaquinaVisual();
+        }
+
+    } else {
+        mostrarMensaje(
+            "Esa ficha no encaja en el extremo derecho."
+        );
     }
-);
+});
+
 
 const botonRobar =
-    document.querySelector(
-        "#btn-robar"
-    );
+    document.querySelector("#btn-robar");
 
-botonRobar.addEventListener(
-    "click",
-    function () {
+botonRobar.addEventListener("click", function () {
 
-        const roboCorrecto =
-            robarFichaJugador();
+    const roboCorrecto =
+        robarFichaJugador();
 
-        if (roboCorrecto) {
+    if (roboCorrecto) {
+        fichaSeleccionada = null;
 
-            fichaSeleccionada =
-                null;
+        actualizarInterfazVisual();
 
-            actualizarInterfazVisual();
-
-            const jugablesJugador =
-                obtenerFichasJugables(
-                    fichasJugador
-                );
-
-            if (
-                jugablesJugador.length >
-                0
-            ) {
-
-                mostrarMensaje(
-                    "Has robado una ficha jugable. Selecciónala y juega."
-                );
-
-            } else if (
-                fichasPozo.length >
-                0
-            ) {
-
-                mostrarMensaje(
-                    "La ficha robada no sirve. Debes volver a robar."
-                );
-
-            } else {
-
-                mostrarMensaje(
-                    "La ficha robada no sirve y el pozo está vacío. Debes pasar."
-                );
-            }
-
-        } else {
-            if (
-                turno !==
-                "jugador"
-            ) {
-
-         mostrarMensaje(
-         "Espera a que termine el turno de la máquina."
-         );
-
-               } else if (
-                obtenerFichasJugables(
-                    fichasJugador
-                ).length > 0
-            ) {
-
-                mostrarMensaje(
-                    "Tienes una ficha jugable. No puedes robar."
-                );
-
-            } else if (
-                fichasPozo.length ===
-                0
-            ) {
-
-                mostrarMensaje(
-                    "El pozo está vacío. Debes pasar el turno."
-                );
-
-            } else {
-
-                mostrarMensaje(
-                    "No puedes robar en este momento."
-                );
-            }
-        }
-    }
-);
-
-const botonPasar =
-    document.querySelector(
-        "#btn-pasar"
-    );
-
-botonPasar.addEventListener(
-    "click",
-    function () {
-
-        const paseCorrecto =
-            pasarTurnoJugador();
-
-        if (paseCorrecto) {
-
-            fichaSeleccionada =
-                null;
-
-            actualizarInterfazVisual();
-
-            if (
-                partidaTerminada
-            ) {
-
-                mostrarMensajeResultado();
-
-                return;
-            }
-
-            mostrarMensaje(
-                "Has pasado el turno."
+        const jugablesJugador =
+            obtenerFichasJugables(
+                fichasJugador
             );
 
-            if (
-                turno ===
-                "maquina"
-            ) {
-
-                ejecutarTurnoMaquinaVisual();
-            }
+        if (jugablesJugador.length > 0) {
+            mostrarMensaje(
+                "Has robado una ficha jugable. Selecciónala y juega."
+            );
 
         } else {
+            mostrarMensaje(
+                "La ficha robada no sirve. Debes pasar el turno."
+            );
+        }
 
-            if (
-                turno !==
-                "jugador"
-            ) {
+    } else {
 
-                mostrarMensaje(
-                    "Espera a que termine el turno de la máquina."
-                );
+        if (turno !== "jugador") {
+            mostrarMensaje(
+                "Espera a que termine el turno de la máquina."
+            );
 
-            } else if (
-                obtenerFichasJugables(
-                    fichasJugador
-                ).length > 0
-            ) {
+        } else if (
+            obtenerFichasJugables(
+                fichasJugador
+            ).length > 0
+        ) {
+            mostrarMensaje(
+                "Tienes una ficha jugable. No puedes robar."
+            );
 
-                mostrarMensaje(
-                    "Tienes una ficha jugable. No puedes pasar."
-                );
+        } else if (jugadorHaRobado) {
+            mostrarMensaje(
+                "Ya has robado una ficha este turno. Debes pasar."
+            );
 
-            } else if (
-                fichasPozo.length >
-                0
-            ) {
+        } else if (fichasPozo.length === 0) {
+            mostrarMensaje(
+                "El pozo está vacío. Debes pasar el turno."
+            );
 
-                mostrarMensaje(
-                    "No puedes pasar todavía. Debes robar una ficha."
-                );
-
-            } else {
-
-                mostrarMensaje(
-                    "No puedes pasar en este momento."
-                );
-            }
+        } else {
+            mostrarMensaje(
+                "No puedes robar en este momento."
+            );
         }
     }
-);
+});
+
+const botonPasar =
+    document.querySelector("#btn-pasar");
+
+botonPasar.addEventListener("click", function () {
+
+    const paseCorrecto =
+        pasarTurnoJugador();
+
+    if (paseCorrecto) {
+        fichaSeleccionada = null;
+
+        actualizarInterfazVisual();
+
+        if (partidaTerminada) {
+            mostrarMensajeResultado();
+            return;
+        }
+
+        mostrarMensaje(
+            "Has pasado el turno."
+        );
+
+        if (turno === "maquina") {
+            ejecutarTurnoMaquinaVisual();
+        }
+
+    } else {
+
+        if (turno !== "jugador") {
+            mostrarMensaje(
+                "Espera a que termine el turno de la máquina."
+            );
+
+        } else if (
+            obtenerFichasJugables(
+                fichasJugador
+            ).length > 0
+        ) {
+            mostrarMensaje(
+                "Tienes una ficha jugable. No puedes pasar."
+            );
+
+        } else if (
+            fichasPozo.length > 0 &&
+            !jugadorHaRobado
+        ) {
+            mostrarMensaje(
+                "No puedes pasar todavía. Debes robar una ficha."
+            );
+
+        } else {
+            mostrarMensaje(
+                "No puedes pasar en este momento."
+            );
+        }
+    }
+});
 
 if (
     turno === "maquina" &&
     !partidaTerminada
 ) {
-
     ejecutarTurnoMaquinaVisual();
 
 } else {
-
     mostrarMensaje(
         "Tu turno. Selecciona una ficha."
     );
+
+    activarControlesJugador();
 }
 
 const botonNuevaPartida =
-    document.querySelector(
-        "#btn-nueva-partida"
-    );
+    document.querySelector("#btn-nueva-partida");
 
-botonNuevaPartida.addEventListener(
-    "click",
-    function () {
-
-        location.href =
-            location.pathname +
-            "?jugando=1";
-    }
-);
+botonNuevaPartida.addEventListener("click", function () {
+    location.href =
+        location.pathname +
+        "?jugando=1";
+});
