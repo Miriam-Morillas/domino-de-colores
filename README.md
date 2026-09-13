@@ -1,79 +1,131 @@
- DomUno - Dominó de colores
+DomUno - Dominó de colores
 
-Proyecto web inspirado en el dominó tradicional y combinado con algunas mecánicas de UNO.
+DomUno es un juego web basado en el dominó tradicional, pero con algunas mecánicas inspiradas en UNO.
 
-DomUno utiliza las 28 fichas clásicas del dominó doble-seis, pero añade colores y efectos especiales para hacer las partidas más dinámicas.
+El juego utiliza las 28 fichas clásicas del dominó doble-seis, aunque en este caso cada mitad de la ficha tiene también un color. Gracias a eso, además de hacer coincidir los números como en un dominó normal, se pueden activar efectos especiales cuando también coincide el color.
 
-Para colocar una ficha debe coincidir el número con uno de los extremos del tablero. Si además coincide el color, se activa un efecto sobre el rival, de forma parecida a algunas cartas especiales de UNO.
-
-El juego enfrenta a un jugador contra la máquina y toda la partida se desarrolla directamente en el navegador.
+La partida enfrenta a un jugador contra la máquina y todo funciona directamente desde el navegador.
 
 Cómo jugar
 
-Al comenzar la partida se crean las 28 fichas del dominó doble-seis y se reparten:
+Al empezar una partida se crean las 28 fichas y se reparten de esta forma:
 
 - 7 fichas para el jugador.
 - 7 fichas para la máquina.
 - 14 fichas en el pozo.
 
-La primera ficha se coloca automáticamente. Se intenta comenzar con el doble más alto y, si es necesario, se utiliza la ficha con mayor suma de puntos.
+La primera ficha se coloca automáticamente.
 
-Durante el turno del jugador:
+Para decidir quién empieza, primero se compara el doble más alto que tenga cada uno. Si hace falta, se compara la ficha con mayor suma de puntos y, si todavía hay empate, se decide al azar.
 
-1. Selecciona una ficha de su mano.
-2. Elige si quieres colocarla a la izquierda o a la derecha.
-3. La ficha solo puede colocarse si alguno de sus números coincide con el extremo correspondiente del tablero.
-4. Si no tienes ninguna ficha jugable, debes robar del pozo.
-5. Si el pozo está vacío y tampoco puedes jugar, puedes pasar el turno.
+Durante el turno del jugador se puede seleccionar una ficha y elegir si se quiere colocar a la izquierda o a la derecha del tablero.
+
+Para poder colocarla, uno de sus números tiene que coincidir con el número del extremo correspondiente.
+
+Si el jugador no tiene ninguna ficha jugable, puede robar una ficha del pozo.
+
+Solo se puede robar una ficha por turno.
+
+Si la ficha robada puede jugarse, hay que colocarla.
+
+Si la ficha robada tampoco sirve, se puede pasar el turno.
+
+Si el pozo está vacío y tampoco hay ninguna jugada posible, también se puede pasar.
 
 Mecánica de colores
 
-La base del juego sigue siendo la del dominó tradicional: para colocar una ficha debe coincidir el número con uno de los extremos del tablero.
+La base del juego sigue siendo la del dominó tradicional: para jugar una ficha tiene que coincidir el número.
 
-La parte inspirada en UNO aparece con los colores y sus efectos:
+El color no decide si una ficha se puede colocar o no. Solo sirve para activar efectos especiales después de hacer una jugada válida.
 
-- Mismo número:jugada normal y el turno pasa al rival.
+Las jugadas pueden ser:
+
+- Mismo número: la jugada es normal y el turno pasa al rival.
 - Mismo número y mismo color: el rival pierde su turno y el jugador vuelve a jugar.
-- Doble con mismo número y mismo color: el rival pierde su turno y roba hasta 2 fichas del pozo. El jugador vuelve a jugar.
+- Doble con mismo número y mismo color: el rival pierde su turno, roba hasta 2 fichas del pozo y el jugador vuelve a jugar.
 
 Las fichas normales tienen dos colores diferentes.
 
-Las fichas dobles son monocolor, es decir, tienen el mismo color en ambas mitades.
+Los dobles son monocolor, así que las dos mitades tienen el mismo color.
 
-Los colores de los dobles se reparten de forma equilibrada entre rojo, amarillo, azul y verde.
+Los colores utilizados son rojo, amarillo, azul y verde.
+
+En el caso de los dobles, los colores se reparten de forma bastante equilibrada. Se parte de dos posiciones de cada color y se elimina una al azar, por lo que al final el reparto queda siempre 2-2-2-1.
 
 La máquina
 
-La máquina juega de forma automática.
+La máquina juega automáticamente.
 
-Cuando tiene varias posibilidades, analiza las fichas que puede colocar tanto a la izquierda como a la derecha y da prioridad a:
+Cuando tiene varias posibilidades, analiza qué fichas puede colocar a la izquierda y a la derecha y elige la opción que considera mejor.
 
-1. Dobles que coincidan también en color.
+Da prioridad a:
+
+1. Dobles que también coincidan en color.
 2. Fichas que coincidan en número y color.
 3. Jugadas normales por coincidencia de número.
 
-Entre jugadas similares intenta utilizar las fichas con más puntos.
+Si tiene varias jugadas parecidas, intenta quitarse fichas con más puntos.
 
-También se ha añadido un pequeño tiempo de espera antes de sus movimientos para que los turnos no sean inmediatos.
+La máquina utiliza la misma regla de robo que el jugador.
 
- Final de la partida
+Si no tiene ninguna ficha jugable, roba una sola ficha.
+
+Si esa ficha sirve, la juega.
+
+Si tampoco sirve, pasa el turno.
+
+También se ha añadido un pequeño tiempo de espera antes de sus movimientos para que el turno de la máquina no sea instantáneo.
+
+Final de la partida
 
 La partida termina cuando uno de los dos jugadores se queda sin fichas.
 
-También puede terminar si la partida queda bloqueada y ninguno de los dos puede realizar una jugada.
+También puede terminar si la partida queda bloqueada.
 
-En ese caso:
+Se considera que una partida está bloqueada cuando el pozo está vacío y ninguno de los dos jugadores puede realizar una jugada.
 
-- Gana quien tenga menos puntos en su mano.
-- Si ambos tienen la misma cantidad de puntos, la partida termina en empate.
+En ese caso se suman los puntos de las fichas que le quedan a cada uno.
+
+- Gana quien tenga menos puntos.
+- Si los dos tienen la misma cantidad de puntos, la partida termina en empate.
 
 Marcador
 
 El juego guarda un marcador con las victorias y derrotas del jugador.
 
-El marcador se almacena mediante localStorage, por lo que se mantiene aunque se recargue la página.
+Este marcador se guarda utilizando localStorage, por lo que se mantiene aunque se recargue la página o se empiece una nueva partida.
 
 Los empates no suman ni victoria ni derrota.
+
+Pantalla de inicio
+
+El juego tiene una pantalla de inicio propia con el logo de DomUno y tres opciones:
+
+- Jugar.
+- Reglas del juego.
+- Salir.
+
+Desde esta pantalla se puede empezar una partida, consultar las reglas o salir.
+
+Reglas del juego
+
+El botón Reglas del juego abre un panel donde se explican las reglas principales de la partida.
+
+En él se explica cómo colocar una ficha, qué ocurre cuando coincide el número y el color, cómo funcionan los dobles, cuándo se puede robar, cuándo se puede pasar y cómo termina una partida.
+
+Pantalla de salida
+
+Al pulsar Salir aparece una pantalla de despedida.
+
+Desde esa pantalla se puede volver directamente al menú principal con el botón Volver al inicio.
+
+Nueva partida
+
+El botón Nueva partida reinicia completamente la partida.
+
+Se vuelven a crear las fichas, se asignan los colores, se reparten las manos, se prepara el pozo y se decide de nuevo la ficha inicial.
+
+De esta forma se genera una partida nueva, pero se vuelve directamente al tablero sin pasar otra vez por el menú principal.
 
 Cómo ejecutarlo
 
@@ -83,37 +135,52 @@ El proyecto no necesita instalación ni dependencias externas.
 2. Abre la carpeta del proyecto.
 3. Abre index.html en un navegador.
 
-También puede ejecutarse utilizando una extensión como Live Server desde Visual Studio Code.
+También se puede ejecutar usando una extensión como Live Server desde Visual Studio Code.
 
-Estructura
+Estructura del proyecto
 
-- index.html — estructura principal de la aplicación.
-- styles.css — estilos, tablero, fichas y adaptación visual.
-- domino-logica.js — creación de fichas y reglas de la partida.
-- domino-interfaz.js — representación visual y actualización de la interfaz.
-- domino-controles.js — gestión de botones y acciones del jugador.
-- fondo-madera.png — imagen utilizada en el diseño.
-- fondonegro.png — fondo utilizado para el tablero.
+- index.html: contiene la estructura principal, la pantalla de inicio, las reglas, la salida y la zona de juego.
+- styles.css: contiene los estilos, animaciones, diseño responsive, fichas y tablero.
+- domino-logica.js: contiene la creación de fichas, las reglas de la partida, los turnos y el final del juego.
+- domino-interfaz.js: se encarga de mostrar las fichas, actualizar la pantalla, enseñar mensajes y gestionar el marcador.
+- domino-controles.js: controla los botones y las acciones del jugador.
+- fondo-madera.png: textura utilizada en el diseño del tablero.
+- fondonegro.png: fondo utilizado en la zona central del tablero.
+- inicio nuevo/logo-domuno.png: logo principal del juego.
+- inicio nuevo/inicioIn.png: fondo utilizado en la pantalla de inicio.
 
 Tecnologías utilizadas
 
 - HTML
 - CSS
 - JavaScript
-- LocalStorage
+- DOM
+- localStorage
 
 Funcionalidades principales
 
-1. Generación automática de las 28 fichas del dominó doble-seis.
-2. Reparto aleatorio de fichas.
-3. Selección automática de la ficha inicial.
-4. Colocación de fichas por izquierda o derecha.
-5. Mecánica basada en la coincidencia de número y color.
-6. Efecto de bloqueo inspirado en UNO.
-7. Efecto de robo de hasta 2 fichas mediante los dobles.
-8. Robo de fichas desde el pozo.
-9. Paso de turno cuando no existen jugadas posibles.
-10. Máquina con selección automática de jugadas.
-11. Detección de victoria, derrota, bloqueo y empate.
-12. Marcador de partidas guardado en el navegador.
-13. Nueva partida sin necesidad de volver al menú inicial.
+1. Creación automática de las 28 fichas del dominó doble-seis.
+2. Asignación aleatoria de colores.
+3. Reparto aleatorio de fichas.
+4. Reparto equilibrado de colores para los dobles.
+5. Selección automática de la ficha inicial.
+6. Posibilidad de jugar a izquierda o derecha.
+7. Validación de jugadas mediante coincidencia de número.
+8. Efectos especiales cuando también coincide el color.
+9. Bloqueo del turno del rival.
+10. Robo de hasta 2 fichas mediante los dobles.
+11. Robo máximo de una ficha por turno cuando no hay jugadas.
+12. Posibilidad de pasar si la ficha robada tampoco sirve.
+13. Máquina con selección automática de jugadas.
+14. Misma regla de robo y pase para jugador y máquina.
+15. Detección de victoria y derrota.
+16. Detección de partidas bloqueadas.
+17. Resolución de bloqueos mediante suma de puntos.
+18. Posibilidad de empate.
+19. Marcador guardado mediante localStorage.
+20. Pantalla de inicio con logo y menú.
+21. Panel con las reglas del juego.
+22. Pantalla de salida.
+23. Nueva partida sin volver al menú principal.
+24. Diseño adaptable a ordenador, tablet y móvil.
+25. Animaciones y tiempos visuales para hacer la partida más agradable.
